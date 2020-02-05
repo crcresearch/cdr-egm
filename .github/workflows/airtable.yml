@@ -1,0 +1,35 @@
+name: Pull Airtable Data
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  fetch_and_save:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: npm install
+        run: npm ci
+      - name: Fetch data from Airtable API
+        run: |
+          OUTPUT_FILE_NAME=data_`date +%s`.json
+          npm run --silent airtable | tee data/$OUTPUT_FILE_NAME
+          ln -sf $OUTPUT_FILE_NAME data/latest.json
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+      - name: Push changes to repo
+        run: |
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${{ github.actor }}"
+          git add data/$OUTPUT_FILE_NAME data/latest.json
+          git status
+          git commit -am "Triggered automated Airtable data fetch via release on $(date)"
+          git push
