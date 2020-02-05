@@ -31,5 +31,5 @@ jobs:
           git config user.name "${{ github.actor }}"
           git add data/$OUTPUT_FILE_NAME data/latest.json
           git status
-          git commit -am "Triggered automated Airtable data fetch via release on $(date)"
+          git commit -m "Triggered automated Airtable data fetch via release on $(date)"
           git push
