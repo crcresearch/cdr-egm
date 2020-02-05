@@ -1,0 +1,23 @@
+{
+  "name": "usaid-pse-egm",
+  "version": "0.0.1",
+  "description": "Evidence Gap Map",
+  "main": "js/airtable.js",
+  "scripts": {
+    "airtable": "node js/airtable.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crcresearch/usaid-pse-egm.git"
+  },
+  "author": "Center for Research Computing, University of Notre Dame",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crcresearch/usaid-pse-egm/issues"
+  },
+  "homepage": "https://github.com/crcresearch/usaid-pse-egm#readme",
+  "dependencies": {
+    "airtable": "^0.8.1",
+    "csvtojson": "^2.0.10"
+  }
+}

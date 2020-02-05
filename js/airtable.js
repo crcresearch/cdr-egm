@@ -1,0 +1,129 @@
+const airtable = require('airtable');
+const csv = require('csvtojson');
+
+const ALLOWED_FIELDS = [
+  {
+    name: 'Country(ies)',
+    isArray: true,
+    isFiltered: true
+  },
+  {
+    name: 'Document ID',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Document Title',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Private Sector Industry',
+    isArray: true,
+    isFiltered: true
+  },
+  {
+    name: 'PSE Key Values',
+    isArray: true,
+    isFiltered: true
+  },
+  {
+    name: 'PSE Key Values USAID Offers',
+    isArray: true,
+    isFiltered: true
+  },
+  {
+    name: 'PSE Ways We Engage',
+    isArray: true,
+    isFiltered: true
+  },
+  {
+    name: 'Review Complete?',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Review Stage',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Technical Sector',
+    isArray: true,
+    isFiltered: true
+  },
+  {
+    name: 'Type of Document',
+    isArray: false,
+    isFiltered: true
+  },
+  {
+    name: 'Type of Enterprise',
+    isArray: true,
+    isFiltered: true
+  },
+  {
+    name: 'USAID Region',
+    isArray: true,
+    isFiltered: true
+  }
+];
+
+/**
+ * Fetches data from Airtable, serializes it to JSON and outputs it to stdout.
+ * Requires the AIRTABLE_API_KEY and AIRTABLE_BASE_ID environment variables to be set.
+ */
+(async function(){
+  try {
+    if (!process.env.AIRTABLE_BASE_ID) {
+      throw new Error('A valid base ID is required to connect to Airtable. The AIRTABLE_BASE_ID environment variable is not set.');
+    }
+    const base = airtable.base(process.env.AIRTABLE_BASE_ID);
+    const records = await base('Categorization Matrix').select({
+      cellFormat: 'string',
+      timeZone: 'America/Indiana/Indianapolis',
+      userLocale: 'en',
+      view: 'Grid view'
+    }).all();
+    const results = {
+      records: [],
+      filteredFields: {}
+    };
+    // Initialize filtered fields
+    for (const field of ALLOWED_FIELDS.filter(entry => entry.isFiltered)) {
+      results.filteredFields[field.name] = new Set();
+    }
+    for (const entry of records) {
+      const record = entry.fields;
+      const result = {};
+      // Only add whitelisted fields
+      for (const field of ALLOWED_FIELDS) {
+        if (record[field.name]) {
+          if (field.isArray) {
+            const rows = await csv({ noheader: true, output: 'csv'}).fromString(record[field.name]);
+            result[field.name] = rows.pop();
+            if (field.isFiltered) {
+              for (const fieldValue of result[field.name]) {
+                results.filteredFields[field.name].add(fieldValue);
+              }
+            }
+          } else {
+            result[field.name] = record[field.name];
+            if (field.isFiltered) {
+              results.filteredFields[field.name].add(result[field.name]);
+            }
+          }
+        }
+      }
+      results.records.push(result);
+    }
+    // Convert sets to arrays
+    for (const [name, values] of Object.entries(results.filteredFields)) {
+      results.filteredFields[name] = Array.from(values).sort();
+    }
+    console.log(JSON.stringify(results, null, 2));
+  } catch (err) {
+    console.error(err);
+    process.exit(1)
+  }
+})();
