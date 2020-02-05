@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <title>IDG Evidence Gap Map</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome -->
+    <link href="css/all.min.css" rel="stylesheet" />
+
+    <!-- Custom styles -->
+    <link href="css/igd-egm.css" rel="stylesheet" />
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <header>
+      <!-- Fixed navbar -->
+      <!--
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Evidence Gap Map</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Glossary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contribute</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+-->
+
+      <div class="bg-dark">
+        <div class="container" id="top-container">
+          <h1 class="my-1 text-pulte-lt-green">Evidence Gap Map</h1>
+          <p class="p-emphasis text-soft">
+            <span class="font-italic font-weight-bolder"
+              >Engagement mapped to private sector key values.</span
+            >
+            Use the map to identify gaps and locate relevant documents. Click a
+            circle to see the documents matching a particular engagment &ndash;
+            value pair. Use filters to narrow the documents displayed on the
+            map.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" role="main">
+      <div class="wash-300">
+        <div class="container-fluid">
+          <div class="row py-4 mb-5 text-center" id="filter-row">
+            <div class="col-lg-12">
+              <form>
+                <ul class="list-unstyled filters d-block d-md-inline-flex">
+                  <li>
+                    <select class="custom-select" id="selector01" v-model="filters.region" @change="filter_change">
+                      <option selected value="">USAID Region</option>
+                      <option>Afghanistan and Pakistan</option>
+                      <option>Africa</option>
+                      <option>Asia</option>
+                      <option>Europe and Eurasia</option>
+                      <option>Latin America and the Carribean</option>
+                      <option>Middle East</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="custom-select" id="selector02" v-model="filters.country" @change="filter_change">
+                      <option selected value="">Country</option>
+                      <option>Congo (Kinshasa)</option>
+                      <option>Ghana</option>
+                      <option>Liberia</option>
+                      <option>Nigeria</option>
+                      <option>Uganda</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="custom-select" id="selector03" v-model="filters.partners" @change="filter_change">
+                      <option selected value="">Name of Private Sector Partner</option>
+                      <option>Scholastic, Inc,</option>
+                      <option>SRAM</option>
+                      <option>Pagjino</option>
+                      <option>Boehringer Mannheim</option>
+                      <option>Eli Lilly & Co.</option>
+                      <option>Becton Dickinson & Co.</option>
+                      <option>IBM</option>
+                      <option>Stonyfield Farms</option>
+                      <option>American Express</option>
+                      <option>Grameen Foundation</option>
+                      <option>FINCA</option>
+                      <option>PRIDE AFRICA</option>
+                      <option>Bizcredit</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="custom-select" id="selector04" v-model="filters.enterprise_type" @change="filter_change">
+                      <option selected value="">Type of Enterprise</option>
+                      <option>American Business</option>
+                      <option
+                        >Financial Institution, Investors, and Intermediaries</option
+                      >
+                      <option selected
+                        >For-profit approach that generates sustainable income</option
+                      >
+                      <option>Formal Sector</option>
+                      <option>Corporate Foundation</option>
+                      <option>Large Enterprise</option>
+                      <option>Multi-national Business</option>
+                      <option>Regional Business</option>
+                      <option>American Business</option>
+                      <option>Local Business</option>
+                      <option>Micro, Small, or Medium Enterprise</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="custom-select" id="selector05" v-model="filters.technical_sector" @change="filter_change">
+                      <option selected value="">Technical Sector</option>
+                      <option>Agriculture and Food Security</option>
+                      <option>Economic Growth</option>
+                      <option>Education and Social Services</option>
+                      <option>Environment/Climate Change</option>
+                      <option>Health</option>
+                      <option>Peace & Security</option>
+                    </select>
+                  </li>
+                  <li>
+                    <select class="custom-select" id="selector07" v-model="filters.resource_type" @change="filter_change">
+                      <option selected value="">Resource Type</option>
+                      <option>Peer-reviewed article or other research report</option>
+                      <option>Performance evaluation report</option>
+                      <option>Use case/case study</option>
+                      <option>Impact Evaluation Report</option>
+                      <option>White Paper/Think Tank Report</option>
+                      <option>Political Economy Analysis</option>
+                      <option>Systematic review or Meta-analysis</option>\
+                    </select>
+                  </li>
+                </ul>
+              </form>
+
+              <form class="mt-2 mb-0 nd-blue-80">
+                <div class="form-check form-check-inline">
+                  <label
+                    class="form-check-label text-uppercase font-weight-bolder"
+                  >
+                    <a
+                      href="#"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="High confidence documents include peer review articles and research reports. All other documents, including industry publications and white papers are categorized here as medium to low confidence."
+                      class="text-reset"
+                    >
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                    Confidence:
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="option1"
+                    checked
+                  />
+                  <label class="form-check-label" for="inlineRadio1">Any</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="option2"
+                  />
+                  <label class="form-check-label" for="inlineRadio2"
+                    ><span class="text-pulte-green font-weight-bold">HIGH</span>
+                    only</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio3"
+                    value="option3"
+                  />
+                  <label class="form-check-label" for="inlineRadio3"
+                    ><span class="text-gold font-weight-bold">MED/LOW</span>
+                    only</label
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="table-container">
+        <div class="row no-gutters">
+          <div class="col-lg-6">
+            
+
+            <table class="table egm-table" id="pse-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="set-group-title-vert-width"></th>
+                  <th scope="col"></th>
+                  <th scope="colgroup" colspan="5" class="group-title">
+                    PSE Key Values
+                    <a
+                      href="#"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="PSE, or Private sector engagement, key values are..."
+                    >
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Ability to Influence Policy"
+                  >
+                    <div class="clip-content">Ability</div>
+                    <div class="clip-content">to Influence</div>
+                    <div class="clip-content">Policy</div>
+                  </th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Efficiency & Effectiveness"
+                  >
+                    <div class="clip-content">Efficiency</div>
+                    <div class="clip-content">& Effectiveness</div>
+                  </th>
+                  <th scope="col" class="value" title="Flexibility & Pace">
+                    <div class="clip-content">Flexibility</div>
+                    <div class="clip-content">& Pace</div>
+                  </th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Innovation, Expertise, and Capabilities"
+                  >
+                    <a
+                      class="reset-color"
+                      data-toggle="modal"
+                      data-target="#valueModal"
+                      style="cursor:pointer"
+                    >
+                      <div class="clip-content">Innovation,</div>
+                      <div class="clip-content">Expertise,</div>
+                      <div class="clip-content">& Capabilities</div>
+                    </a>
+                  </th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Scale, Sustainability, & Reach"
+                  >
+                    Scale,
+                    <div class="clip-content">Sustainability,</div>
+                    <div class="clip-content">& Reach</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th class="group-title-vert" rowspan="6">
+                    <div class="title-rotate">
+                      Ways We Engage
+                      <a
+                        href="#"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="We engage in a number of ways..."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </th>
+                  <th
+                    scope="row"
+                    class="engage"
+                    title="Advancing Learning & Market Research"
+                  >
+                    <div class="clip-content">Advancing</div>
+                    Learning & Market Research
+                  </th>
+                  <td v-for="index in [0,1,2,3,4]" key=index>
+                   <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="61,155,180">
+                  </td>
+                  
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage"
+                    title="Catalyzing Private Sector Resources"
+                  >
+                    <div class="clip-content">Catalyzing</div>
+                    Private Sector
+                    <div class="clip-content">Resources</div>
+                  </th>
+                  
+                  <td v-for="index in [0,1,2,3,4]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="61,155,180">
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage"
+                    title="Harnessing Private Sector Expertise & Innovation"
+                  >
+                    <div class="clip-content">Harnessing</div>
+                    Private Sector
+                    <div class="clip-content">Expertise</div>
+                    <div class="clip-content">& Innovation</div>
+                  </th>
+                  
+                  <td v-for="index in [0,1,2,3,4]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="61,155,180">
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage"
+                    title="Information-Sharing & Stratetic Alignment"
+                  >
+                    <div class="clip-content">Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
+                  </th>
+                  
+                  <td v-for="index in [0,1,2,3,4]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="61,155,180">
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage"
+                    title="Strengthening the Enabling Environment"
+                  >
+                    <div class="clip-content">Strengthening</div>
+                    the Enabling
+                    <div class="clip-content">Environment</div>
+                  </th>
+                  
+                  <td v-for="index in [0,1,2,3,4]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="61,155,180">
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage"
+                    title="Unlocking Private Investment"
+                  >
+                    Unlocking Private
+                    <div class="clip-content">Investment</div>
+                  </th>
+                  
+                  <td v-for="index in [0,1,2,3,4]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="61,155,180">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-6">
+            <table class="table egm-table mt-4 mt-lg-0" id="usaid-table">
+              <thead>
+                <tr>
+                  <th
+                    scope="col"
+                    class="d-lg-none set-group-title-vert-width"
+                  ></th>
+                  <th scope="col" class="d-lg-none"></th>
+                  <th scope="colgroup" colspan="5" class="group-title">
+                    PSE Key Values USAID Offers
+                    <a
+                      href="#"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="USAID offers a set of key values..."
+                    >
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                  </th>
+                  <th scope="col" class="d-none d-lg-table-cell"></th>
+                  <th
+                    scope="col"
+                    class="d-none d-lg-table-cell set-group-title-vert-width"
+                  ></th>
+                </tr>
+                <tr>
+                  <th scope="col" class="d-lg-none"></th>
+                  <th scope="col" class="d-lg-none"></th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Reputation & Credible Convening Power"
+                  >
+                    Reputation
+                    <div class="clip-content">& Credible</div>
+                    <div class="clip-content">Convening Power</div>
+                  </th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Risk-Mitigation & Flexible Authorities"
+                  >
+                    <div class="clip-content">Risk-Mitigation</div>
+                    <div class="clip-content">& Flexible</div>
+                    <div class="clip-content">Authorities</div>
+                  </th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Sectoral Expertise & Knowledge"
+                  >
+                    Sectoral Expertise
+                    <div class="clip-content">& Knowledge</div>
+                  </th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Strong In-Country Networks & Relationships"
+                  >
+                    Strong
+                    <div class="clip-content">In-Country</div>
+                    <div class="clip-content">Networks & Relationships</div>
+                  </th>
+                  <th
+                    scope="col"
+                    class="value"
+                    title="Support to Strengthen Enabling Environments"
+                  >
+                    Support
+                    <div class="clip-content">to Strengthen</div>
+                    <div class="clip-content">Enabling Environments</div>
+                  </th>
+                  <th scope="col" class="d-none d-lg-table-cell"></th>
+                  <th scope="col" class="d-none d-lg-table-cell"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th class="d-lg-none group-title-vert" rowspan="6">
+                    <div class="title-rotate">
+                      Ways We Engage
+                      <a
+                        href="#"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="We engage in a number of ways..."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </th>
+                  <th
+                    scope="row"
+                    class="engage d-lg-none"
+                    title="Advancing Learning & Market Research"
+                  >
+                    <div class="clip-content">Advancing</div>
+                    Learning & Market Research
+                  </th>
+                  
+                  <td v-for="index in [5,6,7,8,9]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="0,47,108">
+                  </td>
+                  <th
+                    scope="row"
+                    class="engage d-none d-lg-table-cell"
+                    title="Advancing Learning & Market Research"
+                  >
+                    <div class="clip-content">Advancing</div>
+                    Learning & Market Research
+                  </th>
+                  <th
+                    class="d-none d-lg-table-cell group-title-vert"
+                    rowspan="6"
+                  >
+                    <div class="title-rotate">
+                      Ways We Engage
+                      <a
+                        href="#"
+                        data-toggle="tooltip"
+                        data-placement="left"
+                        title="We engage in a number of ways..."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage d-lg-none"
+                    title="Catalyzing Private Sector Resources"
+                  >
+                    <div class="clip-content">Catalyzing</div>
+                    Private Sector
+                    <div class="clip-content">Resources</div>
+                  </th>
+                  
+                  <td v-for="index in [5,6,7,8,9]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="0,47,108">
+                  </td>
+                  <th
+                    scope="row"
+                    class="engage d-none d-lg-table-cell"
+                    title="Catalyzing Private Sector Resources"
+                  >
+                    <div class="clip-content">Catalyzing</div>
+                    Private Sector
+                    <div class="clip-content">Resources</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage d-lg-none"
+                    title="Harnessing Private Sector Expertise & Innovation"
+                  >
+                    <div class="clip-content">Harnessing</div>
+                    Private Sector
+                    <div class="clip-content">Expertise</div>
+                    <div class="clip-content">& Innovation</div>
+                  </th>
+                  
+                  <td v-for="index in [5,6,7,8,9]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="0,47,108">
+                  </td>
+                  <th
+                    scope="row"
+                    class="engage d-none d-lg-table-cell"
+                    title="Harnessing Private Sector Expertise & Innovation"
+                  >
+                    <div class="clip-content">Harnessing</div>
+                    Private Sector
+                    <div class="clip-content">Expertise</div>
+                    <div class="clip-content">& Innovation</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage d-lg-none"
+                    title="Information-Sharing & Stratetic Alignment"
+                  >
+                    <div class="clip-content">Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
+                  </th>
+                  
+                  <td v-for="index in [5,6,7,8,9]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="0,47,108">
+                  </td>
+                  <th
+                    scope="row"
+                    class="engage d-none d-lg-table-cell"
+                    title="Information-Sharing & Stratetic Alignment"
+                  >
+                    <div class="clip-content">Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage d-lg-none"
+                    title="Strengthening the Enabling Environment"
+                  >
+                    <div class="clip-content">Strengthening</div>
+                    the Enabling
+                    <div class="clip-content">Environment</div>
+                  </th>
+                 
+                  <td v-for="index in [5,6,7,8,9]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="0,47,108">
+                  </td>
+                  <th
+                    scope="row"
+                    class="engage d-none d-lg-table-cell"
+                    title="Strengthening the Enabling Environment"
+                  >
+                    <div class="clip-content">Strengthening</div>
+                    the Enabling
+                    <div class="clip-content">Environment</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="engage d-lg-none"
+                    title="Unlocking Private Investment"
+                  >
+                    Unlocking Private
+                    <div class="clip-content">Investment</div>
+                  </th>
+                  
+                  <td v-for="index in [5,6,7,8,9]" key=index>
+                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="0,47,108">
+                  </td>
+                  <th
+                    scope="row"
+                    class="engage d-none d-lg-table-cell"
+                    title="Unlocking Private Investment"
+                  >
+                    Unlocking Private
+                    <div class="clip-content">Investment</div>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- /.row tables -->
+      </div>
+      <!-- /.container-fluid -->
+
+      <div class="container mt-5 mb-4">
+        <h4>About the Evidence Gap Map</h4>
+        <p>
+          The vertical axis reflects the ways we engage... The horizontal axis
+          reflects key values... It is divided into two sections, on the
+          right... and on the left...
+        </p>
+      </div>
+      <div class="container mb-5">
+        <h4>Help to Fill the Gaps</h4>
+        <p>
+          We invite you to contribute documents to add to the map, using this
+          <a href="">form</a>.
+        </p>
+      </div>
+      <!-- /.container -->
+    </main>
+
+    <footer class="footer mt-auto bg-dark">
+      <div class="wash-200">
+        <div class="container-fluid">
+          <div class="row py-4">
+            <div class="col-lg-3 desc-col text-center text-lg-left">
+              <p class="my-0 text-muted pb-4 pb-lg-0">
+                This work is a partnership between USAID, the University of
+                Notre Dame, and Purdue University. It is funded under grant #.
+              </p>
+            </div>
+            <div class="col-lg-9">
+              <div class="row brand-line">
+                <div class="col-sm-4 py-3">
+                  <img
+                    src="images/nd_mark_blue.png"
+                    class="img-fluid img-50"
+                    alt="Notre Dame logo"
+                  />
+                </div>
+                <div class="col-sm-4 py-3">
+                  <img
+                    src="images/usaid-logo.png"
+                    class="img-fluid img-65"
+                    alt="USAID Dame"
+                  />
+                </div>
+                <div class="col-sm-4 py-3">
+                  <img
+                    src="images/purdue.png"
+                    class="img-fluid img-50"
+                    alt="Purdue logo"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row py-3 cpy-line">
+          <div class="col-md-6">
+            <p class="text-white-50 mb-0 text-center text-md-left">
+              Copyright &copy; 2020
+              <a class="text-reset" href="https://www.nd.edu"
+                >University of Notre Dame</a
+              >
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p class="text-white-50 mb-0 text-center text-md-right">
+              <a class="text-reset" href="https://pulte.nd.edu"
+                >Pulte Institute for Global Development</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Document Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <span class="badge badge-secondary badge-pill mr-1">2</span>
+              Relevant Documents
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-0">
+            <div class="card-header">
+              <p class="mb-0 text-uppercase font-weight-lighter">
+                PSE Key Value
+              </p>
+              <h5 class="mb-2">
+                Innovation, Expertise, & Capabilities
+              </h5>
+              <p class="mb-0 text-uppercase font-weight-lighter">
+                Way We Engage
+              </p>
+              <h5 class="mb-1">
+                Advancing Learning and Market Research
+              </h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled">
+                <li>
+                  <h5
+                    class="d-flex justify-content-between align-items-center text-pulte-green"
+                  >
+                    HIGH Confidence
+                    <span
+                      class="badge badge-secondary bg-pulte-green badge-pill"
+                      >2</span
+                    >
+                  </h5>
+                </li>
+                <li>
+                  <span class="text-uppercase">Type:</span> Use case/case study
+                </li>
+                <li>
+                  <a href="#"
+                    >Feasibility Study of the US-Pakistan Knowledge Corridor
+                    Scholarship...</a
+                  >
+                </li>
+              </ul>
+              <ul class="list-unstyled">
+                <li>
+                  <span class="text-uppercase">Type:</span> Systematic review or
+                  meta-analysis
+                </li>
+                <li>
+                  <a href="#"
+                    >Report on the BIFAD and USAID Consultations: Feeding the
+                    World in...</a
+                  >
+                </li>
+              </ul>
+              <ul class="list-unstyled">
+                <li>
+                  <h5
+                    class="d-flex justify-content-between align-items-center text-gold"
+                  >
+                    MED/LOW Confidence
+                    <span class="badge badge-secondary bg-gold badge-pill"
+                      >0</span
+                    >
+                  </h5>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Value Modal -->
+    <div
+      class="modal fade"
+      id="valueModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-0">
+            <div class="card-header">
+              <p class="mb-0 text-uppercase font-weight-lighter">
+                PSE Key Value
+              </p>
+              <h5 class="mb-1">
+                Innovation, Expertise, & Capabilities
+              </h5>
+            </div>
+            <div class="card-body">
+              <p>
+                Describe the value, and how it is used to categorize documents.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+
+    <!-- VueJS From CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+    <!-- axios From CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+    <!-- EGM Vue App Code -->
+    <script src="js/egm.js"></script>
+
+
+    <script>
+      $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+
+    
+  </body>
+</html>
