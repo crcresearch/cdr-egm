@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="description" content="" />
-    <title>IDG Evidence Gap Map</title>
+    <title>USAID Evidence Gap Map</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -27,29 +27,6 @@
 
   <body class="d-flex flex-column h-100">
     <header>
-      <!-- Fixed navbar -->
-      <!--
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Evidence Gap Map</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Glossary</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contribute</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
--->
-
       <div class="bg-dark">
         <div class="container" id="top-container">
           <h1 class="my-1 text-pulte-lt-green">Evidence Gap Map</h1>
@@ -76,83 +53,49 @@
                   <li>
                     <select class="custom-select" id="selector01" v-model="filters.region" @change="filter_change">
                       <option selected value="">USAID Region</option>
-                      <option>Afghanistan and Pakistan</option>
-                      <option>Africa</option>
-                      <option>Asia</option>
-                      <option>Europe and Eurasia</option>
-                      <option>Latin America and the Carribean</option>
-                      <option>Middle East</option>
+                      <option v-for="region in filter_categories['USAID Region']">
+                        {{ region }}
+                      </option>
                     </select>
                   </li>
                   <li>
                     <select class="custom-select" id="selector02" v-model="filters.country" @change="filter_change">
                       <option selected value="">Country</option>
-                      <option>Congo (Kinshasa)</option>
-                      <option>Ghana</option>
-                      <option>Liberia</option>
-                      <option>Nigeria</option>
-                      <option>Uganda</option>
+                      <option v-for="country in filter_categories['Country(ies)']">
+                        {{ country }}
+                      </option>
                     </select>
                   </li>
                   <li>
                     <select class="custom-select" id="selector03" v-model="filters.partners" @change="filter_change">
                       <option selected value="">Name of Private Sector Partner</option>
-                      <option>Scholastic, Inc,</option>
-                      <option>SRAM</option>
-                      <option>Pagjino</option>
-                      <option>Boehringer Mannheim</option>
-                      <option>Eli Lilly & Co.</option>
-                      <option>Becton Dickinson & Co.</option>
-                      <option>IBM</option>
-                      <option>Stonyfield Farms</option>
-                      <option>American Express</option>
-                      <option>Grameen Foundation</option>
-                      <option>FINCA</option>
-                      <option>PRIDE AFRICA</option>
-                      <option>Bizcredit</option>
+                      <option v-for="partner_name in filter_categories['Name of Private Sector Partner(s)']">
+                        {{ partner_name }}
+                      </option>
                     </select>
                   </li>
                   <li>
                     <select class="custom-select" id="selector04" v-model="filters.enterprise_type" @change="filter_change">
                       <option selected value="">Type of Enterprise</option>
-                      <option>American Business</option>
-                      <option
-                        >Financial Institution, Investors, and Intermediaries</option
-                      >
-                      <option selected
-                        >For-profit approach that generates sustainable income</option
-                      >
-                      <option>Formal Sector</option>
-                      <option>Corporate Foundation</option>
-                      <option>Large Enterprise</option>
-                      <option>Multi-national Business</option>
-                      <option>Regional Business</option>
-                      <option>American Business</option>
-                      <option>Local Business</option>
-                      <option>Micro, Small, or Medium Enterprise</option>
+                      <option v-for="enterprise_type in filter_categories['Type of Enterprise']">
+                        {{ enterprise_type }}
+                      </option>
                     </select>
                   </li>
                   <li>
                     <select class="custom-select" id="selector05" v-model="filters.technical_sector" @change="filter_change">
                       <option selected value="">Technical Sector</option>
-                      <option>Agriculture and Food Security</option>
-                      <option>Economic Growth</option>
-                      <option>Education and Social Services</option>
-                      <option>Environment/Climate Change</option>
-                      <option>Health</option>
-                      <option>Peace & Security</option>
+                      <option v-for="technical_sector in filter_categories['Technical Sector']">
+                        {{ technical_sector }}
+                      </option>
                     </select>
                   </li>
                   <li>
                     <select class="custom-select" id="selector07" v-model="filters.resource_type" @change="filter_change">
                       <option selected value="">Resource Type</option>
-                      <option>Peer-reviewed article or other research report</option>
-                      <option>Performance evaluation report</option>
-                      <option>Use case/case study</option>
-                      <option>Impact Evaluation Report</option>
-                      <option>White Paper/Think Tank Report</option>
-                      <option>Political Economy Analysis</option>
-                      <option>Systematic review or Meta-analysis</option>\
+                      <option v-for="document_type in filter_categories['Type of Document']">
+                        {{ document_type }}
+                      </option>
                     </select>
                   </li>
                 </ul>
@@ -315,7 +258,7 @@
                     Learning & Market Research
                   </th>
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                   <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="61,155,180">
+                   <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="61,155,180"/>
                   </td>
                   
                 </tr>
@@ -331,7 +274,7 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="61,155,180">
+                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="61,155,180"/>
                   </td>
                 </tr>
                 <tr>
@@ -347,7 +290,7 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="61,155,180">
+                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="61,155,180"/>
                   </td>
                 </tr>
                 <tr>
@@ -363,7 +306,7 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="61,155,180">
+                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="61,155,180"/>
                   </td>
                 </tr>
                 <tr>
@@ -378,7 +321,7 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="61,155,180">
+                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="61,155,180"/>
                   </td>
                 </tr>
                 <tr>
@@ -392,7 +335,7 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="61,155,180">
+                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="61,155,180"/>
                   </td>
                 </tr>
               </tbody>
@@ -500,7 +443,7 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="0,47,108">
+                    <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="0,47,108"/>
                   </td>
                   <th
                     scope="row"
@@ -539,7 +482,7 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="0,47,108">
+                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="0,47,108"/>
                   </td>
                   <th
                     scope="row"
@@ -564,7 +507,7 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="0,47,108">
+                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="0,47,108"/>
                   </td>
                   <th
                     scope="row"
@@ -590,7 +533,7 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="0,47,108">
+                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="0,47,108"/>
                   </td>
                   <th
                     scope="row"
@@ -615,7 +558,7 @@
                   </th>
                  
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="0,47,108">
+                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="0,47,108"/>
                   </td>
                   <th
                     scope="row"
@@ -638,7 +581,7 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="0,47,108">
+                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="0,47,108"/>
                   </td>
                   <th
                     scope="row"
