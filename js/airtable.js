@@ -23,6 +23,11 @@ const ALLOWED_FIELDS = [
     isFiltered: true
   },
   {
+    name: 'Name of Private Sector Partner(s)',
+    isArray: true,
+    isFiltered: true
+  },
+  {
     name: 'PSE Key Values',
     isArray: true,
     isFiltered: true
@@ -36,16 +41,6 @@ const ALLOWED_FIELDS = [
     name: 'PSE Ways We Engage',
     isArray: true,
     isFiltered: true
-  },
-  {
-    name: 'Review Complete?',
-    isArray: false,
-    isFiltered: false
-  },
-  {
-    name: 'Review Stage',
-    isArray: false,
-    isFiltered: false
   },
   {
     name: 'Technical Sector',
