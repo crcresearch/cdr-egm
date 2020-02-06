@@ -64,18 +64,14 @@ const app = new Vue({
     filtered_documents: [],
     filter_categories: {}
   },
-  mounted: function () {
-    axios
-      .get('https://raw.githubusercontent.com/crcresearch/usaid-pse-egm/master/data/latest.json')
-      .then(response => axios.get(`https://raw.githubusercontent.com/crcresearch/usaid-pse-egm/master/data/${response.data}`))
-      .then(response => {
-        this.documents = response.data.records;
-        this.filtered_documents = this.documents;
-        this.filtered_summary = this.filter_records();
-        this.filter_categories = response.data.filteredFields;
-      });
+  mounted: async function () {
+    const response = await axios.get('data/latest.json', { responseType: 'json' });
+    this.documents = response.data.records;
+    this.filtered_documents = this.documents;
+    this.filtered_summary = this.filter_records();
+    this.filter_categories = response.data.filteredFields;
   },
-  // define methods under the `methods` object
+
   methods: {
     filter_records: function () {
       const new_summary = [
