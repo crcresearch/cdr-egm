@@ -111,8 +111,8 @@
                   <h5 class="mb-1">Internet URL</h5>
                   <p class="mb-0 text-small"><a :href="document_details['Internet URL of Document']" target="_blank">{{ document_details['Internet URL of Document'] || '---' | truncate(45) }}</a></p>
                 </li>
-                <li class="list-group-item">
-                  <h5 class="mb-1">USAID funded - TODO</h5>
+                <li v-if="document_details['USAID-Funded?']" class="list-group-item">
+                  <h5 class="mb-1">USAID funded</h5>
                 </li>
               </ul>
             </div>
