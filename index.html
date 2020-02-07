@@ -95,9 +95,9 @@
                   <h5 class="mb-1">Special Considerations</h5>
                   <p class="mb-0"v-for="(consideration, index) in document_details['Special Considerations']" :key="consideration">{{ consideration }}</p>
                 </li>
-                <li class="list-group-item">
+                <li v-if="document_details['Private Sector Industry']" class="list-group-item">
                   <h5 class="mb-1">Private Sector Industry</h5>
-                  <p class="mb-0">TODO</p>
+                  <p class="mb-0"v-for="(industry, index) in document_details['Private Sector Industry']" :key="industry">{{ industry }}</p>
                 </li>
                 <li class="list-group-item">
                   <h5 class="mb-1">Country(ies)</h5>
