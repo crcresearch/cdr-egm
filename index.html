@@ -147,7 +147,7 @@
               <form>
                 <ul class="list-unstyled filters d-block d-md-inline-flex">
                   <li>
-                    <select class="custom-select" id="selector01" v-model="filters.region" @change="filter_change">
+                    <select class="custom-select" :class="{ 'bg-selected-blue': filters.region !== '' }" id="selector01" v-model="filters.region" @change="filter_change">
                       <option selected value="">USAID Region</option>
                       <option v-for="region in filter_categories['USAID Region']">
                         {{ region }}
@@ -155,7 +155,7 @@
                     </select>
                   </li>
                   <li>
-                    <select class="custom-select" id="selector02" v-model="filters.country" @change="filter_change">
+                    <select class="custom-select" :class="{ 'bg-selected-blue': filters.country !== '' }" id="selector02" v-model="filters.country" @change="filter_change">
                       <option selected value="">Country</option>
                       <option v-for="country in filter_categories['Country(ies)']">
                         {{ country }}
@@ -163,7 +163,7 @@
                     </select>
                   </li>
                   <li>
-                    <select class="custom-select" id="selector03" v-model="filters.partners" @change="filter_change">
+                    <select class="custom-select" :class="{ 'bg-selected-blue': filters.partners !== '' }" id="selector03" v-model="filters.partners" @change="filter_change">
                       <option selected value="">Name of Private Sector Partner</option>
                       <option v-for="partner_name in filter_categories['Name of Private Sector Partner(s)']">
                         {{ partner_name }}
@@ -171,7 +171,7 @@
                     </select>
                   </li>
                   <li>
-                    <select class="custom-select" id="selector04" v-model="filters.enterprise_type" @change="filter_change">
+                    <select class="custom-select" :class="{ 'bg-selected-blue': filters.enterprise_type !== '' }" id="selector04" v-model="filters.enterprise_type" @change="filter_change">
                       <option selected value="">Type of Enterprise</option>
                       <option v-for="enterprise_type in filter_categories['Type of Enterprise']">
                         {{ enterprise_type }}
@@ -179,7 +179,7 @@
                     </select>
                   </li>
                   <li>
-                    <select class="custom-select" id="selector05" v-model="filters.technical_sector" @change="filter_change">
+                    <select class="custom-select" :class="{ 'bg-selected-blue': filters.technical_sector !== '' }" id="selector05" v-model="filters.technical_sector" @change="filter_change">
                       <option selected value="">Technical Sector</option>
                       <option v-for="technical_sector in filter_categories['Technical Sector']">
                         {{ technical_sector }}
@@ -187,7 +187,7 @@
                     </select>
                   </li>
                   <li>
-                    <select class="custom-select" id="selector07" v-model="filters.resource_type" @change="filter_change">
+                    <select class="custom-select" :class="{ 'bg-selected-blue': filters.resource_type !== '' }" id="selector07" v-model="filters.resource_type" @change="filter_change">
                       <option selected value="">Resource Type</option>
                       <option v-for="document_type in filter_categories['Type of Document']">
                         {{ document_type }}

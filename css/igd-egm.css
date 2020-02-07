@@ -72,6 +72,9 @@ body {
 .bg-pse-lt-blue {
   background: #3d9bb4;
 }
+.bg-selected-blue {
+  background: #0c2440 !important;
+}
 .bg-usaid-blue {
   background: #002f6c;
 }
@@ -375,7 +378,6 @@ ul.list-spaced li {
   display: table-cell;
   vertical-align: middle;
 }
-
 
 [v-cloak] {
   display: none;
