@@ -64,12 +64,12 @@ const ALLOWED_FIELDS = [
   },
   {
     name: 'Publishing Institution(s)',
-    isArray: false,
+    isArray: true,
     isFiltered: false
   },
   {
     name: 'Special Considerations',
-    isArray: false,
+    isArray: true,
     isFiltered: false
   },
   {
