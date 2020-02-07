@@ -23,8 +23,6 @@ const WAYS_WE_ENGAGE = {
   "Unlocking Private Investment;": 5
 };
 
-const MAX_TITLE_LENGTH = 70;
-
 const relevantDocumentsModal = {
   props: {
     isHidden: Boolean,
@@ -36,14 +34,6 @@ const relevantDocumentsModal = {
     },
     low_confidence_docs: function () {
       return this.state.relevant_docs.filter(doc => doc['Type of Document'] !== 'Peer-reviewed article or other research report');
-    }
-  },
-  filters: {
-    truncate: function (value) {
-      if (value && value.length > MAX_TITLE_LENGTH) {
-        return `${value.substring(0, MAX_TITLE_LENGTH)}...`;
-      }
-      return value;
     }
   },
   methods: {
@@ -144,6 +134,14 @@ const matrixCellComponent = {
                </a>
              </div>`
 };
+
+Vue.filter('truncate', function (value, max_length = 115) {
+  if (value && value.length > max_length) {
+    return `${value.substring(0, max_length)}...`;
+  }
+  return value;
+});
+
 const app = new Vue({
   el: '#app',
   components: {
@@ -200,12 +198,24 @@ const app = new Vue({
   };
   },
   computed: {
-    document_details: function() {
+    document_details: function () {
       if(this.document_detail_id === '') {
         return {};
       } else {
         return this.documents.find(doc => doc['Document ID'] === this.document_detail_id);
       }
+    },
+    document_findings: function () {
+      if (this.document_details['Key Findings']) {
+        return this.document_details['Key Findings'].split('\n');
+      }
+      return [];
+    },
+    document_recommendations: function () {
+      if (this.document_details['Key Recommendations']) {
+        return this.document_details['Key Recommendations'].split('\n');
+      }
+      return [];
     }
   },
 

@@ -56,10 +56,14 @@
         <div class="container mt-5 mb-4">
           <div class="row">
             <div class="col-sm-7 col-lg-8">
-            <h4>Key Findings</h4>
-            <p>{{ document_details['Key Findings'] }}</p>
-          <h4>Key Recommendations</h4>
-            <p>{{ document_details['Key Recommendations'] }}</p>
+              <h4>Key Findings</h4>
+              <ul class="list-unstyled">
+                <li v-for="entry in document_findings">{{ entry }}</li>
+              </ul>
+              <h4>Key Recommendations</h4>
+              <ul class="list-unstyled">
+                <li v-for="entry in document_recommendations">{{ entry }}</li>
+              </ul>
             </div>
             <div class="col-sm-5 col-lg-4">
               <ul class="list-group mt-3">
@@ -105,7 +109,7 @@
                 </li>
                 <li class="list-group-item">
                   <h5 class="mb-1">Internet URL</h5>
-                  <p class="mb-0 text-small"><a :href="document_details['Internet URL of Document']" target="_blank">{{document_details['Internet URL of Document'] || '---'}}</a></p>
+                  <p class="mb-0 text-small"><a :href="document_details['Internet URL of Document']" target="_blank">{{ document_details['Internet URL of Document'] || '---' | truncate(45) }}</a></p>
                 </li>
                 <li class="list-group-item">
                   <h5 class="mb-1">USAID funded - TODO</h5>
