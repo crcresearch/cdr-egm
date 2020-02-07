@@ -39,6 +39,7 @@ const relevantDocumentsModal = {
   methods: {
     setDocumentDetail: function(docid) {
       window.history.pushState({'docid' : docid }, 'USAID Evidence Gap Map', `/?docid=${docid}`);
+      window.scrollTo(0,0);
       this.$emit('close-docs-modal');
       this.$emit('update-doc-detail-id', docid);
     }
@@ -297,6 +298,7 @@ const app = new Vue({
       this.show_documents_modal = true;
     },
     clearDocumentDetail: function() {
+      window.scrollTo(0,0);
       window.history.pushState({}, 'USAID Evidence Gap Map', '/' );
       this.document_detail_id = '';
     },
