@@ -29,7 +29,7 @@
     <header>
       <div class="bg-dark">
         <div class="container" id="top-container">
-          <h1 class="my-1 text-pulte-lt-green">Evidence Gap Map</h1>
+          <h1 class="my-1 text-vb-lt-blue">Evidence Gap Map</h1>
           <p class="p-emphasis text-soft">
             <span class="font-italic font-weight-bolder"
               >Engagement mapped to private sector key values.</span
@@ -97,6 +97,9 @@
                         {{ document_type }}
                       </option>
                     </select>
+                  </li>
+                  <li>
+                    <a class="btn btn-light btn-sm rounded-circle ml-2 mt-1" role="button" title="Reset filters" @click="reset_filters"><i class="fas fa-redo"></i></a>
                   </li>
                 </ul>
               </form>
@@ -258,7 +261,10 @@
                     Learning & Market Research
                   </th>
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                   <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="61,155,180"/>
+                   <matrix-cell
+                           v-bind:count="filtered_summary[0][index]"
+                           color_base="61,155,180"
+                           @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
                   </td>
                   
                 </tr>
@@ -274,7 +280,10 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="61,155,180"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[1][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
                   </td>
                 </tr>
                 <tr>
@@ -290,7 +299,10 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="61,155,180"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[2][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
                   </td>
                 </tr>
                 <tr>
@@ -306,7 +318,10 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="61,155,180"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[3][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
                   </td>
                 </tr>
                 <tr>
@@ -321,7 +336,10 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="61,155,180"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[4][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
                   </td>
                 </tr>
                 <tr>
@@ -335,7 +353,10 @@
                   </th>
                   
                   <td v-for="index in [0,1,2,3,4]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="61,155,180"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[5][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
                   </td>
                 </tr>
               </tbody>
@@ -443,7 +464,10 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[0][index]" color_base="0,47,108"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[0][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
                   </td>
                   <th
                     scope="row"
@@ -482,7 +506,10 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[1][index]" color_base="0,47,108"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[1][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
                   </td>
                   <th
                     scope="row"
@@ -507,7 +534,10 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[2][index]" color_base="0,47,108"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[2][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
                   </td>
                   <th
                     scope="row"
@@ -533,7 +563,10 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[3][index]" color_base="0,47,108"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[3][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
                   </td>
                   <th
                     scope="row"
@@ -558,7 +591,10 @@
                   </th>
                  
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[4][index]" color_base="0,47,108"/>
+                    <matrix-cell
+                            v-bind:count="filtered_summary[4][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
                   </td>
                   <th
                     scope="row"
@@ -581,7 +617,11 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="0,47,108"/>
+<!--                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="0,47,108" @show-docs-modal="showDocumentsModal = true"/>-->
+                    <matrix-cell
+                            v-bind:count="filtered_summary[5][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
                   </td>
                   <th
                     scope="row"
@@ -616,6 +656,9 @@
         </p>
       </div>
       <!-- /.container -->
+
+      <!-- Document Modal -->
+      <relevant-documents :state="docs_modal_state" :is-hidden="!show_documents_modal" @close-docs-modal="show_documents_modal = false"/>
     </main>
 
     <footer class="footer mt-auto bg-dark">
@@ -677,139 +720,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- Document Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              <span class="badge badge-secondary badge-pill mr-1">2</span>
-              Relevant Documents
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body p-0">
-            <div class="card-header">
-              <p class="mb-0 text-uppercase font-weight-lighter">
-                PSE Key Value
-              </p>
-              <h5 class="mb-2">
-                Innovation, Expertise, & Capabilities
-              </h5>
-              <p class="mb-0 text-uppercase font-weight-lighter">
-                Way We Engage
-              </p>
-              <h5 class="mb-1">
-                Advancing Learning and Market Research
-              </h5>
-            </div>
-            <div class="card-body">
-              <ul class="list-unstyled">
-                <li>
-                  <h5
-                    class="d-flex justify-content-between align-items-center text-pulte-green"
-                  >
-                    HIGH Confidence
-                    <span
-                      class="badge badge-secondary bg-pulte-green badge-pill"
-                      >2</span
-                    >
-                  </h5>
-                </li>
-                <li>
-                  <span class="text-uppercase">Type:</span> Use case/case study
-                </li>
-                <li>
-                  <a href="#"
-                    >Feasibility Study of the US-Pakistan Knowledge Corridor
-                    Scholarship...</a
-                  >
-                </li>
-              </ul>
-              <ul class="list-unstyled">
-                <li>
-                  <span class="text-uppercase">Type:</span> Systematic review or
-                  meta-analysis
-                </li>
-                <li>
-                  <a href="#"
-                    >Report on the BIFAD and USAID Consultations: Feeding the
-                    World in...</a
-                  >
-                </li>
-              </ul>
-              <ul class="list-unstyled">
-                <li>
-                  <h5
-                    class="d-flex justify-content-between align-items-center text-gold"
-                  >
-                    MED/LOW Confidence
-                    <span class="badge badge-secondary bg-gold badge-pill"
-                      >0</span
-                    >
-                  </h5>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Value Modal -->
-    <div
-      class="modal fade"
-      id="valueModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body p-0">
-            <div class="card-header">
-              <p class="mb-0 text-uppercase font-weight-lighter">
-                PSE Key Value
-              </p>
-              <h5 class="mb-1">
-                Innovation, Expertise, & Capabilities
-              </h5>
-            </div>
-            <div class="card-body">
-              <p>
-                Describe the value, and how it is used to categorize documents.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
