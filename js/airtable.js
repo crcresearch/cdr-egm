@@ -88,6 +88,11 @@ const ALLOWED_FIELDS = [
     isFiltered: true
   },
   {
+    name: 'USAID-Funded?',
+    isArray: false,
+    isFiltered: false
+  },
+  {
     name: 'USAID Region',
     isArray: true,
     isFiltered: true
