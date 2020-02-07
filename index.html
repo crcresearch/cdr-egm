@@ -26,6 +26,98 @@
   </head>
 
   <body class="d-flex flex-column h-100">
+  <div id="app" v-cloak>
+    <div v-if="document_detail_id !== ''">
+
+    <header>
+      <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="javascript:void(0);" @click="clearDocumentDetail()"><i class="fas fa-chevron-left mr-2"></i> Evidence Gap Map</a>
+  </nav>
+
+    </header>
+      <main v-if="document_details" role="main">
+
+        <div class="bg-vb-lt-blue">
+        <div class="container position-relative text-dark" id="top-document-detail">
+          <h5 class="mb-1 text-uppercase text-dark font-weight-bolder">
+            {{ document_details['Type of Document'] }}
+          </h5>
+          <h1 class="mb-1 text-white">
+            {{ document_details['Document Title'] }}
+          </h1>
+          <p class="my-0"><span class="text-uppercase font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
+          <p class="my-0"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }}</p>
+          <a v-if="document_details['Internet URL of Document']" class="btn btn-dark btn-lg" id="view-document-link" :href="document_details['Internet URL of Document']" target="_blank" role="button">View Document <i class="fas fa-external-link-alt ml-2"></i></a>
+        </div>
+        </div>
+
+
+        <div class="container mt-5 mb-4">
+          <div class="row">
+            <div class="col-sm-7 col-lg-8">
+            <h4>Key Findings</h4>
+            <p>{{ document_details['Key Findings'] }}</p>
+          <h4>Key Recommendations</h4>
+            <p>{{ document_details['Key Recommendations'] }}</p>
+            </div>
+            <div class="col-sm-5 col-lg-4">
+              <ul class="list-group mt-3">
+                <li class="list-group-item p-0 border-left-0 border-right-0">
+                  <h6 class="mb-0 px-3 py-2 wash-400 narrow-font text-uppercase font-weight-bolder">PSE Ways We Engage</h6>
+                  <ul class="list-unstyled px-3 py-2 list-spaced wash-100" >
+                    <li v-for="(way, index) in document_details['PSE Ways We Engage']" :key="index">{{ way.replace(';', '') }}</li>
+                  </ul>
+                </li>
+                <li class="list-group-item p-0 border-left-0 border-right-0">
+                  <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder">PSE Key Values</h6>
+                  <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
+                    <li v-for="(value, index) in document_details['PSE Key Values']" :key="index">{{value}}</li>
+                  </ul>
+                </li>
+                <li class="list-group-item p-0 border-left-0 border-right-0">
+                  <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder">PSE Key Values USAID Offers</h6>
+                  <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
+                    <li v-for="(value, index) in document_details['PSE Key Values USAID Offers']" :key="index">{{value}}</li>
+                  </ul>
+                </li>
+              </ul>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <h5 class="mb-1">Technical Sector</h5>
+                  <p class="mb-0" v-for="(sector, index) in document_details['Technical Sector']" :key="sector">{{ sector }}</p>
+                </li>
+                <li class="list-group-item">
+                  <h5 class="mb-1">Special Considerations</h5>
+                  <p class="mb-0"v-for="(consideration, index) in document_details['Special Considerations']" :key="consideration">{{ consideration }}</p>
+                </li>
+                <li class="list-group-item">
+                  <h5 class="mb-1">Private Sector Industry</h5>
+                  <p class="mb-0">TODO</p>
+                </li>
+                <li class="list-group-item">
+                  <h5 class="mb-1">Country(ies)</h5>
+                  <p class="mb-0" v-for="(country, index) in document_details['Country(ies)']" :key="country">{{country}}</p>
+                </li>
+                <li class="list-group-item">
+                  <h5 class="mb-1">USAID Region</h5>
+                  <p class="mb-0"v-for="(region, index) in document_details['USAID Region']" :key="region">{{region}}</p>
+                </li>
+                <li class="list-group-item">
+                  <h5 class="mb-1">Internet URL</h5>
+                  <p class="mb-0 text-small"><a :href="document_details['Internet URL of Document']" target="_blank">{{document_details['Internet URL of Document'] || '---'}}</a></p>
+                </li>
+                <li class="list-group-item">
+                  <h5 class="mb-1">USAID funded - TODO</h5>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+    <div v-else>
     <header>
       <div class="bg-dark">
         <div class="container" id="top-container">
@@ -43,7 +135,7 @@
       </div>
     </header>
 
-    <main id="app" role="main">
+    <main role="main">
       <div class="wash-300">
         <div class="container-fluid">
           <div class="row py-4 mb-5 text-center" id="filter-row">
@@ -617,7 +709,6 @@
                   </th>
                   
                   <td v-for="index in [5,6,7,8,9]" key=index>
-<!--                    <matrix-cell v-bind:count="filtered_summary[5][index]" color_base="0,47,108" @show-docs-modal="showDocumentsModal = true"/>-->
                     <matrix-cell
                             v-bind:count="filtered_summary[5][index]"
                             color_base="0,47,108"
@@ -658,8 +749,10 @@
       <!-- /.container -->
 
       <!-- Document Modal -->
-      <relevant-documents :state="docs_modal_state" :is-hidden="!show_documents_modal" @close-docs-modal="show_documents_modal = false"/>
+      <relevant-documents :state="docs_modal_state" :is-hidden="!show_documents_modal" @close-docs-modal="show_documents_modal = false" @update-doc-detail-id="document_detail_id = $event"/>
     </main>
+  </div>
+  </div>
 
     <footer class="footer mt-auto bg-dark">
       <div class="wash-200">

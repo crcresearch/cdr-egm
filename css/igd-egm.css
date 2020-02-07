@@ -9,11 +9,19 @@ body {
 }
 
 #top-container.container {
-  padding: 40px 30px 20px;
+  padding: 20px 15px;
+}
+
+#top-document-detail.container {
+  padding: 90px 15px 40px;
 }
 
 #table-container.container-fluid {
   padding: 0;
+}
+
+.narrow-font {
+  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
 }
 
 .wash-100 {
@@ -28,17 +36,47 @@ body {
 .wash-400 {
   background: #ced4da;
 }
+.wash-mr {
+  background: #f2f6fb;
+}
+.wash-vpdb {
+  background: #e5eef7;
+}
+.wash-pg-lt {
+  background: #a5cd3940;
+}
 .bg-dark {
   background: #243953 !important; /* #0c2440 #1d637d #243953 */
 }
+.bg-md-dark {
+  background: #657486 !important;
+}
 .bg-pulte-green {
   background: #40a047;
+}
+.bg-pulte-lt-green {
+  background: #a5cd39;
 }
 .bg-pulte-gold {
   background: #fbd437; /* #d2a00d  */
 }
 .bg-gold {
   background: #d2a00d;
+}
+.bg-at-blue {
+  background: #0dabd9;
+}
+.bg-vb-lt-blue {
+  background: #80a7c2;
+}
+.bg-pse-lt-blue {
+  background: #3d9bb4;
+}
+.bg-usaid-blue {
+  background: #002f6c;
+}
+.text-dark {
+  color: #243953 !important; /* #0c2440 #1d637d #243953 */
 }
 .text-soft {
   color: #fff;
@@ -58,6 +96,40 @@ body {
 }
 .text-vb-lt-blue{
   color: #80a7c2;
+}
+.text-small {
+  font-size: .9rem;
+}
+
+.btn-pulte-green {
+  color: #fff;
+  background-color: #a5cd39;
+  border-color: #a5cd39;
+}
+.btn-pulte-green:hover {
+  color: #fff;
+  background-color: #40a047;
+  border-color: #40a047;
+}
+.btn-at-blue {
+  color: #fff;
+  background-color: #0dabd9;
+  border-color: #0dabd9;
+}
+.btn-at-blue:hover {
+  color: #fff;
+  background-color: #058fb8;
+  border-color: #058fb8;
+}
+.btn-dark {
+  color: #fff;
+  background-color: #243953;
+  border-color: #243953;
+}
+.btn-dark:hover {
+  color: #fff;
+  background-color: #0c2440;
+  border-color: #0c2440;
 }
 
 p.p-emphasis {
@@ -248,6 +320,21 @@ ul.filters li:last-child .custom-select {
   }
 }
 
+#view-document-link {
+  position: absolute;
+  bottom: 0;
+  right: 3rem;
+  transform: translate(0, 50%);
+}
+
+ul.list-spaced {
+  margin-bottom: .5rem;
+}
+ul.list-spaced li {
+  line-height: 1.2;
+  padding: .25rem 0;
+}
+
 /* 2-level footer */
 
 .footer {
@@ -289,3 +376,7 @@ ul.filters li:last-child .custom-select {
   vertical-align: middle;
 }
 
+
+[v-cloak] {
+  display: none;
+}

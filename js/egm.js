@@ -46,6 +46,13 @@ const relevantDocumentsModal = {
       return value;
     }
   },
+  methods: {
+    setDocumentDetail: function(docid) {
+      window.history.pushState({'docid' : docid }, 'USAID Evidence Gap Map', `/?docid=${docid}`);
+      this.$emit('close-docs-modal');
+      this.$emit('update-doc-detail-id', docid);
+    }
+  },
   template:
     `<div v-if="!isHidden">
       <transition name="modal">
@@ -91,12 +98,12 @@ const relevantDocumentsModal = {
                          </h5>
                        </li>
                      </ul>
-                     <ul class="list-unstyled" v-for="doc in high_confidence_docs">
+                     <ul class="list-unstyled" v-for="doc in high_confidence_docs" :key="doc['Document ID']">
                        <li>
                          <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
                        </li>
                        <li>
-                         <a href="#">{{ doc['Document Title'] | truncate }}</a>
+                         <a href="javascript:void(0);" @click="setDocumentDetail(doc['Document ID'])">{{ doc['Document Title'] | truncate }}</a>
                        </li>
                      </ul>
                      <ul class="list-unstyled">
@@ -111,12 +118,12 @@ const relevantDocumentsModal = {
                          </h5>
                        </li>
                      </ul>
-                     <ul class="list-unstyled" v-for="doc in low_confidence_docs">
+                     <ul class="list-unstyled" v-for="doc in low_confidence_docs" :key="doc['Document ID']">
                        <li>
                          <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
                        </li>
                        <li>
-                         <a href="#">{{ doc['Document Title'] | truncate }}</a>
+                         <a href="javascript:void(0);" @click="setDocumentDetail(doc['Document ID'])">{{ doc['Document Title'] | truncate }}</a>
                        </li>
                      </ul>
                    </div>
@@ -171,15 +178,37 @@ const app = new Vue({
       num_relevant_docs: 0,
       relevant_docs: []
     },
+    document_detail_id: '',
     show_documents_modal: false
   },
   mounted: async function () {
+    const uri = window.location.search.substring(1);
+    const params = new URLSearchParams(uri);
+    this.document_detail_id = params.get('docid') ? params.get('docid') : '';
     const response = await axios.get('data/latest.json', { responseType: 'json' });
     this.documents = response.data.records;
     this.filtered_documents = this.documents;
     this.filtered_summary = this.filter_records();
     this.filter_categories = response.data.filteredFields;
+
+    // register page changes when the back button is pressed
+    const vue_object = this;
+    window.onpopstate = function(e){
+      if(e.state){
+        vue_object.document_detail_id = e.state.docid ? e.state.docid : '';
+      }
+  };
   },
+  computed: {
+    document_details: function() {
+      if(this.document_detail_id === '') {
+        return {};
+      } else {
+        return this.documents.find(doc => doc['Document ID'] === this.document_detail_id);
+      }
+    }
+  },
+
   methods: {
     filter_records: function () {
       const new_summary = [
@@ -256,6 +285,10 @@ const app = new Vue({
       this.docs_modal_state.num_relevant_docs = this.filtered_summary[options.way_index][options.value_index];
       this.docs_modal_state.relevant_docs = this.filtered_summary_docs[options.way_index][options.value_index];
       this.show_documents_modal = true;
-    }
+    },
+    clearDocumentDetail: function() {
+      window.history.pushState({}, 'USAID Evidence Gap Map', '/' );
+      this.document_detail_id = '';
+    },
   }
 });
