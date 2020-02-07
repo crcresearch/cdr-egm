@@ -3,6 +3,11 @@ const csv = require('csvtojson');
 
 const ALLOWED_FIELDS = [
   {
+    name: 'Author(s)',
+    isArray: true,
+    isFiltered: false
+  },
+  {
     name: 'Country(ies)',
     isArray: true,
     isFiltered: true
@@ -14,6 +19,21 @@ const ALLOWED_FIELDS = [
   },
   {
     name: 'Document Title',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Key Findings',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Key Recommendations',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Internet URL of Document',
     isArray: false,
     isFiltered: false
   },
@@ -41,6 +61,16 @@ const ALLOWED_FIELDS = [
     name: 'PSE Ways We Engage',
     isArray: true,
     isFiltered: true
+  },
+  {
+    name: 'Publishing Institution(s)',
+    isArray: false,
+    isFiltered: false
+  },
+  {
+    name: 'Special Considerations',
+    isArray: false,
+    isFiltered: false
   },
   {
     name: 'Technical Sector',
