@@ -36,104 +36,12 @@ const relevantDocumentsModal = {
       return this.state.relevant_docs.filter(doc => doc['Type of Document'] !== 'Peer-reviewed article or other research report');
     }
   },
-  methods: {
-    setDocumentDetail: function(docid) {
-      window.history.pushState({'docid' : docid }, 'USAID Evidence Gap Map', `${window.location.pathname}?docid=${docid}`);
-      window.scrollTo(0,0);
-      this.$emit('close-docs-modal');
-      this.$emit('update-doc-detail-id', docid);
-    }
-  },
-  template:
-    `<div v-if="!isHidden">
-      <transition name="modal">
-        <div class="modal-mask">
-          <div class="modal modal-wrapper" tabindex="-1">
-             <div class="modal-dialog modal-dialog-scrollable">
-               <div class="modal-content">
-                 <div class="modal-header">
-                   <h5 class="modal-title">
-                     <span class="badge badge-secondary badge-pill mr-1">{{ state.num_relevant_docs }}</span>
-                     Relevant Documents
-                   </h5>
-                   <button type="button" class="close" @click="$emit('close-docs-modal')">
-                     <span>&times;</span>
-                   </button>
-                 </div>
-                 <div class="modal-body p-0">
-                   <div class="card-header">
-                     <p class="mb-0 text-uppercase font-weight-lighter">
-                       {{ state.value_title }}
-                     </p>
-                     <h5 class="mb-2">
-                       {{ state.value_text }}
-                     </h5>
-                     <p class="mb-0 text-uppercase font-weight-lighter">
-                       Way We Engage
-                     </p>
-                     <h5 class="mb-1">
-                       {{ state.way_text.replace(';', '') }}
-                     </h5>
-                   </div>
-                   <div class="card-body">
-                     <ul class="list-unstyled">
-                       <li>
-                         <h5
-                           class="d-flex justify-content-between align-items-center text-pulte-green"
-                         >
-                           HIGH Confidence
-                           <span
-                             class="badge badge-secondary bg-pulte-green badge-pill"
-                             >{{ high_confidence_docs.length }}</span
-                           >
-                         </h5>
-                       </li>
-                     </ul>
-                     <ul class="list-unstyled" v-for="doc in high_confidence_docs" :key="doc['Document ID']">
-                       <li>
-                         <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
-                       </li>
-                       <li>
-                         <a href="javascript:void(0);" @click="setDocumentDetail(doc['Document ID'])">{{ doc['Document Title'] | truncate }}</a>
-                       </li>
-                     </ul>
-                     <ul class="list-unstyled">
-                       <li>
-                         <h5
-                           class="d-flex justify-content-between align-items-center text-gold"
-                         >
-                           MED/LOW Confidence
-                           <span class="badge badge-secondary bg-gold badge-pill"
-                             >{{ low_confidence_docs.length }}</span
-                           >
-                         </h5>
-                       </li>
-                     </ul>
-                     <ul class="list-unstyled" v-for="doc in low_confidence_docs" :key="doc['Document ID']">
-                       <li>
-                         <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
-                       </li>
-                       <li>
-                         <a href="javascript:void(0);" @click="setDocumentDetail(doc['Document ID'])">{{ doc['Document Title'] | truncate }}</a>
-                       </li>
-                     </ul>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
-        </div>
-      </transition>
-    </div>`
+  template: '#relevant-docs-modal-component'
 };
 
 const matrixCellComponent = {
   props: ['count', 'color_base'],
-  template: `<div class="square" v-bind:style="{ background: 'rgba(' + color_base + ',' + count/50 + ')'}">
-               <a class="count" v-show="count > 0" @click="$emit('show-docs-modal')">
-                 {{count}}
-               </a>
-             </div>`
+  template: '#matrix-cell-component'
 };
 
 Vue.filter('truncate', function (value, max_length = 115) {
@@ -143,60 +51,52 @@ Vue.filter('truncate', function (value, max_length = 115) {
   return value;
 });
 
-const app = new Vue({
-  el: '#app',
+const map = {
+  name: 'map',
   components: {
     'matrix-cell': matrixCellComponent,
     'relevant-documents': relevantDocumentsModal
   },
-  data: {
-    filtered_summary: [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ],
-    filters: {
-      region: "",
-      country: "",
-      partners: "",
-      enterprise_type: "",
-      technical_sector: "",
-      resource_type: ""
-    },
-    documents: [],
-    filtered_documents: [],
-    filtered_summary_docs: [],
-    filter_categories: {},
-    docs_modal_state: {
-      value_title: '',
-      value_text: '',
-      way_text: '',
-      num_relevant_docs: 0,
-      relevant_docs: []
-    },
-    document_detail_id: '',
-    show_documents_modal: false
+  data: function () {
+    return {
+      filtered_summary: [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ],
+      filters: {
+        region: '',
+        country: '',
+        partners: '',
+        enterprise_type: '',
+        technical_sector: '',
+        resource_type: ''
+      },
+      documents: [],
+      filtered_documents: [],
+      filtered_summary_docs: [],
+      filter_categories: {},
+      docs_modal_state: {
+        value_title: '',
+        value_text: '',
+        way_text: '',
+        num_relevant_docs: 0,
+        relevant_docs: []
+      },
+      document_detail_id: '',
+      show_documents_modal: false
+    };
   },
+  template: '#map-component',
   mounted: async function () {
-    const uri = window.location.search.substring(1);
-    const params = new URLSearchParams(uri);
-    this.document_detail_id = params.get('docid') ? params.get('docid') : '';
     const response = await axios.get('data/latest.json', { responseType: 'json' });
     this.documents = response.data.records;
     this.filtered_documents = this.documents;
     this.filtered_summary = this.filter_records();
     this.filter_categories = response.data.filteredFields;
-
-    // register page changes when the back button is pressed
-    const vue_object = this;
-    window.onpopstate = function(e){
-      if(e.state){
-        vue_object.document_detail_id = e.state.docid ? e.state.docid : '';
-      }
-  };
   },
   computed: {
     document_details: function () {
@@ -206,20 +106,7 @@ const app = new Vue({
         return this.documents.find(doc => doc['Document ID'] === this.document_detail_id);
       }
     },
-    document_findings: function () {
-      if (this.document_details['Key Findings']) {
-        return this.document_details['Key Findings'].split('\n');
-      }
-      return [];
-    },
-    document_recommendations: function () {
-      if (this.document_details['Key Recommendations']) {
-        return this.document_details['Key Recommendations'].split('\n');
-      }
-      return [];
-    }
   },
-
   methods: {
     filter_records: function () {
       const new_summary = [
@@ -286,7 +173,7 @@ const app = new Vue({
     build_docs_modal: function (options) {
       const values_length = Object.keys(PSE_VALUES).length;
       const offers_length = Object.keys(PSE_UNITAID_VALUES).length;
-      this.docs_modal_state.value_title = `PSE Key Value${ options.value_index >= values_length ? ' USAID Offers' : ''}`;
+      this.docs_modal_state.value_title = `PSE Key Value${options.value_index >= values_length ? ' USAID Offers' : ''}`;
       if (options.value_index < values_length) {
         this.docs_modal_state.value_text = Object.keys(PSE_VALUES).find(key => PSE_VALUES[key] === options.value_index);
       } else if (options.value_index < values_length + offers_length) {
@@ -296,11 +183,40 @@ const app = new Vue({
       this.docs_modal_state.num_relevant_docs = this.filtered_summary[options.way_index][options.value_index];
       this.docs_modal_state.relevant_docs = this.filtered_summary_docs[options.way_index][options.value_index];
       this.show_documents_modal = true;
-    },
-    clearDocumentDetail: function() {
-      window.scrollTo(0,0);
-      window.history.pushState({}, 'USAID Evidence Gap Map', `${window.location.pathname}` );
-      this.document_detail_id = '';
-    },
+    }
   }
+};
+const details = {
+  props: {
+    'document_details': Object
+  },
+  computed: {
+    document_findings: function () {
+      if (this.document_details['Key Findings']) {
+        return this.document_details['Key Findings'].split('\n');
+      }
+      return [];
+    },
+    document_recommendations: function () {
+      if (this.document_details['Key Recommendations']) {
+        return this.document_details['Key Recommendations'].split('\n');
+      }
+      return [];
+    }
+  },
+  template: '#details-component'
+};
+const routes = [
+  { path: '/', component: map },
+  { path: '/doc/:id', component: details, name: 'details', props: true }
+];
+
+const router = new VueRouter({
+  mode: 'history',
+  routes
+});
+
+const app = new Vue({
+  router: router,
+  el: '#app'
 });
