@@ -382,3 +382,11 @@ ul.list-spaced li {
 [v-cloak] {
   display: none;
 }
+
+.alert.details-error {
+  margin-top: 56px;
+}
+
+.loading-spinner {
+  margin-top: 56px;
+}

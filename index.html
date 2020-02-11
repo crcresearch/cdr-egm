@@ -28,7 +28,7 @@
   <body class="d-flex flex-column h-100">
   <div id="app" v-cloak>
     <transition>
-      <keep-alive include="map">
+      <keep-alive include="map_page">
         <router-view></router-view>
       </keep-alive>
     </transition>
@@ -98,7 +98,7 @@
         <header>
           <div class="bg-dark">
             <div class="container" id="top-container">
-              <h1 class="my-1 text-vb-lt-blue">Evidence Gap Map Bless</h1>
+              <h1 class="my-1 text-vb-lt-blue">Evidence Gap Map</h1>
               <p class="p-emphasis text-soft">
             <span class="font-italic font-weight-bolder"
             >Engagement mapped to private sector key values.</span
@@ -328,7 +328,7 @@
                       <div class="clip-content">Advancing</div>
                       Learning & Market Research
                     </th>
-                    <td v-for="index in [0,1,2,3,4]" key=index>
+                    <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[0][index]"
                               color_base="61,155,180"
@@ -347,7 +347,7 @@
                       <div class="clip-content">Resources</div>
                     </th>
 
-                    <td v-for="index in [0,1,2,3,4]" key=index>
+                    <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[1][index]"
                               color_base="61,155,180"
@@ -366,7 +366,7 @@
                       <div class="clip-content">& Innovation</div>
                     </th>
 
-                    <td v-for="index in [0,1,2,3,4]" key=index>
+                    <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[2][index]"
                               color_base="61,155,180"
@@ -385,7 +385,7 @@
                       <div class="clip-content">Alignment</div>
                     </th>
 
-                    <td v-for="index in [0,1,2,3,4]" key=index>
+                    <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[3][index]"
                               color_base="61,155,180"
@@ -403,7 +403,7 @@
                       <div class="clip-content">Environment</div>
                     </th>
 
-                    <td v-for="index in [0,1,2,3,4]" key=index>
+                    <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[4][index]"
                               color_base="61,155,180"
@@ -420,7 +420,7 @@
                       <div class="clip-content">Investment</div>
                     </th>
 
-                    <td v-for="index in [0,1,2,3,4]" key=index>
+                    <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[5][index]"
                               color_base="61,155,180"
@@ -531,7 +531,7 @@
                       Learning & Market Research
                     </th>
 
-                    <td v-for="index in [5,6,7,8,9]" key=index>
+                    <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[0][index]"
                               color_base="0,47,108"
@@ -573,7 +573,7 @@
                       <div class="clip-content">Resources</div>
                     </th>
 
-                    <td v-for="index in [5,6,7,8,9]" key=index>
+                    <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[1][index]"
                               color_base="0,47,108"
@@ -601,7 +601,7 @@
                       <div class="clip-content">& Innovation</div>
                     </th>
 
-                    <td v-for="index in [5,6,7,8,9]" key=index>
+                    <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[2][index]"
                               color_base="0,47,108"
@@ -630,7 +630,7 @@
                       <div class="clip-content">Alignment</div>
                     </th>
 
-                    <td v-for="index in [5,6,7,8,9]" key=index>
+                    <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[3][index]"
                               color_base="0,47,108"
@@ -658,7 +658,7 @@
                       <div class="clip-content">Environment</div>
                     </th>
 
-                    <td v-for="index in [5,6,7,8,9]" key=index>
+                    <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[4][index]"
                               color_base="0,47,108"
@@ -684,7 +684,7 @@
                       <div class="clip-content">Investment</div>
                     </th>
 
-                    <td v-for="index in [5,6,7,8,9]" key=index>
+                    <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[5][index]"
                               color_base="0,47,108"
@@ -737,9 +737,16 @@
           <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <router-link to="/" class="navbar-brand"><i class="fas fa-chevron-left mr-2"></i> Evidence Gap Map</router-link>
           </nav>
-
         </header>
-        <main role="main">
+        <div v-if="loading" class="d-flex justify-content-center">
+          <div class="spinner-border loading-spinner" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div v-if="error" class="alert alert-danger details-error" role="alert">
+          {{ error }}
+        </div>
+        <main v-if="document_details" role="main">
 
           <div class="bg-vb-lt-blue">
             <div class="container position-relative text-dark" id="top-document-detail">
@@ -875,7 +882,7 @@
                           <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
                         </li>
                         <li>
-                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document_details: doc } }">{{ doc['Document Title'] | truncate }}</router-link>
+                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }">{{ doc['Document Title'] | truncate }}</router-link>
                         </li>
                       </ul>
                       <ul class="list-unstyled">
@@ -895,7 +902,7 @@
                           <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
                         </li>
                         <li>
-                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document_details: doc } }">{{ doc['Document Title'] | truncate }}</router-link>
+                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }">{{ doc['Document Title'] | truncate }}</router-link>
                         </li>
                       </ul>
                     </div>

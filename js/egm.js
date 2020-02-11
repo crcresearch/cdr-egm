@@ -52,7 +52,7 @@ Vue.filter('truncate', function (value, max_length = 115) {
 });
 
 const map = {
-  name: 'map',
+  name: 'map_page',
   components: {
     'matrix-cell': matrixCellComponent,
     'relevant-documents': relevantDocumentsModal
@@ -188,7 +188,34 @@ const map = {
 };
 const details = {
   props: {
-    'document_details': Object
+    document: Object
+  },
+  data: function () {
+    return {
+      loading: false,
+      error: null,
+      document_details: null
+    }
+  },
+  created: async function () {
+    try {
+      if (!this.document) {
+        this.loading = true;
+        const response = await axios.get('data/latest.json', { responseType: 'json' });
+        const doc_id = this.$route.params.id;
+        this.document_details = response.data.records.find(doc => doc['Document ID'] === doc_id);
+        this.loading = false;
+        if (!this.document_details) {
+          // Show error message if document ID is not found
+          this.error = `Unable to find document with ID: ${doc_id}`;
+        }
+      } else {
+        this.document_details = this.document;
+      }
+    } catch (err) {
+      this.loading = false;
+      this.error = err.toString();
+    }
   },
   computed: {
     document_findings: function () {
@@ -212,7 +239,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
   routes
 });
 
