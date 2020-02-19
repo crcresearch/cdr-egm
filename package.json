@@ -4,7 +4,8 @@
   "description": "Evidence Gap Map",
   "main": "js/airtable.js",
   "scripts": {
-    "airtable": "node js/airtable.js"
+    "airtable": "node js/airtable.js",
+    "dev": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/crcresearch/usaid-pse-egm#readme",
   "dependencies": {
     "airtable": "^0.8.1",
-    "csvtojson": "^2.0.10"
+    "csvtojson": "^2.0.10",
+    "lite-server": "^2.5.4"
   }
 }
