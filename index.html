@@ -233,7 +233,373 @@
           </div>
 
           <div class="container-fluid" id="table-container">
-            <div class="row no-gutters">
+
+            <div class="row no-gutters d-none d-lg-block">
+              <table class="table egm-table" id="pse-table">
+                <thead>
+                <tr>
+                  <th scope="col" class="set-group-title-vert-width"></th>
+                  <th scope="col"></th>
+                  <th scope="colgroup" colspan="5" class="group-title group-title-pse">
+                    PSE Key Values
+                    <a
+                            href="#"
+                            data-toggle="tooltip"
+                            data-placement="bottom"
+                            title="PSE, or Private sector engagement, key values are..."
+                    >
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                  </th>
+                  <th scope="colgroup" colspan="5" class="group-title group-title-usaid">
+                    PSE Key Values USAID Offers
+                    <a
+                            href="#"
+                            data-toggle="tooltip"
+                            data-placement="bottom"
+                            title="USAID offers a set of key values..."
+                    >
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                  </th>
+                  <th scope="col" class=""></th>
+                  <th
+                          scope="col"
+                          class="set-group-title-vert-width"
+                  ></th>
+                </tr>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Ability to Influence Policy"
+                  >
+                    <div class="clip-content">Ability</div>
+                    <div class="clip-content">to Influence</div>
+                    <div class="clip-content">Policy</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Efficiency & Effectiveness"
+                  >
+                    <div class="clip-content">Efficiency</div>
+                    <div class="clip-content">& Effectiveness</div>
+                  </th>
+                  <th scope="col" class="value" title="Flexibility & Pace">
+                    <div class="clip-content">Flexibility</div>
+                    <div class="clip-content">& Pace</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Innovation, Expertise, and Capabilities"
+                  >
+                    <a
+                            class="reset-color"
+                            data-toggle="modal"
+                            data-target="#valueModal"
+                            style="cursor:pointer"
+                    >
+                      <div class="clip-content">Innovation,</div>
+                      <div class="clip-content">Expertise,</div>
+                      <div class="clip-content">& Capabilities</div>
+                    </a>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Scale, Sustainability, & Reach"
+                  >
+                    Scale,
+                    <div class="clip-content">Sustainability,</div>
+                    <div class="clip-content">& Reach</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Reputation & Credible Convening Power"
+                  >
+                    Reputation
+                    <div class="clip-content">& Credible</div>
+                    <div class="clip-content">Convening Power</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Risk-Mitigation & Flexible Authorities"
+                  >
+                    <div class="clip-content">Risk-Mitigation</div>
+                    <div class="clip-content">& Flexible</div>
+                    <div class="clip-content">Authorities</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Sectoral Expertise & Knowledge"
+                  >
+                    Sectoral Expertise
+                    <div class="clip-content">& Knowledge</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Strong In-Country Networks & Relationships"
+                  >
+                    Strong
+                    <div class="clip-content">In-Country</div>
+                    <div class="clip-content">Networks & Relationships</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Support to Strengthen Enabling Environments"
+                  >
+                    Support
+                    <div class="clip-content">to Strengthen</div>
+                    <div class="clip-content">Enabling Environments</div>
+                  </th>
+                  <th scope="col" class=""></th>
+                  <th scope="col" class=""></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th class="group-title-vert" rowspan="6">
+                    <div class="title-rotate">
+                      Ways We Engage
+                      <a
+                              href="#"
+                              data-toggle="tooltip"
+                              data-placement="right"
+                              title="We engage in a number of ways..."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </th>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Advancing Learning & Market Research"
+                  >
+                    <div class="clip-content">Advancing</div>
+                    Learning & Market Research
+                  </th>
+                  <td v-for="index in [0,1,2,3,4]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[0][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
+                  </td>
+
+                  <td v-for="index in [5,6,7,8,9]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[0][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
+                  </td>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Advancing Learning & Market Research"
+                  >
+                    <div class="clip-content">Advancing</div>
+                    Learning & Market Research
+                  </th>
+                  <th
+                          class="group-title-vert"
+                          rowspan="6"
+                  >
+                    <div class="title-rotate">
+                      Ways We Engage
+                      <a
+                              href="#"
+                              data-toggle="tooltip"
+                              data-placement="left"
+                              title="We engage in a number of ways..."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </th>
+
+                </tr>
+                <tr>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Catalyzing Private Sector Resources"
+                  >
+                    <div class="clip-content">Catalyzing</div>
+                    Private Sector
+                    <div class="clip-content">Resources</div>
+                  </th>
+
+                  <td v-for="index in [0,1,2,3,4]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[1][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
+                  </td>
+                  <td v-for="index in [5,6,7,8,9]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[1][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
+                  </td>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Catalyzing Private Sector Resources"
+                  >
+                    <div class="clip-content">Catalyzing</div>
+                    Private Sector
+                    <div class="clip-content">Resources</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Harnessing Private Sector Expertise & Innovation"
+                  >
+                    <div class="clip-content">Harnessing</div>
+                    Private Sector
+                    <div class="clip-content">Expertise</div>
+                    <div class="clip-content">& Innovation</div>
+                  </th>
+
+                  <td v-for="index in [0,1,2,3,4]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[2][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
+                  </td>
+                  <td v-for="index in [5,6,7,8,9]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[2][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
+                  </td>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Harnessing Private Sector Expertise & Innovation"
+                  >
+                    <div class="clip-content">Harnessing</div>
+                    Private Sector
+                    <div class="clip-content">Expertise</div>
+                    <div class="clip-content">& Innovation</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Information-Sharing & Stratetic Alignment"
+                  >
+                    <div class="clip-content">Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
+                  </th>
+
+                  <td v-for="index in [0,1,2,3,4]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[3][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
+                  </td>
+
+                  <td v-for="index in [5,6,7,8,9]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[3][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
+                  </td>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Information-Sharing & Stratetic Alignment"
+                  >
+                    <div class="clip-content">Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Strengthening the Enabling Environment"
+                  >
+                    <div class="clip-content">Strengthening</div>
+                    the Enabling
+                    <div class="clip-content">Environment</div>
+                  </th>
+
+                  <td v-for="index in [0,1,2,3,4]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[4][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
+                  </td>
+                  <td v-for="index in [5,6,7,8,9]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[4][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
+                  </td>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Strengthening the Enabling Environment"
+                  >
+                    <div class="clip-content">Strengthening</div>
+                    the Enabling
+                    <div class="clip-content">Environment</div>
+                  </th>
+                </tr>
+                <tr>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Unlocking Private Investment"
+                  >
+                    Unlocking Private
+                    <div class="clip-content">Investment</div>
+                  </th>
+
+                  <td v-for="index in [0,1,2,3,4]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[5][index]"
+                            color_base="61,155,180"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
+                  </td>
+                  <td v-for="index in [5,6,7,8,9]">
+                    <matrix-cell
+                            v-bind:count="filtered_summary[5][index]"
+                            color_base="0,47,108"
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
+                  </td>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Unlocking Private Investment"
+                  >
+                    Unlocking Private
+                    <div class="clip-content">Investment</div>
+                  </th>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="row no-gutters d-lg-none">
               <div class="col-lg-6">
 
 
@@ -914,7 +1280,7 @@
         </transition>
       </div>
     </script>
-    <script type="text/x-template" id="matrix-cell-component">
+    <script type="text/x-template" id="matrix-cell-component" src="js/components/matrix-cell-component.js">
       <div class="square" v-bind:style="{ background: 'rgba(' + color_base + ',' + count/50 + ')'}">
         <a class="count" v-show="count > 0" @click="$emit('show-docs-modal')">
           {{count}}

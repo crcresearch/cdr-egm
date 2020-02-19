@@ -176,6 +176,12 @@ p.p-emphasis {
 #pse-table.egm-table th.group-title {
   background: #3d9bb4; /* #3d9bb4; */
 }
+#pse-table.egm-table th.group-title-pse {
+  background: #3d9bb4; /* #3d9bb4; */
+}
+#pse-table.egm-table th.group-title-usaid {
+  background: #002f6c; /* #002f6c; #ba0c2f */
+}
 #usaid-table.egm-table th.group-title {
   background: #002f6c; /* #002f6c; #ba0c2f */
 }
