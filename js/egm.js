@@ -87,7 +87,8 @@ const map = {
         relevant_docs: []
       },
       document_detail_id: '',
-      show_documents_modal: false
+      show_documents_modal: false,
+      show_map_view: true, // if false, show the list view of documents
     };
   },
   template: '#map-component',

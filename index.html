@@ -121,10 +121,10 @@
                       <a class="nav-link disabled" href="#">View as:</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-uppercase active" :class="{ active: true }" href="#">Map</a>
+                      <a class="nav-link text-uppercase" :class="{ active: show_map_view }" @click="show_map_view = true" href="#">Map</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-uppercase" :class="{ active: false }" href="#">List</a>
+                      <a class="nav-link text-uppercase" :class="{ active: !show_map_view }" @click="show_map_view = false"  href="#">List</a>
                     </li>
                     
                   </ul>
@@ -192,7 +192,7 @@
             </div>
           </div>
 
-          <div class="container-fluid" id="table-container">
+          <div v-if="show_map_view" class="container-fluid" id="table-container">
 
             <div class="row no-gutters d-none d-lg-block">
               <table class="table egm-table" id="combined-table">
@@ -1032,6 +1032,179 @@
             <!-- /.row tables -->
           </div>
           <!-- /.container-fluid -->
+          <div v-else class="container mb-5">
+
+            <h5 class="d-flex justify-content-between align-items-center text-indigo px-3 text-uppercase font-weight-bolder">
+              Impact Evaluation Report
+              <span class="badge badge-secondary bg-indigo badge-pill">2</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+            <h5 class="d-flex justify-content-between align-items-center text-dk-purple px-3 text-uppercase font-weight-bolder">
+              Peer Review Article/Research Report
+              <span class="badge badge-secondary bg-dk-purple badge-pill">3</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+            <h5 class="d-flex justify-content-between align-items-center text-purple px-3 text-uppercase font-weight-bolder">
+              Performance Evaluation Report
+              <span class="badge badge-secondary bg-purple badge-pill">2</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+
+            <h5 class="d-flex justify-content-between align-items-center text-pink px-3 text-uppercase font-weight-bolder">
+              Systematic Review or Meta Analysis
+              <span class="badge badge-secondary bg-pink badge-pill">2</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+
+            <h5 class="d-flex justify-content-between align-items-center text-orange px-3 text-uppercase font-weight-bolder">
+              Industry Publication
+              <span class="badge badge-secondary bg-orange badge-pill">2</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+            <h5 class="d-flex justify-content-between align-items-center text-lt-green px-3 text-uppercase font-weight-bolder">
+              Landscape Analysis
+              <span class="badge badge-secondary bg-lt-green badge-pill">2</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+            <h5 class="d-flex justify-content-between align-items-center text-teal px-3 text-uppercase font-weight-bolder">
+              Political Economy Analysis
+              <span class="badge badge-secondary bg-teal badge-pill">2</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+            <h5 class="d-flex justify-content-between align-items-center text-bluegrey px-3 text-uppercase font-weight-bolder">
+              Use Case/Case Study
+              <span class="badge badge-secondary bg-bluegrey badge-pill">4</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+            <h5 class="d-flex justify-content-between align-items-center text-grey px-3 text-uppercase font-weight-bolder">
+              White Paper/Think Tank
+              <span class="badge badge-secondary bg-grey badge-pill">2</span>
+            </h5>
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item">
+                <a href="document-detail.html">
+                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#">
+                  Report on the BIFAD and USAID Consultations: Feeding the World
+                </a>
+              </li>
+            </ul>
+
+    </div>
 
           <div class="container mt-5 mb-4">
             <h4>About the Evidence Gap Map</h4>
