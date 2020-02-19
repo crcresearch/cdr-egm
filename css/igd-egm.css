@@ -460,3 +460,7 @@ ul.list-spaced li {
   /*  border: 1px solid rgba(61, 155, 180, 0.25); */
   color: #247d95;
 }
+
+.bg-selected-blue {
+  background: #0c2440 !important;
+}
