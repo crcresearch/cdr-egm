@@ -24,6 +24,14 @@ body {
   font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
 }
 
+p.p-emphasis {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+
+/* Custsom colors */
+
 .wash-100 {
   background: #f8f9fa;
 }
@@ -36,26 +44,15 @@ body {
 .wash-400 {
   background: #ced4da;
 }
-.wash-mr {
-  background: #f2f6fb;
+.bg-vb-lt-blue {
+  background: #80a7c2;
 }
-.wash-vpdb {
-  background: #e5eef7;
-}
-.wash-pg-lt {
-  background: #a5cd3940;
-}
+
 .bg-dark {
   background: #243953 !important; /* #0c2440 #1d637d #243953 */
 }
-.bg-md-dark {
-  background: #657486 !important;
-}
 .bg-pulte-green {
   background: #40a047;
-}
-.bg-pulte-lt-green {
-  background: #a5cd39;
 }
 .bg-pulte-gold {
   background: #fbd437; /* #d2a00d  */
@@ -63,21 +60,13 @@ body {
 .bg-gold {
   background: #d2a00d;
 }
-.bg-at-blue {
-  background: #0dabd9;
-}
-.bg-vb-lt-blue {
-  background: #80a7c2;
-}
 .bg-pse-lt-blue {
   background: #3d9bb4;
-}
-.bg-selected-blue {
-  background: #0c2440 !important;
 }
 .bg-usaid-blue {
   background: #002f6c;
 }
+
 .text-dark {
   color: #243953 !important; /* #0c2440 #1d637d #243953 */
 }
@@ -85,23 +74,22 @@ body {
   color: #fff;
   opacity: 0.8;
 }
-.text-pulte-gold {
-  color: #fbd437; /* #d2a00d  */
-}
 .text-pulte-green {
   color: #40a047;
-}
-.text-pulte-lt-green {
-  color: #a5cd39;
 }
 .text-gold {
   color: #d2a00d;
 }
+.text-small {
+  font-size: .9rem;
+}
 .text-vb-lt-blue{
   color: #80a7c2;
 }
-.text-small {
-  font-size: .9rem;
+
+
+.nd-blue-80 {
+  color: #495b70;
 }
 
 .btn-pulte-green {
@@ -135,10 +123,6 @@ body {
   border-color: #0c2440;
 }
 
-p.p-emphasis {
-  font-size: 1.1rem;
-  line-height: 1.4;
-}
 
 /* Evidence gap table styles */
 
@@ -172,15 +156,17 @@ p.p-emphasis {
   line-height: 1.2;
   background: #444;
   color: #fff;
+  letter-spacing: .5px;
+}
+
+#combined-table.egm-table th.group-title-pse {
+  background: #3d9bb4; /* #3d9bb4; */
+}
+#combined-table.egm-table th.group-title-usaid {
+  background: #002f6c; /* #002f6c; #ba0c2f */
 }
 #pse-table.egm-table th.group-title {
   background: #3d9bb4; /* #3d9bb4; */
-}
-#pse-table.egm-table th.group-title-pse {
-  background: #3d9bb4; /* #3d9bb4; */
-}
-#pse-table.egm-table th.group-title-usaid {
-  background: #002f6c; /* #002f6c; #ba0c2f */
 }
 #usaid-table.egm-table th.group-title {
   background: #002f6c; /* #002f6c; #ba0c2f */
@@ -204,6 +190,7 @@ p.p-emphasis {
   text-align: center;
   line-height: 1.2;
   background: #ced4da; /* #ced4da #adb5bd */
+  letter-spacing: .5px;
 }
 .egm-table th.group-title-vert .title-rotate {
   text-align: center;
@@ -238,6 +225,15 @@ p.p-emphasis {
   background: #ccc;
 }
 
+#combined-table.egm-table td .square {
+  background: rgba(61, 155, 180, 0.25);
+}
+#combined-table.egm-table td .square .count {
+  background: rgba(255, 255, 255, 0.75); /* #3d9bb4; */
+  /*  border: 1px solid rgba(61, 155, 180, 0.25); */
+  color: #247d95;
+}
+
 #pse-table.egm-table td .square {
   background: rgba(61, 155, 180, 0.25);
 }
@@ -254,8 +250,6 @@ p.p-emphasis {
   /*  border: 1px solid rgba(61, 155, 180, 0.25); */
   color: #002f6c;
 }
-
-/* If use modal to see documents, use .count */
 
 .egm-table td .square .count {
   cursor: pointer;
@@ -296,6 +290,9 @@ p.p-emphasis {
   font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
 }
 
+
+/* Filter styles */
+
 ul.filters {
   position: relative;
   margin-bottom: 0;
@@ -313,10 +310,6 @@ ul.filters li:first-child .custom-select {
 }
 ul.filters li:last-child .custom-select {
   border-bottom: 2px solid #dee2e6;
-}
-
-.nd-blue-80 {
-  color: #495b70;
 }
 
 @media screen and (min-width: 768px) {
@@ -343,6 +336,47 @@ ul.list-spaced li {
   line-height: 1.2;
   padding: .25rem 0;
 }
+
+
+/* Map/List toggle styles */
+
+.nav.nav-map-toggle {
+}
+.nav.nav-map-toggle .nav-link {
+  padding: .15rem 1rem;
+  color: #6c757d;
+}
+.nav.nav-map-toggle .nav-link:hover {
+  color: #212529;
+}
+.nav.nav-map-toggle .nav-link.disabled {
+  color: #6c757d;
+}
+.nav.nav-map-toggle .nav-link.active {
+  border-bottom: 2px solid #80a7c2;
+  color: #212529;
+}
+
+
+/* Map/List table styles */
+
+.table-striped tbody tr:nth-of-type(2n+1) {
+  background-color: #f8f9fa;
+}
+
+
+/* Document detail page */
+
+
+@media screen and (max-width: 576px) {
+  #doc-type {
+    font-size: 1.0rem;
+  }
+  #doc-title {
+    font-size: 1.75rem;
+  }
+}
+
 
 /* 2-level footer */
 
