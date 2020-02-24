@@ -18,6 +18,9 @@
       crossorigin="anonymous"
     />
 
+    <!-- Bootstrap Multiselect -->
+    <!-- <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>  -->
+
     <!-- Font Awesome -->
     <link href="css/all.min.css" rel="stylesheet" />
 
@@ -28,9 +31,16 @@
   <body class="d-flex flex-column h-100">
   <div id="app" v-cloak>
     <transition>
-      <keep-alive include="map_page">
-        <router-view></router-view>
+      <div v-if="loading">
+        <div class="spinner-border loading-spinner" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div v-else>
+      <keep-alive :include="egm_layout">
+        <router-view :documents="documents" :filter_categories="filter_categories"></router-view>
       </keep-alive>
+      </div>
     </transition>
   </div>
 
@@ -47,25 +57,32 @@
             <div class="col-lg-9">
               <div class="row brand-line">
                 <div class="col-sm-4 py-3">
+                  
++                  <a href="https://www.nd.edu" target ="_blank">
                   <img
                     src="images/nd_mark_blue.png"
                     class="img-fluid img-50"
                     alt="Notre Dame logo"
                   />
+                  </a>
                 </div>
                 <div class="col-sm-4 py-3">
+                  <a href="https://www.usaid.gov" target ="_blank">
                   <img
                     src="images/usaid-logo.png"
                     class="img-fluid img-65"
                     alt="USAID Dame"
                   />
+                  </a>
                 </div>
                 <div class="col-sm-4 py-3">
+                  <a href="https://www.purdue.edu" target ="_blank">
                   <img
                     src="images/purdue.png"
                     class="img-fluid img-50"
                     alt="Purdue logo"
                   />
+                </a>
                 </div>
               </div>
             </div>
@@ -93,21 +110,23 @@
         </div>
       </div>
     </footer>
-    <script type="text/x-template" id="map-component">
+
+    <script type="text/x-template" id="egm-layout">
       <div>
         <header>
           <div class="bg-dark">
             <div class="container" id="top-container">
-              <h1 class="my-1 text-vb-lt-blue">Evidence Gap Map</h1>
-              <p class="p-emphasis text-soft">
-            <span class="font-italic font-weight-bolder"
-            >Engagement mapped to private sector key values.</span
-            >
-                Use the map to identify gaps and locate relevant documents. Click a
-                circle to see the documents matching a particular engagment &ndash;
-                value pair. Use filters to narrow the documents displayed on the
-                map.
-              </p>
+              <div class="row mt-3 mb-2 align-items-center">
+                <div class="col-md-4">
+                  <h1 id="egm-title" class="my-0 text-vb-lt-blue">Evidence Gap Map</h1>
+                  <h5 id="egm-tagline" class="mt-1 mb-0 text-soft font-weight-light">Engagement mapped to key values</h5>
+                </div>
+                <div class="col-md-8">
+                  <p class="p-inst text-soft mt-2 mb-0 d-none d-md-block">
+                    Use the map to identify gaps and locate relevant documents. Click a circle to see the documents matching a particular engagment &ndash; value pair. Use filters to narrow the documents displayed on the map, or search for documents in list view.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </header>
@@ -121,15 +140,20 @@
                       <a class="nav-link disabled" href="#">View as:</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-uppercase" :class="{ active: show_map_view }" @click="show_map_view = true" href="#">Map</a>
+                      <router-link :to="{name: 'egm'}" class="nav-link text-uppercase">Map</router-link>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link text-uppercase" :class="{ active: !show_map_view }" @click="show_map_view = false"  href="#">List</a>
+                      <router-link :to="{name: 'list'}" class="nav-link text-uppercase">List</a>
                     </li>
                     
                   </ul>
                 </div>
               </div>
+
+
+
+
+
               <div class="row text-center" id="filter-row">
                 <div class="col-lg-12">
                   <form>
@@ -151,10 +175,18 @@
                         </select>
                       </li>
                       <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.partners !== '' }" id="selector03" v-model="filters.partners" @change="filter_change">
-                          <option selected value="">Name of Private Sector Partner</option>
-                          <option v-for="partner_name in filter_categories['Name of Private Sector Partner(s)']">
-                            {{ partner_name }}
+                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.technical_sector !== '' }" id="selector05" v-model="filters.technical_sector" @change="filter_change">
+                          <option selected value="">Technical Sector</option>
+                          <option v-for="technical_sector in filter_categories['Technical Sector']">
+                            {{ technical_sector }}
+                          </option>
+                        </select>
+                      </li>
+                      <li>
+                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.industry !== '' }" id="selector03" v-model="filters.industry" @change="filter_change">
+                          <option selected value="">Private Sector Industry</option>
+                          <option v-for="industry_name in filter_categories['Private Sector Industry']">
+                            {{ industry_name }}
                           </option>
                         </select>
                       </li>
@@ -163,14 +195,6 @@
                           <option selected value="">Type of Enterprise</option>
                           <option v-for="enterprise_type in filter_categories['Type of Enterprise']">
                             {{ enterprise_type }}
-                          </option>
-                        </select>
-                      </li>
-                      <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.technical_sector !== '' }" id="selector05" v-model="filters.technical_sector" @change="filter_change">
-                          <option selected value="">Technical Sector</option>
-                          <option v-for="technical_sector in filter_categories['Technical Sector']">
-                            {{ technical_sector }}
                           </option>
                         </select>
                       </li>
@@ -188,11 +212,33 @@
                     </ul>
                   </form>
                 </div>
-              </div>
+              </div> <!-- end filters -->
+
+              <div class="row pt-3 justify-content-center">
+                <div class="col-sm-12 col-lg-8">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2" v-model="search" v-on:keyup.enter="filter_change">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- end search bar -->
+
             </div>
           </div>
 
-          <div v-if="show_map_view" class="container-fluid" id="table-container">
+          <keep-alive>
+              <router-view :filtered_documents="filtered_documents"></router-view>
+          </keep-alive>
+        </main>
+      </div>
+    </script>
+
+
+    <script type="text/x-template" id="map-component">
+      <div>
+          <div v-if="true" class="container-fluid" id="table-container">
 
             <div class="row no-gutters d-none d-lg-block">
               <table class="table egm-table" id="combined-table">
@@ -201,7 +247,7 @@
                   <th scope="col" class="set-group-title-vert-width"></th>
                   <th scope="col"></th>
                   <th scope="colgroup" colspan="5" class="group-title group-title-pse">
-                    PSE Key Values
+                    Private Sector Value Propositions
                     <a
                             href="#"
                             data-toggle="tooltip"
@@ -212,7 +258,7 @@
                     </a>
                   </th>
                   <th scope="colgroup" colspan="5" class="group-title group-title-usaid">
-                    PSE Key Values USAID Offers
+                    Development Actor Value Propositions
                     <a
                             href="#"
                             data-toggle="tooltip"
@@ -569,7 +615,7 @@
                     <th scope="col" class="set-group-title-vert-width"></th>
                     <th scope="col"></th>
                     <th scope="colgroup" colspan="5" class="group-title">
-                      PSE Key Values
+                      Private Sector Value Propositions
                       <a
                               href="#"
                               data-toggle="tooltip"
@@ -766,7 +812,7 @@
                     ></th>
                     <th scope="col" class="d-lg-none"></th>
                     <th scope="colgroup" colspan="5" class="group-title">
-                      PSE Key Values USAID Offers
+                      Development Actor Value Propositions
                       <a
                               href="#"
                               data-toggle="tooltip"
@@ -1032,179 +1078,7 @@
             <!-- /.row tables -->
           </div>
           <!-- /.container-fluid -->
-          <div v-else class="container mb-5">
-
-            <h5 class="d-flex justify-content-between align-items-center text-indigo px-3 text-uppercase font-weight-bolder">
-              Impact Evaluation Report
-              <span class="badge badge-secondary bg-indigo badge-pill">2</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-            <h5 class="d-flex justify-content-between align-items-center text-dk-purple px-3 text-uppercase font-weight-bolder">
-              Peer Review Article/Research Report
-              <span class="badge badge-secondary bg-dk-purple badge-pill">3</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-            <h5 class="d-flex justify-content-between align-items-center text-purple px-3 text-uppercase font-weight-bolder">
-              Performance Evaluation Report
-              <span class="badge badge-secondary bg-purple badge-pill">2</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-
-            <h5 class="d-flex justify-content-between align-items-center text-pink px-3 text-uppercase font-weight-bolder">
-              Systematic Review or Meta Analysis
-              <span class="badge badge-secondary bg-pink badge-pill">2</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-
-            <h5 class="d-flex justify-content-between align-items-center text-orange px-3 text-uppercase font-weight-bolder">
-              Industry Publication
-              <span class="badge badge-secondary bg-orange badge-pill">2</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-            <h5 class="d-flex justify-content-between align-items-center text-lt-green px-3 text-uppercase font-weight-bolder">
-              Landscape Analysis
-              <span class="badge badge-secondary bg-lt-green badge-pill">2</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-            <h5 class="d-flex justify-content-between align-items-center text-teal px-3 text-uppercase font-weight-bolder">
-              Political Economy Analysis
-              <span class="badge badge-secondary bg-teal badge-pill">2</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-            <h5 class="d-flex justify-content-between align-items-center text-bluegrey px-3 text-uppercase font-weight-bolder">
-              Use Case/Case Study
-              <span class="badge badge-secondary bg-bluegrey badge-pill">4</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-            <h5 class="d-flex justify-content-between align-items-center text-grey px-3 text-uppercase font-weight-bolder">
-              White Paper/Think Tank
-              <span class="badge badge-secondary bg-grey badge-pill">2</span>
-            </h5>
-            <ul class="list-group list-group-flush mb-4">
-              <li class="list-group-item">
-                <a href="document-detail.html">
-                  Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="#">
-                  Report on the BIFAD and USAID Consultations: Feeding the World
-                </a>
-              </li>
-            </ul>
-
-    </div>
+          
 
           <div class="container mt-5 mb-4">
             <h4>About the Evidence Gap Map</h4>
@@ -1228,20 +1102,197 @@
         </main>
       </div>
     </script>
+    <script type="text/x-template" id="list-component">
+      <div class="container mb-5">
+
+        <h5 class="d-flex justify-content-between align-items-center text-indigo px-3 text-uppercase font-weight-bolder">
+          Impact Evaluation Report
+          <span class="badge badge-secondary bg-indigo badge-pill">2</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+        <h5 class="d-flex justify-content-between align-items-center text-dk-purple px-3 text-uppercase font-weight-bolder">
+          Peer Review Article/Research Report
+          <span class="badge badge-secondary bg-dk-purple badge-pill">3</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+        <h5 class="d-flex justify-content-between align-items-center text-purple px-3 text-uppercase font-weight-bolder">
+          Performance Evaluation Report
+          <span class="badge badge-secondary bg-purple badge-pill">2</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+
+        <h5 class="d-flex justify-content-between align-items-center text-pink px-3 text-uppercase font-weight-bolder">
+          Systematic Review or Meta Analysis
+          <span class="badge badge-secondary bg-pink badge-pill">2</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+
+        <h5 class="d-flex justify-content-between align-items-center text-orange px-3 text-uppercase font-weight-bolder">
+          Industry Publication
+          <span class="badge badge-secondary bg-orange badge-pill">2</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+        <h5 class="d-flex justify-content-between align-items-center text-lt-green px-3 text-uppercase font-weight-bolder">
+          Landscape Analysis
+          <span class="badge badge-secondary bg-lt-green badge-pill">2</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+        <h5 class="d-flex justify-content-between align-items-center text-teal px-3 text-uppercase font-weight-bolder">
+          Political Economy Analysis
+          <span class="badge badge-secondary bg-teal badge-pill">2</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+        <h5 class="d-flex justify-content-between align-items-center text-bluegrey px-3 text-uppercase font-weight-bolder">
+          Use Case/Case Study
+          <span class="badge badge-secondary bg-bluegrey badge-pill">4</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+        <h5 class="d-flex justify-content-between align-items-center text-grey px-3 text-uppercase font-weight-bolder">
+          White Paper/Think Tank
+          <span class="badge badge-secondary bg-grey badge-pill">2</span>
+        </h5>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item">
+            <a href="document-detail.html">
+              Feasibility Study of the US-Pakistan Knowledge Corridor Scholarship Program
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              Report on the BIFAD and USAID Consultations: Feeding the World
+            </a>
+          </li>
+        </ul>
+
+</div>
+</script>
+
+
     <script type="text/x-template" id="details-component">
       <div>
 
         <header>
           <!-- Fixed navbar -->
           <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <router-link to="/" class="navbar-brand"><i class="fas fa-chevron-left mr-2"></i> Evidence Gap Map</router-link>
+            <router-link :to="{name: 'egm'}" class="navbar-brand"><i class="fas fa-chevron-left mr-2"></i> Evidence Gap Map</router-link>
           </nav>
         </header>
-        <div v-if="loading" class="d-flex justify-content-center">
+        <!-- <div v-if="loading" class="d-flex justify-content-center">
           <div class="spinner-border loading-spinner" role="status">
             <span class="sr-only">Loading...</span>
           </div>
-        </div>
+        </div> -->
         <div v-if="error" class="alert alert-danger details-error" role="alert">
           {{ error }}
         </div>
@@ -1249,10 +1300,10 @@
 
           <div class="bg-vb-lt-blue">
             <div class="container position-relative text-dark" id="top-document-detail">
-              <h5 class="mb-1 text-uppercase text-dark font-weight-bolder">
+              <h5 id="doc-type" class="mb-1 text-uppercase text-dark font-weight-bolder">
                 {{ document_details['Type of Document'] }}
               </h5>
-              <h1 class="mb-1 text-white">
+              <h1 id="doc-title" class="mb-1 text-white">
                 {{ document_details['Document Title'] }}
               </h1>
               <p class="my-0"><span class="text-uppercase font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
@@ -1269,38 +1320,43 @@
                 <ul class="list-unstyled">
                   <li v-for="entry in document_findings">{{ entry }}</li>
                 </ul>
-                <h4>Key Recommendations</h4>
-                <ul class="list-unstyled">
-                  <li v-for="entry in document_recommendations">{{ entry }}</li>
-                </ul>
+                <div v-if="document_recommendations.length > 0">
+                  <h4>Key Recommendations</h4>
+                  <ul class="list-unstyled">
+                    <li v-for="entry in document_recommendations">{{ entry }}</li>
+                  </ul>
+                </div>
+
+        <h4>Contribute Improvements</h4>
+        <p>Anything amiss? We invite you to contribute additions or corrections to this document description using this <a href="">form</a>.</p>
               </div>
               <div class="col-sm-5 col-lg-4">
                 <ul class="list-group mt-3">
-                  <li class="list-group-item p-0 border-left-0 border-right-0">
+                  <li v-if="document_details['PSE Ways We Engage']" class="list-group-item p-0 border-left-0 border-right-0">
                     <h6 class="mb-0 px-3 py-2 wash-400 narrow-font text-uppercase font-weight-bolder">PSE Ways We Engage</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100" >
                       <li v-for="(way, index) in document_details['PSE Ways We Engage']" :key="index">{{ way.replace(';', '') }}</li>
                     </ul>
                   </li>
-                  <li class="list-group-item p-0 border-left-0 border-right-0">
-                    <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder">PSE Key Values</h6>
+                  <li v-if="document_details['PSE Key Values']" class="list-group-item p-0 border-left-0 border-right-0">
+                    <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder">Private Sector Value Propositions</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
                       <li v-for="(value, index) in document_details['PSE Key Values']" :key="index">{{value}}</li>
                     </ul>
                   </li>
-                  <li class="list-group-item p-0 border-left-0 border-right-0">
-                    <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder">PSE Key Values USAID Offers</h6>
+                  <li v-if="document_details['PSE Key Values USAID Offers']"  class="list-group-item p-0 border-left-0 border-right-0">
+                    <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder">Development Actor Value Propositions</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
                       <li v-for="(value, index) in document_details['PSE Key Values USAID Offers']" :key="index">{{value}}</li>
                     </ul>
                   </li>
                 </ul>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
+                  <li v-if="document_details['Technical Sector']" class="list-group-item">
                     <h5 class="mb-1">Technical Sector</h5>
                     <p class="mb-0" v-for="(sector, index) in document_details['Technical Sector']" :key="sector">{{ sector }}</p>
                   </li>
-                  <li class="list-group-item">
+                  <li v-if="document_details['Special Considerations']" class="list-group-item">
                     <h5 class="mb-1">Special Considerations</h5>
                     <p class="mb-0"v-for="(consideration, index) in document_details['Special Considerations']" :key="consideration">{{ consideration }}</p>
                   </li>
@@ -1308,15 +1364,15 @@
                     <h5 class="mb-1">Private Sector Industry</h5>
                     <p class="mb-0"v-for="(industry, index) in document_details['Private Sector Industry']" :key="industry">{{ industry }}</p>
                   </li>
-                  <li class="list-group-item">
+                  <li v-if="document_details['Country(ies)']" class="list-group-item">
                     <h5 class="mb-1">Country(ies)</h5>
                     <p class="mb-0" v-for="(country, index) in document_details['Country(ies)']" :key="country">{{country}}</p>
                   </li>
-                  <li class="list-group-item">
+                  <li v-if="document_details['USAID Region']" class="list-group-item">
                     <h5 class="mb-1">USAID Region</h5>
                     <p class="mb-0"v-for="(region, index) in document_details['USAID Region']" :key="region">{{region}}</p>
                   </li>
-                  <li class="list-group-item">
+                  <li v-if="document_details['Internet URL of Document']" class="list-group-item">
                     <h5 class="mb-1">Internet URL</h5>
                     <p class="mb-0 text-small"><a :href="document_details['Internet URL of Document']" target="_blank">{{ document_details['Internet URL of Document'] || '---' | truncate(45) }}</a></p>
                   </li>
@@ -1333,7 +1389,7 @@
     </script>
     <script type="text/x-template" id="relevant-docs-modal-component">
       <div v-if="!isHidden">
-        <transition name="modal">
+        <!-- <transition name="modal"> -->
           <div class="modal-mask">
             <div class="modal modal-wrapper" tabindex="-1">
               <div class="modal-dialog modal-lg modal-dialog-scrollable">
@@ -1381,7 +1437,7 @@
                           <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
                         </li>
                         <li>
-                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }">{{ doc['Document Title'] }}</router-link>
+                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'] } }">{{ doc['Document Title'] }}</router-link>
                         </li>
                       </ul>
                       <ul class="list-unstyled">
@@ -1410,7 +1466,7 @@
               </div>
             </div>
           </div>
-        </transition>
+        <!-- </transition> -->
       </div>
     </script>
     <script type="text/x-template" id="matrix-cell-component" src="js/components/matrix-cell-component.js">
@@ -1448,6 +1504,8 @@
 
     <!-- EGM Vue App Code -->
     <script src="js/egm.js"></script>
+
+    <!-- <script type="text/javascript" src="js/bootstrap-multiselect.js"></script> -->
 
 
     <script>

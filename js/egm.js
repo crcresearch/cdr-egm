@@ -1,3 +1,4 @@
+/////// CONSTANTS ///////////
 const PSE_VALUES = {
   "Ability to Influence Policy": 0,
   "Efficiency and Effectiveness": 1,
@@ -23,6 +24,16 @@ const WAYS_WE_ENGAGE = {
   "Unlocking Private Investment;": 5
 };
 
+// used to shorten the internet URL field in the details component.
+Vue.filter('truncate', function (value, max_length = 115) {
+  if (value && value.length > max_length) {
+    return `${value.substring(0, max_length)}...`;
+  }
+  return value;
+});
+
+
+////// COMPONENTS /////////////
 const relevantDocumentsModal = {
   props: {
     isHidden: Boolean,
@@ -44,18 +55,104 @@ const matrixCellComponent = {
   template: '#matrix-cell-component'
 };
 
-Vue.filter('truncate', function (value, max_length = 115) {
-  if (value && value.length > max_length) {
-    return `${value.substring(0, max_length)}...`;
+const egm_layout = {
+  name: 'egm_layout',
+  components: {
+    'matrix-cell': matrixCellComponent,
+    'relevant-documents': relevantDocumentsModal
+  },
+  props: {
+    documents: Array,
+    filter_categories: Object
+  },
+  data: function () {
+    return {
+      filters: {
+        region: '',
+        country: '',
+        industry: '',
+        enterprise_type: '',
+        technical_sector: '',
+        resource_type: ''
+      },
+      search: "",
+      filtered_documents: [],
+    };
+  },
+  template: '#egm-layout',
+  mounted: function () {
+    this.filtered_documents = this.documents;
+  },
+  methods: {
+    filter_records: function () {
+      console.log(this.search)
+      
+      const vue_object = this;
+      var filtered_docs = this.documents.filter(function (doc) {
+        return (
+          (vue_object.filters.region === "" || (doc["USAID Region"] && doc["USAID Region"].includes(vue_object.filters.region))) &&
+          (vue_object.filters.country === "" || (doc["Country(ies)"] && doc["Country(ies)"].includes(vue_object.filters.country))) &&
+          (vue_object.filters.technical_sector === "" || (doc["Technical Sector"] && doc["Technical Sector"].includes(vue_object.filters.technical_sector))) &&
+          (vue_object.filters.enterprise_type === "" || (doc["Type of Enterprise"] && doc["Type of Enterprise"].includes(vue_object.filters.enterprise_type))) &&
+          (vue_object.filters.industry === "" || (doc["Private Sector Industry"] && doc["Private Sector Industry"].includes(vue_object.filters.industry))) &&
+          (vue_object.filters.resource_type === "" || (doc["Type of Document"] && doc["Type of Document"] === vue_object.filters.resource_type))
+        )
+
+      });
+
+      var searched_and_filtered_docs;
+      if( this.search === "" ) {
+        searched_and_filtered_docs = filtered_docs;
+      }
+      else {
+        searched_and_filtered_docs = filtered_docs.filter(function(doc) {
+          return (
+            vue_object.search_list_field(doc, "USAID Region", vue_object.search ) ||
+            vue_object.search_list_field(doc, "Country(ies)", vue_object.search ) ||
+            vue_object.search_list_field(doc, "Technical Sector", vue_object.search ) ||
+            vue_object.search_list_field(doc, "Type of Enterprise", vue_object.search ) ||
+            vue_object.search_list_field(doc, "Private Sector Industry", vue_object.search ) ||
+            doc["Type of Document"] && doc["Type of Document"].toLowerCase().includes(vue_object.search.toLowerCase())  
+          )
+        })
+      }
+
+      this.filtered_documents = searched_and_filtered_docs
+      // return this.filtered_documents;
+      // Map reduce the documents somehow here to get a new summary table.
+    },
+    search_list_field: function(document, field, search_term) {
+      var match = false
+      if(document[field] ) {
+        document[field].forEach(function(option) {
+          if( option.toLowerCase().includes(search_term.toLowerCase()) ) { 
+            match = true; 
+        }
+        })
+      }
+      return match
+    },
+    filter_change: function () {
+      this.filter_records();
+    },
+    reset_filters: function () {
+      for (const [key, value] of Object.entries(this.filters)) {
+        this.filters[key] = '';
+      }
+      this.search = ""
+      this.filter_records();
+    }
   }
-  return value;
-});
+};
 
 const map = {
   name: 'map_page',
   components: {
     'matrix-cell': matrixCellComponent,
     'relevant-documents': relevantDocumentsModal
+  },
+  props: {
+    filtered_documents: Array
   },
   data: function () {
     return {
@@ -67,18 +164,8 @@ const map = {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ],
-      filters: {
-        region: '',
-        country: '',
-        partners: '',
-        enterprise_type: '',
-        technical_sector: '',
-        resource_type: ''
-      },
       documents: [],
-      filtered_documents: [],
       filtered_summary_docs: [],
-      filter_categories: {},
       docs_modal_state: {
         value_title: '',
         value_text: '',
@@ -86,30 +173,21 @@ const map = {
         num_relevant_docs: 0,
         relevant_docs: []
       },
-      document_detail_id: '',
       show_documents_modal: false,
-      show_map_view: true, // if false, show the list view of documents
     };
   },
   template: '#map-component',
-  mounted: async function () {
-    const response = await axios.get('data/latest.json', { responseType: 'json' });
-    this.documents = response.data.records;
-    this.filtered_documents = this.documents;
-    this.filtered_summary = this.filter_records();
-    this.filter_categories = response.data.filteredFields;
+  mounted: function() {
+    this.filter_records(this.filtered_documents)
   },
-  computed: {
-    document_details: function () {
-      if(this.document_detail_id === '') {
-        return {};
-      } else {
-        return this.documents.find(doc => doc['Document ID'] === this.document_detail_id);
-      }
-    },
+  watch: {
+    // whenever question changes, this function will run
+    filtered_documents: function (newDocs, oldDocs) {
+      this.filter_records(newDocs)
+    }
   },
   methods: {
-    filter_records: function () {
+    filter_records: function (filtered_docs) {
       const new_summary = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -127,18 +205,8 @@ const map = {
         [[], [], [], [], [], [], [], [], [], []]
       ];
       const vue_object = this;
-      this.filtered_documents = this.documents.filter(function (doc) {
-        return (
-          (vue_object.filters.region === "" || (doc["USAID Region"] && doc["USAID Region"].includes(vue_object.filters.region))) &&
-          (vue_object.filters.country === "" || (doc["Country(ies)"] && doc["Country(ies)"].includes(vue_object.filters.country))) &&
-          (vue_object.filters.technical_sector === "" || (doc["Technical Sector"] && doc["Technical Sector"].includes(vue_object.filters.technical_sector))) &&
-          (vue_object.filters.enterprise_type === "" || (doc["Type of Enterprise"] && doc["Type of Enterprise"].includes(vue_object.filters.enterprise_type))) &&
-          (vue_object.filters.partners === "" || (doc["Name of Private Sector Partner(s)"] && doc["Name of Private Sector Partner(s)"].includes(vue_object.filters.partners))) &&
-          (vue_object.filters.resource_type === "" || (doc["Type of Document"] && doc["Type of Document"] === vue_object.filters.resource_type))
-        )
-      });
 
-      this.filtered_documents.forEach(doc => {
+      filtered_docs.forEach(doc => {
         if (doc["PSE Ways We Engage"]) {
           doc["PSE Ways We Engage"].forEach(way => {
             if (doc["PSE Key Values"]) {
@@ -162,19 +230,10 @@ const map = {
       return new_summary;
       // Map reduce the documents somehow here to get a new summary table.
     },
-    filter_change: function () {
-      this.filter_records();
-    },
-    reset_filters: function () {
-      for (const [key, value] of Object.entries(this.filters)) {
-        this.filters[key] = '';
-      }
-      this.filter_records();
-    },
     build_docs_modal: function (options) {
       const values_length = Object.keys(PSE_VALUES).length;
       const offers_length = Object.keys(PSE_UNITAID_VALUES).length;
-      this.docs_modal_state.value_title = `PSE Key Value${options.value_index >= values_length ? ' USAID Offers' : ''}`;
+      this.docs_modal_state.value_title = options.value_index >= values_length ? 'Development Actor Value Proposition' : 'Private Sector Value Proposition';
       if (options.value_index < values_length) {
         this.docs_modal_state.value_text = Object.keys(PSE_VALUES).find(key => PSE_VALUES[key] === options.value_index);
       } else if (options.value_index < values_length + offers_length) {
@@ -187,34 +246,57 @@ const map = {
     }
   }
 };
-const details = {
+
+const list = {
+  name: 'list_page',
   props: {
-    document: Object
+    filtered_documents: Array
   },
   data: function () {
     return {
-      loading: false,
+      filtered_summary: [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ],
+      documents: [],
+      filtered_summary_docs: [],
+      docs_modal_state: {
+        value_title: '',
+        value_text: '',
+        way_text: '',
+        num_relevant_docs: 0,
+        relevant_docs: []
+      },
+      show_documents_modal: false,
+    };
+  },
+  template: '#list-component',
+};
+
+const details = {
+  props: {
+    documents: Array,
+    filter_categories: Object
+  },
+  data: function () {
+    return {
       error: null,
       document_details: null
     }
   },
-  created: async function () {
+  mounted: function () {
     try {
-      if (!this.document) {
-        this.loading = true;
-        const response = await axios.get('data/latest.json', { responseType: 'json' });
         const doc_id = this.$route.params.id;
-        this.document_details = response.data.records.find(doc => doc['Document ID'] === doc_id);
-        this.loading = false;
+        this.document_details = this.documents.find(doc => doc['Document ID'] === doc_id);
         if (!this.document_details) {
           // Show error message if document ID is not found
           this.error = `Unable to find document with ID: ${doc_id}`;
         }
-      } else {
-        this.document_details = this.document;
-      }
     } catch (err) {
-      this.loading = false;
       this.error = err.toString();
     }
   },
@@ -234,16 +316,49 @@ const details = {
   },
   template: '#details-component'
 };
+
+////// ROUTER ///////////
 const routes = [
-  { path: '/', component: map },
-  { path: '/doc/:id', component: details, name: 'details', props: true }
+  { path: '', redirect: { name: 'egm' }},
+  { path: '/egm_layout/', component: egm_layout, name: 'egm_layout',
+    children: [
+      {
+        path: '/egm',
+        component: map,
+        name: 'egm'
+      },
+      {
+        path: '/list',
+        component: list,
+        name: 'list'
+      }
+    ]  
+},
+  { path: '/doc/:id', component: details, name: 'details'  }
 ];
 
 const router = new VueRouter({
   routes
 });
 
+////// BASE APP ///////////
 const app = new Vue({
   router: router,
-  el: '#app'
+  el: '#app',
+  data: function () {
+    return {
+      loading: true,
+      error: null,
+      documents: [],
+      filter_categories: {} 
+    }
+  },
+  mounted: async function () {
+    // this is the ONLY place where all of the documents are fetched now.
+    const response = await axios.get('data/latest.json', { responseType: 'json' });
+    this.documents = response.data.records;
+    this.filter_categories = response.data.filteredFields;
+    this.loading = false;
+    // TODO: Catch any fetch errors
+  },
 });
