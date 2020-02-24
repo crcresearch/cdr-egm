@@ -40,11 +40,12 @@ const relevantDocumentsModal = {
     state: Object
   },
   computed: {
-    high_confidence_docs: function () {
-      return this.state.relevant_docs.filter(doc => doc['Type of Document'] === 'Peer-reviewed article or other research report');
+    doc_types: function () {
+      return [...new Set(this.state.relevant_docs.map(doc => doc['Type of Document']))];
     },
-    low_confidence_docs: function () {
-      return this.state.relevant_docs.filter(doc => doc['Type of Document'] !== 'Peer-reviewed article or other research report');
+    docs_in_categories: function () {
+      // categorize each document by its type
+      return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.state.relevant_docs.filter(doc => doc['Type of Document'] === doc_type) }), {});
     }
   },
   template: '#relevant-docs-modal-component'
@@ -333,12 +334,21 @@ const routes = [
         name: 'list'
       }
     ]  
-},
-  { path: '/doc/:id', component: details, name: 'details'  }
+  },
+  { path: '/doc/:id', component: details, name: 'details' }
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    // Scroll to the top of  the page for details route otherwise
+    // used the saved scroll position for other routes
+    if (to.name === 'details') {
+      return { x: 0, y: 0 };
+    } else {
+      return savedPosition;
+    }
+  }
 });
 
 ////// BASE APP ///////////

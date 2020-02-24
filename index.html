@@ -37,7 +37,7 @@
         </div>
       </div>
       <div v-else>
-      <keep-alive :include="egm_layout">
+      <keep-alive include="egm_layout">
         <router-view :documents="documents" :filter_categories="filter_categories"></router-view>
       </keep-alive>
       </div>
@@ -143,7 +143,7 @@
                       <router-link :to="{name: 'egm'}" class="nav-link text-uppercase">Map</router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link :to="{name: 'list'}" class="nav-link text-uppercase">List</a>
+                      <router-link :to="{name: 'list'}" class="nav-link text-uppercase">List</router-link>
                     </li>
                     
                   </ul>
@@ -1418,48 +1418,18 @@
                         {{ state.way_text.replace(';', '') }}
                       </h5>
                     </div>
-                    <div class="card-body">
-                      <ul class="list-unstyled">
-                        <li>
-                          <h5
-                                  class="d-flex justify-content-between align-items-center text-pulte-green"
-                          >
-                            HIGH Confidence
-                            <span
-                                    class="badge badge-secondary bg-pulte-green badge-pill"
-                            >{{ high_confidence_docs.length }}</span
-                            >
-                          </h5>
-                        </li>
-                      </ul>
-                      <ul class="list-unstyled" v-for="doc in high_confidence_docs" :key="doc['Document ID']">
-                        <li>
-                          <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
-                        </li>
-                        <li>
-                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'] } }">{{ doc['Document Title'] }}</router-link>
-                        </li>
-                      </ul>
-                      <ul class="list-unstyled">
-                        <li>
-                          <h5
-                                  class="d-flex justify-content-between align-items-center text-gold"
-                          >
-                            MED/LOW Confidence
-                            <span class="badge badge-secondary bg-gold badge-pill"
-                            >{{ low_confidence_docs.length }}</span
-                            >
-                          </h5>
-                        </li>
-                      </ul>
-                      <ul class="list-unstyled" v-for="doc in low_confidence_docs" :key="doc['Document ID']">
-                        <li>
-                          <span class="text-uppercase">Type:</span> {{ doc['Type of Document'] }}
-                        </li>
-                        <li>
-                          <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }">{{ doc['Document Title'] }}</router-link>
-                        </li>
-                      </ul>
+                    <div class="card-body px-0 pt-0">
+                      <template v-for="doc_type in doc_types">
+                        <h6 class="d-flex justify-content-between align-items-center text-bluegrey mt-4 px-3 text-uppercase font-weight-bolder">
+                          {{ doc_type ? doc_type : 'Unknown Type' }}
+                          <span class="badge badge-secondary bg-bluegrey badge-pill">{{ docs_in_categories[doc_type].length }}</span>
+                        </h6>
+                        <ul class="list-group list-group-flush">
+                          <li v-for="doc in docs_in_categories[doc_type]" :key="doc['Document ID']" class="list-group-item">
+                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }">{{ doc['Document Title'] }}</router-link>
+                          </li>
+                        </ul>
+                      </template>
                     </div>
                   </div>
                 </div>
