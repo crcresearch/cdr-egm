@@ -24,6 +24,8 @@ const WAYS_WE_ENGAGE = {
   "Unlocking Private Investment;": 5
 };
 
+
+/////// GLOBAL REGISTRATIONS 
 // used to shorten the internet URL field in the details component.
 Vue.filter('truncate', function (value, max_length = 115) {
   if (value && value.length > max_length) {
@@ -31,6 +33,8 @@ Vue.filter('truncate', function (value, max_length = 115) {
   }
   return value;
 });
+
+Vue.component('vue-multiselect', window.VueMultiselect.default)
 
 
 ////// COMPONENTS /////////////
@@ -69,12 +73,12 @@ const egm_layout = {
   data: function () {
     return {
       filters: {
-        region: '',
-        country: '',
-        industry: '',
-        enterprise_type: '',
-        technical_sector: '',
-        resource_type: ''
+        region: [],
+        country: [],
+        industry: [],
+        enterprise_type: [],
+        technical_sector: [],
+        resource_type: []
       },
       search: "",
       filtered_documents: [],
@@ -91,12 +95,18 @@ const egm_layout = {
       const vue_object = this;
       var filtered_docs = this.documents.filter(function (doc) {
         return (
-          (vue_object.filters.region === "" || (doc["USAID Region"] && doc["USAID Region"].includes(vue_object.filters.region))) &&
-          (vue_object.filters.country === "" || (doc["Country(ies)"] && doc["Country(ies)"].includes(vue_object.filters.country))) &&
-          (vue_object.filters.technical_sector === "" || (doc["Technical Sector"] && doc["Technical Sector"].includes(vue_object.filters.technical_sector))) &&
-          (vue_object.filters.enterprise_type === "" || (doc["Type of Enterprise"] && doc["Type of Enterprise"].includes(vue_object.filters.enterprise_type))) &&
-          (vue_object.filters.industry === "" || (doc["Private Sector Industry"] && doc["Private Sector Industry"].includes(vue_object.filters.industry))) &&
-          (vue_object.filters.resource_type === "" || (doc["Type of Document"] && doc["Type of Document"] === vue_object.filters.resource_type))
+          (vue_object.filters.region.length == 0 || vue_object.multi_select_filter(doc, "USAID Region", 'region')) &&
+          (vue_object.filters.country.length == 0 || vue_object.multi_select_filter(doc, "Country(ies)", 'country')) && 
+          (vue_object.filters.technical_sector.length == 0 || vue_object.multi_select_filter(doc, "Technical Sector", 'technical_sector')) && 
+          (vue_object.filters.enterprise_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Enterprise", 'enterprise_type')) && 
+          (vue_object.filters.industry.length == 0 || vue_object.multi_select_filter(doc, "Private Sector Industry", 'industry')) && 
+          (vue_object.filters.resource_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Document", 'resource_type')) 
+          // (vue_object.filters.region === "" || (doc["USAID Region"] && doc["USAID Region"].includes(vue_object.filters.region))) &&
+          // (vue_object.filters.country === "" || (doc["Country(ies)"] && doc["Country(ies)"].includes(vue_object.filters.country))) &&
+          // (vue_object.filters.technical_sector === "" || (doc["Technical Sector"] && doc["Technical Sector"].includes(vue_object.filters.technical_sector))) &&
+          // (vue_object.filters.enterprise_type === "" || (doc["Type of Enterprise"] && doc["Type of Enterprise"].includes(vue_object.filters.enterprise_type))) &&
+          // (vue_object.filters.industry === "" || (doc["Private Sector Industry"] && doc["Private Sector Industry"].includes(vue_object.filters.industry))) &&
+          // (vue_object.filters.resource_type === "" || (doc["Type of Document"] && doc["Type of Document"] === vue_object.filters.resource_type))
         )
 
       });
@@ -122,11 +132,22 @@ const egm_layout = {
       // return this.filtered_documents;
       // Map reduce the documents somehow here to get a new summary table.
     },
-    search_list_field: function(document, field, search_term) {
-      var match = false
+    multi_select_filter: function(document, field, filter_key) {
+      var match = false;
       if(document[field] ) {
-        document[field].forEach(function(option) {
-          if( option.toLowerCase().includes(search_term.toLowerCase()) ) { 
+        this.filters[filter_key].forEach(function(filter_choice){
+          if( document[field].includes(filter_choice) ) {
+            match = true;
+          }
+        })
+      }
+      return match
+    },
+    search_list_field: function(document, field, search_term) {
+      var match = false;
+      if(document[field] ) {
+        document[field].forEach(function(value) {
+          if( match === false && value.toLowerCase().includes(search_term.toLowerCase()) ) { // no need to keep searching if match is already true
             match = true; 
         }
         })
@@ -138,7 +159,7 @@ const egm_layout = {
     },
     reset_filters: function () {
       for (const [key, value] of Object.entries(this.filters)) {
-        this.filters[key] = '';
+        this.filters[key] = [];
       }
       this.search = ""
       this.filter_records();

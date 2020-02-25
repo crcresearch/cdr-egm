@@ -21,7 +21,7 @@ body {
 }
 
 .narrow-font {
-  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
+  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
 }
 
 p.p-emphasis {
@@ -30,13 +30,12 @@ p.p-emphasis {
 }
 
 .text-small {
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 .text-soft {
   color: #fff;
   opacity: 0.8;
 }
-
 
 /* Custom colors */
 
@@ -73,13 +72,11 @@ p.p-emphasis {
 .text-dark {
   color: #243953 !important; /* #0c2440 #1d637d #243953 */
 }
-.text-vb-lt-blue{
+.text-vb-lt-blue {
   color: #80a7c2;
 }
 
-
 /* Resource Type colors */
-
 
 .bg-indigo {
   background: #262262;
@@ -126,16 +123,15 @@ p.p-emphasis {
 .bg-bluegrey {
   background: #5f7c8a;
 }
-.text-bluegrey{
+.text-bluegrey {
   color: #5f7c8a;
 }
 .bg-grey {
   background: #9d9d9d;
 }
-.text-grey{
+.text-grey {
   color: #9d9d9d;
 }
-
 
 /* Custsom buttons */
 
@@ -149,7 +145,6 @@ p.p-emphasis {
   background-color: #0c2440;
   border-color: #0c2440;
 }
-
 
 /* Evidence gap table styles */
 
@@ -167,7 +162,7 @@ p.p-emphasis {
 }
 
 .egm-table th {
-  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
+  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
   font-size: 0.9rem;
   line-height: 1.1;
 }
@@ -183,7 +178,7 @@ p.p-emphasis {
   line-height: 1.2;
   background: #444;
   color: #fff;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 #pse-table.egm-table th.group-title {
   background: #3d9bb4; /* #3d9bb4; */
@@ -210,7 +205,7 @@ p.p-emphasis {
   text-align: center;
   line-height: 1.2;
   background: #ced4da; /* #ced4da #adb5bd */
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 .egm-table th.group-title-vert .title-rotate {
   text-align: center;
@@ -232,7 +227,7 @@ p.p-emphasis {
   position: relative;
 }
 .egm-table td:after {
-  content: "";
+  content: '';
   display: block;
   margin: 100%;
 }
@@ -290,7 +285,7 @@ p.p-emphasis {
   font-size: 0.9rem;
   line-height: 1.2;
   font-style: italic;
-  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
+  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
 }
 .egm-table .dropdown-menu .card-body ul li {
   font-size: 0.9rem;
@@ -298,9 +293,8 @@ p.p-emphasis {
   margin-bottom: 0.25rem;
 }
 .egm-table .dropdown-menu .card-body ul li a {
-  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
+  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
 }
-
 
 /* Filter styles */
 
@@ -341,20 +335,19 @@ ul.filters li:last-child .custom-select {
 }
 
 ul.list-spaced {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 ul.list-spaced li {
   line-height: 1.2;
-  padding: .25rem 0;
+  padding: 0.25rem 0;
 }
-
 
 /* Map/List toggle styles */
 
 .nav.nav-map-toggle {
 }
 .nav.nav-map-toggle .nav-link {
-  padding: .15rem 1rem;
+  padding: 0.15rem 1rem;
   color: #6c757d;
 }
 .nav.nav-map-toggle .nav-link:hover {
@@ -368,26 +361,22 @@ ul.list-spaced li {
   color: #212529;
 }
 
-
 /* Map/List table styles */
 
-.table-striped tbody tr:nth-of-type(2n+1) {
+.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #f8f9fa;
 }
 
-
 /* Document detail page */
-
 
 @media screen and (max-width: 576px) {
   #doc-type {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
   #doc-title {
     font-size: 1.75rem;
   }
 }
-
 
 /* 2-level footer */
 
@@ -414,7 +403,7 @@ ul.list-spaced li {
 .footer .row.cpy-line {
 }
 
-/* Vue specific additions */ 
+/* Vue specific additions */
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -422,9 +411,9 @@ ul.list-spaced li {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: table;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .modal-wrapper {
@@ -443,7 +432,6 @@ ul.list-spaced li {
 .loading-spinner {
   margin-top: 56px;
 }
-
 
 #combined-table.egm-table th.group-title-pse {
   background: #3d9bb4; /* #3d9bb4; */
@@ -468,4 +456,127 @@ ul.list-spaced li {
 .nav.nav-map-toggle .router-link-active {
   border-bottom: 2px solid #80a7c2;
   color: #212529;
+}
+
+/* Vue specific additions */
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.alert.details-error {
+  margin-top: 56px;
+}
+
+.loading-spinner {
+  margin-top: 56px;
+}
+
+#combined-table.egm-table th.group-title-pse {
+  background: #3d9bb4; /* #3d9bb4; */
+}
+#combined-table.egm-table th.group-title-usaid {
+  background: #002f6c; /* #002f6c; #ba0c2f */
+}
+
+#combined-table.egm-table td .square {
+  background: rgba(61, 155, 180, 0.25);
+}
+#combined-table.egm-table td .square .count {
+  background: rgba(255, 255, 255, 0.75); /* #3d9bb4; */
+  /*  border: 1px solid rgba(61, 155, 180, 0.25); */
+  color: #247d95;
+}
+
+.bg-selected-blue {
+  background: #0c2440 !important;
+}
+
+.nav.nav-map-toggle .router-link-active {
+  border-bottom: 2px solid #80a7c2;
+  color: #212529;
+}
+
+/* multiselect overrides */
+.multiselect__tags {
+  width: 100%;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.multiselect__option {
+  display: block;
+  padding: 12px;
+  min-height: 40px;
+  line-height: 16px;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+  white-space: normal;
+}
+.multiselect__option:after {
+  top: 0;
+  right: 0;
+  position: absolute;
+  line-height: 40px;
+  padding-right: 12px;
+  padding-left: 20px;
+  font-size: 13px;
+}
+.multiselect__option--highlight {
+  background: #0c2440;
+  outline: none;
+  color: #fff;
+}
+.multiselect__option--highlight:after {
+  content: attr(data-select);
+  background: #0c2440;
+  color: #fff;
+}
+.multiselect__option--selected {
+  background: #35495e;
+  color: #f3f3f3; 
+  font-weight: 700;
+}
+.multiselect__option--selected:after {
+  content: attr(data-selected);
+  color: silver;
+}
+.multiselect__option--selected.multiselect__option--highlight {
+  background: #0c2440;
+  color: #fff;
+}
+.multiselect__option--selected.multiselect__option--highlight:after {
+  background: #0c2440;
+  content: attr(data-deselect);
+  color: #fff;
+}
+
+.multiselect__single {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.multiselect__placeholder {
+  display: none;
 }

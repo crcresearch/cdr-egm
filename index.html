@@ -24,6 +24,8 @@
     <!-- Font Awesome -->
     <link href="css/all.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+
     <!-- Custom styles -->
     <link href="css/igd-egm.css" rel="stylesheet" />
   </head>
@@ -151,68 +153,109 @@
               </div>
 
 
+              <div class="row no-gutters align-items-center">
+
+                <div class="col-md-11">
+                  <div class="row no-gutters filters" id="filter-row">
+    
 
 
+                    <div class="col-md-2">
+                      <vue-multiselect v-model="filters.region" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['USAID Region']" @input="filter_change">
+                        <template slot="selection" slot-scope="{ values }">
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
+                          <span class="multiselect__single" v-else>USAID Region</span>
+                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
+                        </template>
+                      </vue-multiselect>
+                      <!-- <select class="custom-select" :class="{ 'bg-selected-blue': filters.region !== '' }" id="selector01" v-model="filters.region" @change="filter_change">
+                        <option selected value="">USAID Region</option>
+                        <option v-for="region in filter_categories['USAID Region']">
+                          {{ region }}
+                        </option>
+                      </select> -->
+                    </div>
+                    <div class="col-md-2">
+                      <vue-multiselect v-model="filters.country" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Country(ies)']" @input="filter_change">
+                        <template slot="selection" slot-scope="{ values }">
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
+                          <span class="multiselect__single" v-else>Country(ies)</span>
+                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
+                        </template>
+                        <template slot="option" slot-scope="props">
+                          <div class="option__desc"><span class="option__title">{{ props.option }}</span></div>
+                        </template>
+                      </vue-multiselect>
+                    </div>
+                    <div class="col-md-2">
+                      <vue-multiselect v-model="filters.technical_sector" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Technical Sector']" @input="filter_change">
+                        <template slot="selection" slot-scope="{ values }">
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
+                          <span class="multiselect__single" v-else>Technical Sector</span>
+                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
+                        </template>
+                      </vue-multiselect>
+                    </div>
+                    <div class="col-md-2">
+                      <vue-multiselect v-model="filters.industry" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Private Sector Industry']" @input="filter_change">
+                        <template slot="selection" slot-scope="{ values }">
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
+                          <span class="multiselect__single" v-else>Private Sector Industry</span>
+                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
+                        </template>
+                      </vue-multiselect>
+                      <!-- <select class="custom-select" :class="{ 'bg-selected-blue': filters.industry !== '' }" id="selector03" v-model="filters.industry" @change="filter_change">
+                        <option selected value="">Private Sector Industry</option>
+                        <option v-for="industry_name in filter_categories['Private Sector Industry']">
+                          {{ industry_name }}
+                        </option>
+                      </select> -->
+                    </div>
+                    <div class="col-md-2">
+                      <vue-multiselect v-model="filters.enterprise_type" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Type of Enterprise']" @input="filter_change">
+                        <template slot="selection" slot-scope="{ values }">
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
+                          <span class="multiselect__single" v-else>Type of Enterprise</span>
+                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
+                        </template>
+                      </vue-multiselect>
+                      <!-- <select class="custom-select" :class="{ 'bg-selected-blue': filters.enterprise_type !== '' }" id="selector04" v-model="filters.enterprise_type" @change="filter_change">
+                        <option selected value="">Type of Enterprise</option>
+                        <option v-for="enterprise_type in filter_categories['Type of Enterprise']">
+                          {{ enterprise_type }}
+                        </option>
+                      </select> -->
+                    </div>
+                    <div class="col-md-2">
+                      <vue-multiselect v-model="filters.resource_type" :options="filter_categories['Type of Document']" placeholder="Type of Document" selectLabel="" deselectLabel="" selectedLabel="" @input="filter_change">
+                        <template slot="selection" slot-scope="{ values }">
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
+                          <span class="multiselect__single" v-else>Type of Document</span>
+                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
+                        </template>
+                      </vue-multiselect>
+                      <!-- <select class="custom-select" :class="{ 'bg-selected-blue': filters.resource_type !== '' }" id="selector07" v-model="filters.resource_type" @change="filter_change">
+                        <option selected value="">Resource Type</option>
+                        <option v-for="document_type in filter_categories['Type of Document']">
+                          {{ document_type }}
+                        </option>
+                      </select> -->
+                    </div>
 
-              <div class="row text-center" id="filter-row">
-                <div class="col-lg-12">
-                  <form>
-                    <ul class="list-unstyled filters d-block d-md-inline-flex">
-                      <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.region !== '' }" id="selector01" v-model="filters.region" @change="filter_change">
-                          <option selected value="">USAID Region</option>
-                          <option v-for="region in filter_categories['USAID Region']">
-                            {{ region }}
-                          </option>
-                        </select>
-                      </li>
-                      <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.country !== '' }" id="selector02" v-model="filters.country" @change="filter_change">
-                          <option selected value="">Country</option>
-                          <option v-for="country in filter_categories['Country(ies)']">
-                            {{ country }}
-                          </option>
-                        </select>
-                      </li>
-                      <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.technical_sector !== '' }" id="selector05" v-model="filters.technical_sector" @change="filter_change">
-                          <option selected value="">Technical Sector</option>
-                          <option v-for="technical_sector in filter_categories['Technical Sector']">
-                            {{ technical_sector }}
-                          </option>
-                        </select>
-                      </li>
-                      <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.industry !== '' }" id="selector03" v-model="filters.industry" @change="filter_change">
-                          <option selected value="">Private Sector Industry</option>
-                          <option v-for="industry_name in filter_categories['Private Sector Industry']">
-                            {{ industry_name }}
-                          </option>
-                        </select>
-                      </li>
-                      <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.enterprise_type !== '' }" id="selector04" v-model="filters.enterprise_type" @change="filter_change">
-                          <option selected value="">Type of Enterprise</option>
-                          <option v-for="enterprise_type in filter_categories['Type of Enterprise']">
-                            {{ enterprise_type }}
-                          </option>
-                        </select>
-                      </li>
-                      <li>
-                        <select class="custom-select" :class="{ 'bg-selected-blue': filters.resource_type !== '' }" id="selector07" v-model="filters.resource_type" @change="filter_change">
-                          <option selected value="">Resource Type</option>
-                          <option v-for="document_type in filter_categories['Type of Document']">
-                            {{ document_type }}
-                          </option>
-                        </select>
-                      </li>
-                      <li>
-                        <a class="btn btn-light btn-sm rounded-circle ml-2 mt-1" role="button" title="Reset filters" @click="reset_filters"><i class="fas fa-redo"></i></a>
-                      </li>
-                    </ul>
-                  </form>
+
                 </div>
-              </div> <!-- end filters -->
+              </div>
+
+              <div class="col-md-1 text-center text-md-left">
+                <a class="btn btn-light btn-sm rounded-pill ml-2 mt-2 mt-md-1 text-small" role="button" title="Reset filters" @click="reset_filters"><i class="fas fa-redo"></i> Reset</a>
+              </div>
+            </div> <!-- end filters -->
 
               <div class="row pt-3 justify-content-center">
                 <div class="col-sm-12 col-lg-8">
@@ -1470,6 +1513,9 @@
 
     <!-- axios From CDN -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- Vue Multiselect from CDN -->
+    <script src="https://unpkg.com/vue-multiselect@2.1.6"></script>
 
 
     <!-- EGM Vue App Code -->
