@@ -121,7 +121,10 @@ const egm_layout = {
             vue_object.search_list_field(doc, "Technical Sector", vue_object.search ) ||
             vue_object.search_list_field(doc, "Type of Enterprise", vue_object.search ) ||
             vue_object.search_list_field(doc, "Private Sector Industry", vue_object.search ) ||
-            doc["Type of Document"] && doc["Type of Document"].toLowerCase().includes(vue_object.search.toLowerCase())  
+            vue_object.search_list_field(doc, "Author(s)", vue_object.search ) ||
+            doc["Type of Document"] && doc["Type of Document"].toLowerCase().includes(vue_object.search.toLowerCase()) ||
+            doc["Document Title"] && doc["Document Title"].toLowerCase().includes(vue_object.search.toLowerCase()) || 
+            doc["Key Findings"] && doc["Key Findings"].toLowerCase().includes(vue_object.search.toLowerCase()) 
           )
         })
       }
