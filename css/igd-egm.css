@@ -546,9 +546,9 @@ ul.list-spaced li {
   font-size: 13px;
 }
 .multiselect__option--highlight {
-  background: #0c2440;
+  background: #fff;
   outline: none;
-  color: #fff;
+  color: #0c2440;
 }
 .multiselect__option--highlight:after {
   content: attr(data-select);
