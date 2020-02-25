@@ -521,6 +521,7 @@ ul.list-spaced li {
   /* white-space: nowrap; */
   overflow: hidden;
   text-overflow: ellipsis;
+  background: #495b70;
 }
 
 .multiselect__option {
@@ -577,6 +578,8 @@ ul.list-spaced li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: #495b70;
+  color: #fff;
 }
 
 .multiselect__placeholder {
