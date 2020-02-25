@@ -9,7 +9,7 @@ body {
 }
 
 #top-container.container {
-  padding: 20px 15px;
+  padding: 20px 25px;
 }
 
 #top-document-detail.container {
@@ -20,22 +20,43 @@ body {
   padding: 0;
 }
 
-.narrow-font {
-  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
+a {
+  color: #1b75bc;
 }
 
-p.p-emphasis {
-  font-size: 1.1rem;
-  line-height: 1.4;
+.narrow-font {
+  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
 }
 
 .text-small {
-  font-size: 0.9rem;
+  font-size: .9rem;
 }
 .text-soft {
   color: #fff;
-  opacity: 0.8;
+  opacity: 0.7;
 }
+
+p.p-inst {
+  font-size: .9rem;
+  line-height: 1.3;
+  letter-spacing: .355px;
+}
+
+#egm-title {
+  line-height: 1;
+}
+#egm-tagline {
+  opacity: 0.85;
+}
+@media screen and (max-width: 1200px) {
+  #egm-title {
+    font-size: 2.1rem;
+  }
+  #egm-tagline {
+    font-size: 1.1rem;
+  }
+}
+
 
 /* Custom colors */
 
@@ -72,11 +93,13 @@ p.p-emphasis {
 .text-dark {
   color: #243953 !important; /* #0c2440 #1d637d #243953 */
 }
-.text-vb-lt-blue {
+.text-vb-lt-blue{
   color: #80a7c2;
 }
 
+
 /* Resource Type colors */
+
 
 .bg-indigo {
   background: #262262;
@@ -123,15 +146,16 @@ p.p-emphasis {
 .bg-bluegrey {
   background: #5f7c8a;
 }
-.text-bluegrey {
+.text-bluegrey{
   color: #5f7c8a;
 }
 .bg-grey {
   background: #9d9d9d;
 }
-.text-grey {
+.text-grey{
   color: #9d9d9d;
 }
+
 
 /* Custsom buttons */
 
@@ -145,6 +169,7 @@ p.p-emphasis {
   background-color: #0c2440;
   border-color: #0c2440;
 }
+
 
 /* Evidence gap table styles */
 
@@ -162,7 +187,7 @@ p.p-emphasis {
 }
 
 .egm-table th {
-  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
+  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
   font-size: 0.9rem;
   line-height: 1.1;
 }
@@ -178,7 +203,7 @@ p.p-emphasis {
   line-height: 1.2;
   background: #444;
   color: #fff;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
 }
 #pse-table.egm-table th.group-title {
   background: #3d9bb4; /* #3d9bb4; */
@@ -205,7 +230,7 @@ p.p-emphasis {
   text-align: center;
   line-height: 1.2;
   background: #ced4da; /* #ced4da #adb5bd */
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
 }
 .egm-table th.group-title-vert .title-rotate {
   text-align: center;
@@ -227,7 +252,7 @@ p.p-emphasis {
   position: relative;
 }
 .egm-table td:after {
-  content: '';
+  content: "";
   display: block;
   margin: 100%;
 }
@@ -285,7 +310,7 @@ p.p-emphasis {
   font-size: 0.9rem;
   line-height: 1.2;
   font-style: italic;
-  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
+  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
 }
 .egm-table .dropdown-menu .card-body ul li {
   font-size: 0.9rem;
@@ -293,61 +318,74 @@ p.p-emphasis {
   margin-bottom: 0.25rem;
 }
 .egm-table .dropdown-menu .card-body ul li a {
-  font-family: 'Arial Narrow', 'AvenirNextCondensed-DemiBold', Arial, sans-serif;
+  font-family: "Arial Narrow", "AvenirNextCondensed-DemiBold", Arial, sans-serif;
 }
 
-/* Filter styles */
 
-ul.filters {
-  position: relative;
-  margin-bottom: 0;
+/* Bootstrap Multiselect filter style overrides */
+
+.multiselect.dropdown-toggle::after,
+.multiselect .caret {
+  display: none!important;
 }
-ul.filters .custom-select {
+
+.multiselect-native-select .btn-group {
+  width: 100%;
+}
+
+.multiselect-native-select .btn.custom-select {
   border-radius: 0;
-  border: 2px solid #dee2e6;
-  border-bottom: none;
+  border: 1px solid #e9ecef;
   background: #495b70
     url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
     no-repeat right 0.75rem center/8px 10px;
   color: #fff;
-}
-ul.filters li:first-child .custom-select {
-}
-ul.filters li:last-child .custom-select {
-  border-bottom: 2px solid #dee2e6;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+  .multiselect-container {
+    width: 100%;
+  }
 @media screen and (min-width: 768px) {
-  ul.filters .custom-select {
-    border: 2px solid #dee2e6;
-    border-right: none;
-  }
-  ul.filters li:last-child .custom-select {
-    border-right: 2px solid #dee2e6;
+  .multiselect-container {
+    width: auto;
   }
 }
-
-#view-document-link {
-  position: absolute;
-  bottom: 0;
-  right: 3rem;
-  transform: translate(0, 50%);
+.multiselect-container>li {
+  padding: .25rem 0;
+  font-size: .9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.multiselect-container>li>a>label {
+  line-height: 1;
+  text-indent: -18px;
+  padding:3px 10px 3px 28px;
+}
+.multiselect-container .multiselect-reset .input-group {
+  width:93%;
+}
+.multiselect-container .multiselect-reset .btn {
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: .8rem;
+  letter-spacing: .5px;
+}
+.multiselect-selected-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-ul.list-spaced {
-  margin-bottom: 0.5rem;
-}
-ul.list-spaced li {
-  line-height: 1.2;
-  padding: 0.25rem 0;
-}
 
 /* Map/List toggle styles */
 
 .nav.nav-map-toggle {
 }
 .nav.nav-map-toggle .nav-link {
-  padding: 0.15rem 1rem;
+  padding: .15rem 1rem;
   color: #6c757d;
 }
 .nav.nav-map-toggle .nav-link:hover {
@@ -361,22 +399,40 @@ ul.list-spaced li {
   color: #212529;
 }
 
+
 /* Map/List table styles */
 
-.table-striped tbody tr:nth-of-type(2n + 1) {
+.table-striped tbody tr:nth-of-type(2n+1) {
   background-color: #f8f9fa;
 }
 
+
 /* Document detail page */
+
+#view-document-link {
+  position: absolute;
+  bottom: 0;
+  right: 3rem;
+  transform: translate(0, 50%);
+}
+
+ul.list-spaced {
+  margin-bottom: .5rem;
+}
+ul.list-spaced li {
+  line-height: 1.2;
+  padding: .25rem 0;
+}
 
 @media screen and (max-width: 576px) {
   #doc-type {
-    font-size: 1rem;
+    font-size: 1.0rem;
   }
   #doc-title {
     font-size: 1.75rem;
   }
 }
+
 
 /* 2-level footer */
 
@@ -403,60 +459,6 @@ ul.list-spaced li {
 .footer .row.cpy-line {
 }
 
-/* Vue specific additions */
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
-
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-[v-cloak] {
-  display: none;
-}
-
-.alert.details-error {
-  margin-top: 56px;
-}
-
-.loading-spinner {
-  margin-top: 56px;
-}
-
-#combined-table.egm-table th.group-title-pse {
-  background: #3d9bb4; /* #3d9bb4; */
-}
-#combined-table.egm-table th.group-title-usaid {
-  background: #002f6c; /* #002f6c; #ba0c2f */
-}
-
-#combined-table.egm-table td .square {
-  background: rgba(61, 155, 180, 0.25);
-}
-#combined-table.egm-table td .square .count {
-  background: rgba(255, 255, 255, 0.75); /* #3d9bb4; */
-  /*  border: 1px solid rgba(61, 155, 180, 0.25); */
-  color: #247d95;
-}
-
-.bg-selected-blue {
-  background: #0c2440 !important;
-}
-
-.nav.nav-map-toggle .router-link-active {
-  border-bottom: 2px solid #80a7c2;
-  color: #212529;
-}
 
 /* Vue specific additions */
 .modal-mask {
@@ -579,4 +581,85 @@ ul.list-spaced li {
 
 .multiselect__placeholder {
   display: none;
+}
+
+
+.doc-type-impact-evaluation-report > h5 {
+  color: #262262;
+}
+.doc-type-impact-evaluation-report > h5 > span {
+  color: #fff;
+  background: #262262; 
+}
+
+.doc-type-industry-publication > h5 {
+  color: #f07d20;
+}
+.doc-type-industry-publication > h5 > span {
+  color: #fff;
+  background: #f07d20; 
+}
+
+.doc-type-landscape-analysis > h5 {
+  color: #8ac249;
+}
+.doc-type-landscape-analysis > h5 > span {
+  color: #fff;
+  background: #8ac249; 
+}
+
+.doc-type-use-case-case-study > h5 {
+  color: #262262;
+}
+.doc-type-use-case-case-study > h5 > span {
+  color: #fff;
+  background: #262262; 
+}
+
+.doc-type-performance-evaluation-report > h5 {
+  color: #9b26af;
+}
+.doc-type-performance-evaluation-report > h5 > span {
+  color: #fff;
+  background: #9b26af; 
+}
+
+.doc-type-political-economy-analysis > h5 {
+  color: #009587;
+}
+.doc-type-political-economy-analysis > h5 > span {
+  color: #fff;
+  background: #009587; 
+}
+
+.doc-type-systematic-review-or-meta-analysis > h5 {
+  color: #e81d62;
+}
+.doc-type-systematic-review-or-meta-analysis > h5 > span {
+  color: #fff;
+  background: #e81d62; 
+}
+
+.doc-type-peer-reviewed-article-or-other-research-report > h5 {
+  color: #6639b6;
+}
+.doc-type-peer-reviewed-article-or-other-research-report > h5 > span {
+  color: #fff;
+  background: #6639b6; 
+}
+
+.doc-type-white-paper-think-tank-report > h5 {
+  color: #9d9d9d;
+}
+.doc-type-white-paper-think-tank-report > h5 > span {
+  color: #fff;
+  background: #9d9d9d; 
+}
+
+.doc-type-use-case-case-study > h5 {
+  color: #5f7c8a;
+}
+.doc-type-use-case-case-study > h5 > span {
+  color: #fff;
+  background: #5f7c8a; 
 }

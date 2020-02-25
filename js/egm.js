@@ -45,7 +45,7 @@ const relevantDocumentsModal = {
   },
   computed: {
     doc_types: function () {
-      return [...new Set(this.state.relevant_docs.map(doc => doc['Type of Document']))];
+      return [...new Set(this.state.relevant_docs.map(doc => doc['Type of Document']))].sort();
     },
     docs_in_categories: function () {
       // categorize each document by its type
@@ -90,8 +90,6 @@ const egm_layout = {
   },
   methods: {
     filter_records: function () {
-      console.log(this.search)
-      
       const vue_object = this;
       var filtered_docs = this.documents.filter(function (doc) {
         return (
@@ -274,27 +272,14 @@ const list = {
   props: {
     filtered_documents: Array
   },
-  data: function () {
-    return {
-      filtered_summary: [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      ],
-      documents: [],
-      filtered_summary_docs: [],
-      docs_modal_state: {
-        value_title: '',
-        value_text: '',
-        way_text: '',
-        num_relevant_docs: 0,
-        relevant_docs: []
-      },
-      show_documents_modal: false,
-    };
+  computed: {
+    doc_types: function () {
+      return [...new Set(this.filtered_documents.map(doc => doc['Type of Document']))].sort();
+    },
+    docs_in_categories: function () {
+      // categorize each document by its type
+      return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.filtered_documents.filter(doc => doc['Type of Document'] === doc_type) }), {});
+    }
   },
   template: '#list-component',
 };
