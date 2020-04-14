@@ -1616,7 +1616,7 @@
                 {{ document_details['Document Title'] }}
               </h1>
               <p class="my-0"><span class="text-uppercase font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
-              <p class="my-0"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }}</p>
+              <p class="my-0"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }} <span v-if="document_details['Year']">{{ document_details['Year'] }}</span></p>
               <a v-if="document_details['Internet URL of Document']" class="btn btn-dark btn-lg" id="view-document-link" :href="document_details['Internet URL of Document']" target="_blank" role="button">View Document <i class="fas fa-external-link-alt ml-2"></i></a>
             </div>
           </div>
