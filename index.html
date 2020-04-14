@@ -161,7 +161,7 @@
 
 
                     <div class="col-md-2">
-                      <vue-multiselect v-model="filters.region" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['USAID Region']" @input="filter_change">
+                      <vue-multiselect v-model="filters.region" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['USAID Region']" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
@@ -177,7 +177,7 @@
                       </select> -->
                     </div>
                     <div class="col-md-2">
-                      <vue-multiselect v-model="filters.country" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Country(ies)']" @input="filter_change">
+                      <vue-multiselect v-model="filters.country" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Country(ies)']" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
@@ -216,7 +216,7 @@
                       </select> -->
                     </div>
                     <div class="col-md-2">
-                      <vue-multiselect v-model="filters.enterprise_type" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Type of Enterprise']" @input="filter_change">
+                      <vue-multiselect v-model="filters.enterprise_type" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Type of Enterprise']" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
@@ -232,7 +232,7 @@
                       </select> -->
                     </div>
                     <div class="col-md-2">
-                      <vue-multiselect v-model="filters.resource_type" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Type of Document']" @input="filter_change">
+                      <vue-multiselect v-model="filters.resource_type" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories['Type of Document']" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
@@ -253,14 +253,14 @@
               </div>
 
               <div class="col-md-1 text-center text-md-left">
-                <a class="btn btn-light btn-sm rounded-pill ml-2 mt-2 mt-md-1 text-small" role="button" title="Reset filters" @click="reset_filters"><i class="fas fa-redo"></i> Reset</a>
+                <a class="btn btn-light btn-sm rounded-pill ml-2 mt-2 mt-md-1 text-small" role="button" title="Reset filters" @click="reset_filters" ><i class="fas fa-redo"></i> Reset</a>
               </div>
             </div> <!-- end filters -->
 
               <div class="row pt-3 justify-content-center">
                 <div class="col-sm-12 col-lg-8">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search by Author, Title, Key Findings..." aria-label="Search" aria-describedby="basic-addon2" v-model="search" v-on:keyup.enter="filter_change">
+                    <input type="text" class="form-control" placeholder="Search by Author, Title, Key Findings..." aria-label="Search" aria-describedby="basic-addon2" v-model="search" v-on:keyup.enter="filter_change" >
                     <div class="input-group-append" @click="filter_change" style="cursor:pointer">
                       <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
                     </div>
@@ -272,7 +272,7 @@
           </div>
 
           <keep-alive>
-              <router-view :filtered_documents="filtered_documents"></router-view>
+              <router-view :filtered_documents="filtered_documents" ></router-view>
           </keep-alive>
         </main>
       </div>
@@ -291,24 +291,26 @@
                   <th scope="col"></th>
                   <th scope="colgroup" colspan="5" class="group-title group-title-pse">
                     Private Sector Value Propositions
-                    <a
+                    <!-- <a
                             href="#"
                             data-toggle="tooltip"
                             data-placement="bottom"
                             title="PSE, or Private sector engagement, key values are..."
                     >
-                      <i class="fas fa-info-circle"></i>
-                    </a>
+                      <i class="fas fa-info-circle"></i> 
+                    </a>-->
                   </th>
                   <th scope="colgroup" colspan="5" class="group-title group-title-usaid">
                     Development Actor Value Propositions
-                    <a
-                            href="#"
-                            data-toggle="tooltip"
+                    <!-- <a
+                            tabindex="0" 
+                            data-toggle="popover"
+                            data-trigger="focus"
                             data-placement="bottom"
-                            title="USAID offers a set of key values..."
+                            title="Development Actor Value Propositions" 
+                            data-content="Need Text Here"
                     >
-                      <i class="fas fa-info-circle"></i>
+                      <i class="fas fa-info-circle"></i> -->
                     </a>
                   </th>
                   <th scope="col" class=""></th>
@@ -323,23 +325,47 @@
                   <th
                           scope="col"
                           class="value"
-                          title="Ability to Influence Policy"
+                          title="Scale, Sustainability, & Reach"
                   >
-                    <div class="clip-content">Ability</div>
-                    <div class="clip-content">to Influence</div>
-                    <div class="clip-content">Policy</div>
+                     
+                    <span class="float-right">
+                    <a
+                            tabindex="0" 
+                            data-toggle="popover"
+                            data-trigger="focus"
+                            data-placement="bottom"
+                            title="Scale, Sustainability, & Reach" 
+                            data-content="The private sector’s vast financial resources and expertise in market-based solutions have the potential for achieving scale and sustainability in tackling systemic societal challenges. The private sector’s extensive networks and operations provide distribution channels to reach, and communicate with, underserved populations and individuals."
+                    >
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                    </span>
+                    <div class="clip-content">Scale,</div>
+                    <div class="clip-content">Sustainability,</div>
+                    <div class="clip-content">& Reach</div>
                   </th>
                   <th
                           scope="col"
                           class="value"
-                          title="Efficiency & Effectiveness"
+                          title="Ability to Influence Policy"
                   >
-                    <div class="clip-content">Efficiency</div>
-                    <div class="clip-content">& Effectiveness</div>
-                  </th>
-                  <th scope="col" class="value" title="Flexibility & Pace">
-                    <div class="clip-content">Flexibility</div>
-                    <div class="clip-content">& Pace</div>
+                    <div class="clip-content">
+                      <span class="float-right">
+                      <a
+                              tabindex="0" 
+                              data-toggle="popover"
+                              data-trigger="focus"
+                              data-placement="bottom"
+                              title="Ability to Influence Policy" 
+                              data-content="The private sector’s ability to deliver what host-country governments seek to achieve—such as improved service-delivery, investment, tax revenues, jobs, and life-saving interventions—gives businesses and investors a strong, knowledgeable voice to inform policy that supports transparent, inclusive economic growth."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      </span>
+                    </div>
+                    <div class="clip-content">Ability</div>
+                    <div class="clip-content">to Influence</div>
+                    <div class="clip-content">Policy</div>
                   </th>
                   <th
                           scope="col"
@@ -352,6 +378,20 @@
                             data-target="#valueModal"
                             style="cursor:pointer"
                     >
+                      <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Innovation, Expertise, & Capabilities" 
+                                data-content="Businesses and investors can bring innovation and technologies; entrepreneurship; industry expertise; market-based solutions; distribution networks; investment capacity; and managerial and operational expertise, including risk-management."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                      </div>
                       <div class="clip-content">Innovation,</div>
                       <div class="clip-content">Expertise,</div>
                       <div class="clip-content">& Capabilities</div>
@@ -360,55 +400,160 @@
                   <th
                           scope="col"
                           class="value"
-                          title="Scale, Sustainability, & Reach"
+                          title="Efficiency & Effectiveness"
                   >
-                    Scale,
-                    <div class="clip-content">Sustainability,</div>
-                    <div class="clip-content">& Reach</div>
+                    <div>
+                      <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Efficiency & Effectiveness" 
+                                data-content="With improved systems, processes, and logistics, the private sector can bring more efficiency and effectiveness to achieving outcomes."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                      </span>
+                    </div>
+                    <div class="clip-content">&nbsp</div>
+                    <div class="clip-content">Efficiency </div>
+                    <div class="clip-content">& Effectiveness</div>
                   </th>
-                  <th
-                          scope="col"
-                          class="value"
-                          title="Reputation & Credible Convening Power"
-                  >
-                    Reputation
-                    <div class="clip-content">& Credible</div>
-                    <div class="clip-content">Convening Power</div>
-                  </th>
-                  <th
-                          scope="col"
-                          class="value"
-                          title="Risk-Mitigation & Flexible Authorities"
-                  >
-                    <div class="clip-content">Risk-Mitigation</div>
-                    <div class="clip-content">& Flexible</div>
-                    <div class="clip-content">Authorities</div>
-                  </th>
-                  <th
-                          scope="col"
-                          class="value"
-                          title="Sectoral Expertise & Knowledge"
-                  >
-                    Sectoral Expertise
-                    <div class="clip-content">& Knowledge</div>
+                  <th scope="col" class="value" title="Flexibility & Pace">
+                    <div>
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Flexibility and Pace" 
+                                data-content="The private sector is often inherently more flexible than the public sector, as it has a financial incentive to respond quickly to opportunities and develop new markets."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    </div>
+                    <div class="clip-content">&nbsp</div>
+                    <div class="clip-content">Flexibility</div>
+                    <div class="clip-content">& Pace</div>
                   </th>
                   <th
                           scope="col"
                           class="value"
                           title="Strong In-Country Networks & Relationships"
                   >
-                    Strong
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Strong In-Country Networks & Relationships" 
+                                data-content="Development Actors have relationships with national and local governments, businesses, faith-based organizations, local community leaders, and civil society that are useful to the private sector in making locally informed plans for market entry, collaboration, and co-investment."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                        Strong</div>
                     <div class="clip-content">In-Country</div>
-                    <div class="clip-content">Networks & Relationships</div>
+                    <div class="clip-content">Networks</div>
+                    <div class="clip-content">& Relationships</div>
                   </th>
                   <th
                           scope="col"
                           class="value"
                           title="Support to Strengthen Enabling Environments"
                   >
-                    Support
+                    
+                        <div class="clip-content"><span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Support to Strengthen Enabling Environments" 
+                                data-content="Working with host-country governments, development actors can help create a stronger enabling environment that fosters transparent, inclusive economic growth. Development actors can support policy and regulatory reform that encourages fair and open competition, institutional reforms and the adoption of standards, and government capacity-building."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    
+                    Support</div>
                     <div class="clip-content">to Strengthen</div>
-                    <div class="clip-content">Enabling Environments</div>
+                    <div class="clip-content">Enabling</div>
+                    <div class="clip-content">Environments</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Sectoral Expertise & Knowledge"
+                  >
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Sectoral Expertise & Knowledge" 
+                                data-content="Development actors have wide-ranging technical expertise across development and humanitarian sectors. Development actors offer deep economic, political, conflict, and gender-sensitive understanding of developing markets, market intelligence that can inform and shape private-sector investment, and robust, evidence-based monitoring and evaluation."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                      </div>
+                      <div class="clip-content">Sectoral</div>
+                    <div class="clip-content">Expertise</div>
+                    <div class="clip-content">& Knowledge</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Risk-Mitigation & Flexible Authorities"
+                  >
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Risk-Mitigation & Flexible Authorities" 
+                                data-content="Development actors can use funds, authorities, and technical expertise to mitigate the risks of investments and “crowd in” public and private resources that further humanitarian and development goals. Development actor technical assistance can ready smaller companies for financing, or help expand their markets."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                      </div>
+                      <div class="clip-content">Risk-Mitigation</div>
+                    <div class="clip-content">& Flexible</div>
+                    <div class="clip-content">Authorities</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Reputation & Credible Convening Power"
+                  >
+                    
+                        <div class="clip-content"><span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Reputation & Credible Convening Power" 
+                                data-content="Development actors have strong capabilities in convening actors around business opportunities that address development challenges. Development actors offer a neutral platform for other actors to collaborate in addressing larger challenges."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                      </div>
+                      <div class="clip-content">Reputation</div>
+                    <div class="clip-content">& Credible</div>
+                    <div class="clip-content">Convening Power</div>
                   </th>
                   <th scope="col" class=""></th>
                   <th scope="col" class=""></th>
@@ -419,44 +564,75 @@
                   <th class="group-title-vert" rowspan="6">
                     <div class="title-rotate">
                       Ways We Engage
-                      <a
+                      <!-- <a
                               href="#"
                               data-toggle="tooltip"
                               data-placement="right"
                               title="We engage in a number of ways..."
                       >
-                        <i class="fas fa-info-circle"></i>
+                        <i class="fas fa-info-circle"></i> -->
                       </a>
                     </div>
                   </th>
                   <th
                           scope="row"
                           class="engage"
-                          title="Advancing Learning & Market Research"
+                          title="Information-Sharing & Strategic Alignment"
                   >
-                    <div class="clip-content">Advancing</div>
-                    Learning & Market Research
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="right"
+                                title="Information-Sharing & Strategic Alignment" 
+                                data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
                   </th>
                   <td v-for="index in [0,1,2,3,4]">
                     <matrix-cell
                             v-bind:count="filtered_summary[0][index]"
                             color_base="61,155,180"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })" />
                   </td>
 
                   <td v-for="index in [5,6,7,8,9]">
                     <matrix-cell
                             v-bind:count="filtered_summary[0][index]"
                             color_base="0,47,108"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })" />
                   </td>
                   <th
                           scope="row"
                           class="engage"
-                          title="Advancing Learning & Market Research"
+                          title="Information-Sharing & Strategic Alignment"
                   >
-                    <div class="clip-content">Advancing</div>
-                    Learning & Market Research
+                    <div class="clip-content">
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="left"
+                                  title="Information-Sharing & Strategic Alignment" 
+                                  data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
                   </th>
                   <th
                           class="group-title-vert"
@@ -464,13 +640,13 @@
                   >
                     <div class="title-rotate">
                       Ways We Engage
-                      <a
-                              href="#"
+                      <!-- <a
                               data-toggle="tooltip"
+                              data-trigger="hover"
                               data-placement="left"
                               title="We engage in a number of ways..."
                       >
-                        <i class="fas fa-info-circle"></i>
+                        <i class="fas fa-info-circle"></i> -->
                       </a>
                     </div>
                   </th>
@@ -480,33 +656,56 @@
                   <th
                           scope="row"
                           class="engage"
-                          title="Catalyzing Private Sector Resources"
+                          title="Advancing Learning & Market Research"
                   >
-                    <div class="clip-content">Catalyzing</div>
-                    Private Sector
-                    <div class="clip-content">Resources</div>
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="right"
+                                title="Advancing Learning & Market Research" 
+                                data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Advancing</div>
+                    Learning & Market Research
                   </th>
 
                   <td v-for="index in [0,1,2,3,4]">
                     <matrix-cell
                             v-bind:count="filtered_summary[1][index]"
                             color_base="61,155,180"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })" />
                   </td>
                   <td v-for="index in [5,6,7,8,9]">
                     <matrix-cell
                             v-bind:count="filtered_summary[1][index]"
                             color_base="0,47,108"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })" />
                   </td>
                   <th
                           scope="row"
                           class="engage"
-                          title="Catalyzing Private Sector Resources"
+                          title="Advancing Learning & Market Research"
                   >
-                    <div class="clip-content">Catalyzing</div>
-                    Private Sector
-                    <div class="clip-content">Resources</div>
+                    <div class="clip-content"><span class="float-right">
+                      <a
+                              tabindex="0" 
+                              data-toggle="popover"
+                              data-trigger="focus"
+                              data-placement="left"
+                              title="Advancing Learning & Market Research" 
+                              data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      </span>
+                  Advancing</div>
+                    Learning & Market Research
                   </th>
                 </tr>
                 <tr>
@@ -515,7 +714,20 @@
                           class="engage"
                           title="Harnessing Private Sector Expertise & Innovation"
                   >
-                    <div class="clip-content">Harnessing</div>
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="right"
+                                title="Harnessing Private Sector Expertise & Innovation" 
+                                data-content="Engagement that harnesses innovation, technology, research and development, industry expertise, and/or entrepreneurial skills to achieve development outcomes."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Harnessing</div>
                     Private Sector
                     <div class="clip-content">Expertise</div>
                     <div class="clip-content">& Innovation</div>
@@ -525,20 +737,33 @@
                     <matrix-cell
                             v-bind:count="filtered_summary[2][index]"
                             color_base="61,155,180"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })" />
                   </td>
                   <td v-for="index in [5,6,7,8,9]">
                     <matrix-cell
                             v-bind:count="filtered_summary[2][index]"
                             color_base="0,47,108"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })" />
                   </td>
                   <th
                           scope="row"
                           class="engage"
                           title="Harnessing Private Sector Expertise & Innovation"
                   >
-                    <div class="clip-content">Harnessing</div>
+                    <div class="clip-content">
+                      <span class="float-right">
+                      <a
+                              tabindex="0" 
+                              data-toggle="popover"
+                              data-trigger="focus"
+                              data-placement="left"
+                              title="Harnessing Private Sector Expertise & Innovation" 
+                              data-content="Engagement that harnesses innovation, technology, research and development, industry expertise, and/or entrepreneurial skills to achieve development outcomes."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      </span>
+                    Harnessing</div>
                     Private Sector
                     <div class="clip-content">Expertise</div>
                     <div class="clip-content">& Innovation</div>
@@ -548,36 +773,60 @@
                   <th
                           scope="row"
                           class="engage"
-                          title="Information-Sharing & Stratetic Alignment"
+                          title="Catalyzing Private Sector Resources"
                   >
-                    <div class="clip-content">Information</div>
-                    -Sharing
-                    <div class="clip-content">& Strategic</div>
-                    <div class="clip-content">Alignment</div>
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="right"
+                                title="Catalyzing Private Sector Resources" 
+                                data-content="Engagement that mobilizes private-sector resources and action – including philanthropy and CSR assets – to address a specific issue and/or objective. This category also includes the unlocking of private investment."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Catalyzing</div>
+                    Private Sector
+                    <div class="clip-content">Resources</div>
                   </th>
 
                   <td v-for="index in [0,1,2,3,4]">
                     <matrix-cell
                             v-bind:count="filtered_summary[3][index]"
                             color_base="61,155,180"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })" />
                   </td>
 
                   <td v-for="index in [5,6,7,8,9]">
                     <matrix-cell
                             v-bind:count="filtered_summary[3][index]"
                             color_base="0,47,108"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })" />
                   </td>
                   <th
                           scope="row"
                           class="engage"
-                          title="Information-Sharing & Stratetic Alignment"
+                          title="Catalyzing Private Sector Resources"
                   >
-                    <div class="clip-content">Information</div>
-                    -Sharing
-                    <div class="clip-content">& Strategic</div>
-                    <div class="clip-content">Alignment</div>
+                    <div class="clip-content">
+                      <span class="float-right">
+                      <a
+                              tabindex="0" 
+                              data-toggle="popover"
+                              data-trigger="focus"
+                              data-placement="left"
+                              title="Catalyzing Private Sector Resources" 
+                              data-content="Engagement that mobilizes private-sector resources and action – including philanthropy and CSR assets – to address a specific issue and/or objective. This category also includes the unlocking of private investment."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      </span>
+                    Catalyzing</div>
+                    Private Sector
+                    <div class="clip-content">Resources</div>
                   </th>
                 </tr>
                 <tr>
@@ -586,7 +835,20 @@
                           class="engage"
                           title="Strengthening the Enabling Environment"
                   >
-                    <div class="clip-content">Strengthening</div>
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="right"
+                                title="Strengthening the Enabling Environment" 
+                                data-content="Engagement on issues of importance to multiple U.S. and local private-sector actors, such as regulatory reforms, policy, compliance with standards, and government capacity building."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Strengthening</div>
                     the Enabling
                     <div class="clip-content">Environment</div>
                   </th>
@@ -595,53 +857,35 @@
                     <matrix-cell
                             v-bind:count="filtered_summary[4][index]"
                             color_base="61,155,180"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })" />
                   </td>
                   <td v-for="index in [5,6,7,8,9]">
                     <matrix-cell
                             v-bind:count="filtered_summary[4][index]"
                             color_base="0,47,108"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })" />
                   </td>
                   <th
                           scope="row"
                           class="engage"
                           title="Strengthening the Enabling Environment"
                   >
-                    <div class="clip-content">Strengthening</div>
+                    <div class="clip-content">
+                      <span class="float-right">
+                      <a
+                              tabindex="0" 
+                              data-toggle="popover"
+                              data-trigger="focus"
+                              data-placement="left"
+                              title="Strengthening the Enabling Environment" 
+                              data-content="Engagement on issues of importance to multiple U.S. and local private-sector actors, such as regulatory reforms, policy, compliance with standards, and government capacity building."
+                      >
+                        <i class="fas fa-info-circle"></i>
+                      </a>
+                      </span>
+                    Strengthening</div>
                     the Enabling
                     <div class="clip-content">Environment</div>
-                  </th>
-                </tr>
-                <tr>
-                  <th
-                          scope="row"
-                          class="engage"
-                          title="Unlocking Private Investment"
-                  >
-                    Unlocking Private
-                    <div class="clip-content">Investment</div>
-                  </th>
-
-                  <td v-for="index in [0,1,2,3,4]">
-                    <matrix-cell
-                            v-bind:count="filtered_summary[5][index]"
-                            color_base="61,155,180"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
-                  </td>
-                  <td v-for="index in [5,6,7,8,9]">
-                    <matrix-cell
-                            v-bind:count="filtered_summary[5][index]"
-                            color_base="0,47,108"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
-                  </td>
-                  <th
-                          scope="row"
-                          class="engage"
-                          title="Unlocking Private Investment"
-                  >
-                    Unlocking Private
-                    <div class="clip-content">Investment</div>
                   </th>
                 </tr>
                 </tbody>
@@ -659,65 +903,134 @@
                     <th scope="col"></th>
                     <th scope="colgroup" colspan="5" class="group-title">
                       Private Sector Value Propositions
-                      <a
-                              href="#"
+                      <!-- <a
                               data-toggle="tooltip"
                               data-placement="bottom"
+                              data-trigger="hover"
+                              data-delay="0"
                               title="PSE, or Private sector engagement, key values are..."
                       >
-                        <i class="fas fa-info-circle"></i>
-                      </a>
+                        <i class="fas fa-info-circle" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"> </i>
+                      </a> -->
                     </th>
                   </tr>
                   <tr>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th
-                            scope="col"
-                            class="value"
-                            title="Ability to Influence Policy"
+                          scope="col"
+                          class="value"
+                          title="Scale, Sustainability, & Reach"
+                  >
+                     
+                    <span class="float-right">
+                    <a
+                            tabindex="0" 
+                            data-toggle="popover"
+                            data-trigger="focus"
+                            data-placement="bottom"
+                            title="Scale, Sustainability, & Reach" 
+                            data-content="The private sector’s vast financial resources and expertise in market-based solutions have the potential for achieving scale and sustainability in tackling systemic societal challenges. The private sector’s extensive networks and operations provide distribution channels to reach, and communicate with, underserved populations and individuals."
                     >
-                      <div class="clip-content">Ability</div>
-                      <div class="clip-content">to Influence</div>
-                      <div class="clip-content">Policy</div>
-                    </th>
-                    <th
-                            scope="col"
-                            class="value"
-                            title="Efficiency & Effectiveness"
-                    >
-                      <div class="clip-content">Efficiency</div>
-                      <div class="clip-content">& Effectiveness</div>
-                    </th>
-                    <th scope="col" class="value" title="Flexibility & Pace">
-                      <div class="clip-content">Flexibility</div>
-                      <div class="clip-content">& Pace</div>
-                    </th>
-                    <th
-                            scope="col"
-                            class="value"
-                            title="Innovation, Expertise, and Capabilities"
-                    >
+                      <i class="fas fa-info-circle"></i>
+                    </a>
+                    </span>
+                    Scale,
+                    <div class="clip-content">Sustainability,</div>
+                    <div class="clip-content">& Reach</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Ability to Influence Policy"
+                  >
+                    <div class="clip-content">
+                      <span class="float-right">
                       <a
-                              class="reset-color"
-                              data-toggle="modal"
-                              data-target="#valueModal"
-                              style="cursor:pointer"
+                              tabindex="0" 
+                              data-toggle="popover"
+                              data-trigger="focus"
+                              data-placement="bottom"
+                              title="Ability to Influence Policy" 
+                              data-content="The private sector’s ability to deliver what host-country governments seek to achieve—such as improved service-delivery, investment, tax revenues, jobs, and life-saving interventions—gives businesses and investors a strong, knowledgeable voice to inform policy that supports transparent, inclusive economic growth."
                       >
-                        <div class="clip-content">Innovation,</div>
-                        <div class="clip-content">Expertise,</div>
-                        <div class="clip-content">& Capabilities</div>
+                        <i class="fas fa-info-circle"></i>
                       </a>
-                    </th>
-                    <th
-                            scope="col"
-                            class="value"
-                            title="Scale, Sustainability, & Reach"
+                      </span>
+                    Ability</div>
+                    <div class="clip-content">to Influence</div>
+                    <div class="clip-content">Policy</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Innovation, Expertise, and Capabilities"
+                  >
+                    <a
+                            class="reset-color"
+                            data-toggle="modal"
+                            data-target="#valueModal"
+                            style="cursor:pointer"
                     >
-                      Scale,
-                      <div class="clip-content">Sustainability,</div>
-                      <div class="clip-content">& Reach</div>
-                    </th>
+                      <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Innovation, Expertise, & Capabilities" 
+                                data-content="Businesses and investors can bring innovation and technologies; entrepreneurship; industry expertise; market-based solutions; distribution networks; investment capacity; and managerial and operational expertise, including risk-management."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                        Innovation,
+                      </div>
+                      <div class="clip-content">Expertise,</div>
+                      <div class="clip-content">& Capabilities</div>
+                    </a>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Efficiency & Effectiveness"
+                  >
+                    <div>
+                      <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Efficiency & Effectiveness" 
+                                data-content="With improved systems, processes, and logistics, the private sector can bring more efficiency and effectiveness to achieving outcomes."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                      </span>
+                    </div>
+                    <div class="clip-content">Efficiency </div>
+                    <div class="clip-content">& Effectiveness</div>
+                  </th>
+                  <th scope="col" class="value" title="Flexibility & Pace">
+                    <div>
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Flexibility and Pace" 
+                                data-content="The private sector is often inherently more flexible than the public sector, as it has a financial incentive to respond quickly to opportunities and develop new markets."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    </div>
+                    <div class="clip-content">Flexibility</div>
+                    <div class="clip-content">& Pace</div>
+                  </th>
                   </tr>
                   </thead>
                   <tbody>
@@ -725,29 +1038,44 @@
                     <th class="group-title-vert" rowspan="6">
                       <div class="title-rotate">
                         Ways We Engage
-                        <a
+                        <!-- <a
                                 href="#"
                                 data-toggle="tooltip"
                                 data-placement="right"
                                 title="We engage in a number of ways..."
                         >
-                          <i class="fas fa-info-circle"></i>
+                          <i class="fas fa-info-circle"></i> -->
                         </a>
                       </div>
                     </th>
-                    <th
-                            scope="row"
-                            class="engage"
-                            title="Advancing Learning & Market Research"
-                    >
-                      <div class="clip-content">Advancing</div>
-                      Learning & Market Research
-                    </th>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Information-Sharing & Strategic Alignment"
+                  >
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="right"
+                                title="Information-Sharing & Strategic Alignment" 
+                                data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
+                  </th>
                     <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[0][index]"
                               color_base="61,155,180"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })" />
                     </td>
 
                   </tr>
@@ -755,18 +1083,30 @@
                     <th
                             scope="row"
                             class="engage"
-                            title="Catalyzing Private Sector Resources"
+                            title="Advancing Learning & Market Research"
                     >
-                      <div class="clip-content">Catalyzing</div>
-                      Private Sector
-                      <div class="clip-content">Resources</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Advancing Learning & Market Research" 
+                                  data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Advancing</div>
+                      Learning & Market Research
                     </th>
 
                     <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[1][index]"
                               color_base="61,155,180"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })" />
                     </td>
                   </tr>
                   <tr>
@@ -775,7 +1115,20 @@
                             class="engage"
                             title="Harnessing Private Sector Expertise & Innovation"
                     >
-                      <div class="clip-content">Harnessing</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Harnessing Private Sector Expertise & Innovation" 
+                                  data-content="Engagement that harnesses innovation, technology, research and development, industry expertise, and/or entrepreneurial skills to achieve development outcomes."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Harnessing</div>
                       Private Sector
                       <div class="clip-content">Expertise</div>
                       <div class="clip-content">& Innovation</div>
@@ -785,26 +1138,38 @@
                       <matrix-cell
                               v-bind:count="filtered_summary[2][index]"
                               color_base="61,155,180"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })" />
                     </td>
                   </tr>
                   <tr>
                     <th
                             scope="row"
                             class="engage"
-                            title="Information-Sharing & Stratetic Alignment"
+                            title="Catalyzing Private Sector Resources"
                     >
-                      <div class="clip-content">Information</div>
-                      -Sharing
-                      <div class="clip-content">& Strategic</div>
-                      <div class="clip-content">Alignment</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Catalyzing Private Sector Resources" 
+                                  data-content="Engagement that mobilizes private-sector resources and action – including philanthropy and CSR assets – to address a specific issue and/or objective. This category also includes the unlocking of private investment."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Catalyzing</div>
+                      Private Sector
+                      <div class="clip-content">Resources</div>
                     </th>
 
                     <td v-for="index in [0,1,2,3,4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[3][index]"
                               color_base="61,155,180"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })" />
                     </td>
                   </tr>
                   <tr>
@@ -813,7 +1178,20 @@
                             class="engage"
                             title="Strengthening the Enabling Environment"
                     >
-                      <div class="clip-content">Strengthening</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Strengthening the Enabling Environment" 
+                                  data-content="Engagement on issues of importance to multiple U.S. and local private-sector actors, such as regulatory reforms, policy, compliance with standards, and government capacity building."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Strengthening</div>
                       the Enabling
                       <div class="clip-content">Environment</div>
                     </th>
@@ -822,24 +1200,7 @@
                       <matrix-cell
                               v-bind:count="filtered_summary[4][index]"
                               color_base="61,155,180"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th
-                            scope="row"
-                            class="engage"
-                            title="Unlocking Private Investment"
-                    >
-                      Unlocking Private
-                      <div class="clip-content">Investment</div>
-                    </th>
-
-                    <td v-for="index in [0,1,2,3,4]">
-                      <matrix-cell
-                              v-bind:count="filtered_summary[5][index]"
-                              color_base="61,155,180"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })" />
                     </td>
                   </tr>
                   </tbody>
@@ -856,14 +1217,14 @@
                     <th scope="col" class="d-lg-none"></th>
                     <th scope="colgroup" colspan="5" class="group-title">
                       Development Actor Value Propositions
-                      <a
+                      <!-- <a
                               href="#"
                               data-toggle="tooltip"
                               data-placement="bottom"
                               title="USAID offers a set of key values..."
                       >
                         <i class="fas fa-info-circle"></i>
-                      </a>
+                      </a> -->
                     </th>
                     <th scope="col" class="d-none d-lg-table-cell"></th>
                     <th
@@ -875,49 +1236,116 @@
                     <th scope="col" class="d-lg-none"></th>
                     <th scope="col" class="d-lg-none"></th>
                     <th
-                            scope="col"
-                            class="value"
-                            title="Reputation & Credible Convening Power"
-                    >
-                      Reputation
-                      <div class="clip-content">& Credible</div>
-                      <div class="clip-content">Convening Power</div>
-                    </th>
-                    <th
-                            scope="col"
-                            class="value"
-                            title="Risk-Mitigation & Flexible Authorities"
-                    >
-                      <div class="clip-content">Risk-Mitigation</div>
-                      <div class="clip-content">& Flexible</div>
-                      <div class="clip-content">Authorities</div>
-                    </th>
-                    <th
-                            scope="col"
-                            class="value"
-                            title="Sectoral Expertise & Knowledge"
-                    >
-                      Sectoral Expertise
-                      <div class="clip-content">& Knowledge</div>
-                    </th>
-                    <th
-                            scope="col"
-                            class="value"
-                            title="Strong In-Country Networks & Relationships"
-                    >
-                      Strong
-                      <div class="clip-content">In-Country</div>
-                      <div class="clip-content">Networks & Relationships</div>
-                    </th>
-                    <th
-                            scope="col"
-                            class="value"
-                            title="Support to Strengthen Enabling Environments"
-                    >
-                      Support
-                      <div class="clip-content">to Strengthen</div>
-                      <div class="clip-content">Enabling Environments</div>
-                    </th>
+                          scope="col"
+                          class="value"
+                          title="Strong In-Country Networks & Relationships"
+                  >
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Strong In-Country Networks & Relationships" 
+                                data-content="Development Actors have relationships with national and local governments, businesses, faith-based organizations, local community leaders, and civil society that are useful to the private sector in making locally informed plans for market entry, collaboration, and co-investment."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Strong</div>
+                    <div class="clip-content">In-Country</div>
+                    <div class="clip-content">Networks & Relationships</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Support to Strengthen Enabling Environments"
+                  >
+                    
+                        <div class="clip-content"><span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Support to Strengthen Enabling Environments" 
+                                data-content="Working with host-country governments, development actors can help create a stronger enabling environment that fosters transparent, inclusive economic growth. Development actors can support policy and regulatory reform that encourages fair and open competition, institutional reforms and the adoption of standards, and government capacity-building."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    
+                    Support</div>
+                    <div class="clip-content">to Strengthen</div>
+                    <div class="clip-content">Enabling Environments</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Sectoral Expertise & Knowledge"
+                  >
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Sectoral Expertise & Knowledge" 
+                                data-content="Development actors have wide-ranging technical expertise across development and humanitarian sectors. Development actors offer deep economic, political, conflict, and gender-sensitive understanding of developing markets, market intelligence that can inform and shape private-sector investment, and robust, evidence-based monitoring and evaluation."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Sectoral</div>
+                    <div class="clip-content">Expertise</div>
+                    <div class="clip-content">& Knowledge</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Risk-Mitigation & Flexible Authorities"
+                  >
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Risk-Mitigation & Flexible Authorities" 
+                                data-content="Development actors can use funds, authorities, and technical expertise to mitigate the risks of investments and “crowd in” public and private resources that further humanitarian and development goals. Development actor technical assistance can ready smaller companies for financing, or help expand their markets."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Risk-Mitigation</div>
+                    <div class="clip-content">& Flexible</div>
+                    <div class="clip-content">Authorities</div>
+                  </th>
+                  <th
+                          scope="col"
+                          class="value"
+                          title="Reputation & Credible Convening Power"
+                  >
+                    
+                        <div class="clip-content"><span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="bottom"
+                                title="Reputation & Credible Convening Power" 
+                                data-content="Development actors have strong capabilities in convening actors around business opportunities that address development challenges. Development actors offer a neutral platform for other actors to collaborate in addressing larger challenges."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Reputation</div>
+                    <div class="clip-content">& Credible</div>
+                    <div class="clip-content">Convening Power</div>
+                  </th>
                     <th scope="col" class="d-none d-lg-table-cell"></th>
                     <th scope="col" class="d-none d-lg-table-cell"></th>
                   </tr>
@@ -927,52 +1355,58 @@
                     <th class="d-lg-none group-title-vert" rowspan="6">
                       <div class="title-rotate">
                         Ways We Engage
-                        <a
+                        <!-- <a
                                 href="#"
                                 data-toggle="tooltip"
                                 data-placement="right"
                                 title="We engage in a number of ways..."
                         >
-                          <i class="fas fa-info-circle"></i>
+                          <i class="fas fa-info-circle"></i> -->
                         </a>
                       </div>
                     </th>
-                    <th
-                            scope="row"
-                            class="engage d-lg-none"
-                            title="Advancing Learning & Market Research"
-                    >
-                      <div class="clip-content">Advancing</div>
-                      Learning & Market Research
-                    </th>
+                  <th
+                          scope="row"
+                          class="engage"
+                          title="Information-Sharing & Strategic Alignment"
+                  >
+                    <div class="clip-content">
+                        <span class="float-right">
+                        <a
+                                tabindex="0" 
+                                data-toggle="popover"
+                                data-trigger="focus"
+                                data-placement="right"
+                                title="Information-Sharing & Strategic Alignment" 
+                                data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                        >
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        </span>
+                    Information</div>
+                    -Sharing
+                    <div class="clip-content">& Strategic</div>
+                    <div class="clip-content">Alignment</div>
+                  </th>
 
                     <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[0][index]"
                               color_base="0,47,108"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 0 })" />
                     </td>
-                    <th
-                            scope="row"
-                            class="engage d-none d-lg-table-cell"
-                            title="Advancing Learning & Market Research"
-                    >
-                      <div class="clip-content">Advancing</div>
-                      Learning & Market Research
-                    </th>
                     <th
                             class="d-none d-lg-table-cell group-title-vert"
                             rowspan="6"
                     >
                       <div class="title-rotate">
                         Ways We Engage
-                        <a
-                                href="#"
+                        <!-- <a
                                 data-toggle="tooltip"
                                 data-placement="left"
                                 title="We engage in a number of ways..."
                         >
-                          <i class="fas fa-info-circle"></i>
+                          <i class="fas fa-info-circle"></i> -->
                         </a>
                       </div>
                     </th>
@@ -980,37 +1414,53 @@
                   <tr>
                     <th
                             scope="row"
-                            class="engage d-lg-none"
-                            title="Catalyzing Private Sector Resources"
+                            class="engage"
+                            title="Advancing Learning & Market Research"
                     >
-                      <div class="clip-content">Catalyzing</div>
-                      Private Sector
-                      <div class="clip-content">Resources</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Advancing Learning & Market Research" 
+                                  data-content="Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Advancing</div>
+                      Learning & Market Research
                     </th>
 
                     <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[1][index]"
                               color_base="0,47,108"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 1 })" />
                     </td>
-                    <th
-                            scope="row"
-                            class="engage d-none d-lg-table-cell"
-                            title="Catalyzing Private Sector Resources"
-                    >
-                      <div class="clip-content">Catalyzing</div>
-                      Private Sector
-                      <div class="clip-content">Resources</div>
-                    </th>
                   </tr>
                   <tr>
                     <th
                             scope="row"
-                            class="engage d-lg-none"
+                            class="engage"
                             title="Harnessing Private Sector Expertise & Innovation"
                     >
-                      <div class="clip-content">Harnessing</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Harnessing Private Sector Expertise & Innovation" 
+                                  data-content="Engagement that harnesses innovation, technology, research and development, industry expertise, and/or entrepreneurial skills to achieve development outcomes."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Harnessing</div>
                       Private Sector
                       <div class="clip-content">Expertise</div>
                       <div class="clip-content">& Innovation</div>
@@ -1020,55 +1470,60 @@
                       <matrix-cell
                               v-bind:count="filtered_summary[2][index]"
                               color_base="0,47,108"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 2 })" />
                     </td>
-                    <th
-                            scope="row"
-                            class="engage d-none d-lg-table-cell"
-                            title="Harnessing Private Sector Expertise & Innovation"
-                    >
-                      <div class="clip-content">Harnessing</div>
-                      Private Sector
-                      <div class="clip-content">Expertise</div>
-                      <div class="clip-content">& Innovation</div>
-                    </th>
                   </tr>
                   <tr>
                     <th
                             scope="row"
-                            class="engage d-lg-none"
-                            title="Information-Sharing & Stratetic Alignment"
+                            class="engage"
+                            title="Catalyzing Private Sector Resources"
                     >
-                      <div class="clip-content">Information</div>
-                      -Sharing
-                      <div class="clip-content">& Strategic</div>
-                      <div class="clip-content">Alignment</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Catalyzing Private Sector Resources" 
+                                  data-content="Engagement that mobilizes private-sector resources and action – including philanthropy and CSR assets – to address a specific issue and/or objective. This category also includes the unlocking of private investment."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Catalyzing</div>
+                      Private Sector
+                      <div class="clip-content">Resources</div>
                     </th>
 
                     <td v-for="index in [5,6,7,8,9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[3][index]"
                               color_base="0,47,108"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 3 })" />
                     </td>
-                    <th
-                            scope="row"
-                            class="engage d-none d-lg-table-cell"
-                            title="Information-Sharing & Stratetic Alignment"
-                    >
-                      <div class="clip-content">Information</div>
-                      -Sharing
-                      <div class="clip-content">& Strategic</div>
-                      <div class="clip-content">Alignment</div>
-                    </th>
                   </tr>
                   <tr>
                     <th
                             scope="row"
-                            class="engage d-lg-none"
+                            class="engage"
                             title="Strengthening the Enabling Environment"
                     >
-                      <div class="clip-content">Strengthening</div>
+                      <div class="clip-content">
+                          <span class="float-right">
+                          <a
+                                  tabindex="0" 
+                                  data-toggle="popover"
+                                  data-trigger="focus"
+                                  data-placement="right"
+                                  title="Strengthening the Enabling Environment" 
+                                  data-content="Engagement on issues of importance to multiple U.S. and local private-sector actors, such as regulatory reforms, policy, compliance with standards, and government capacity building."
+                          >
+                            <i class="fas fa-info-circle"></i>
+                          </a>
+                          </span>
+                      Strengthening</div>
                       the Enabling
                       <div class="clip-content">Environment</div>
                     </th>
@@ -1077,42 +1532,8 @@
                       <matrix-cell
                               v-bind:count="filtered_summary[4][index]"
                               color_base="0,47,108"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })"/>
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 4 })" />
                     </td>
-                    <th
-                            scope="row"
-                            class="engage d-none d-lg-table-cell"
-                            title="Strengthening the Enabling Environment"
-                    >
-                      <div class="clip-content">Strengthening</div>
-                      the Enabling
-                      <div class="clip-content">Environment</div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <th
-                            scope="row"
-                            class="engage d-lg-none"
-                            title="Unlocking Private Investment"
-                    >
-                      Unlocking Private
-                      <div class="clip-content">Investment</div>
-                    </th>
-
-                    <td v-for="index in [5,6,7,8,9]">
-                      <matrix-cell
-                              v-bind:count="filtered_summary[5][index]"
-                              color_base="0,47,108"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: 5 })"/>
-                    </td>
-                    <th
-                            scope="row"
-                            class="engage d-none d-lg-table-cell"
-                            title="Unlocking Private Investment"
-                    >
-                      Unlocking Private
-                      <div class="clip-content">Investment</div>
-                    </th>
                   </tr>
                   </tbody>
                 </table>
@@ -1141,21 +1562,21 @@
           <!-- /.container -->
 
           <!-- Document Modal -->
-          <relevant-documents :state="docs_modal_state" :is-hidden="!show_documents_modal" @close-docs-modal="show_documents_modal = false" @update-doc-detail-id="document_detail_id = $event"/>
+          <relevant-documents :state="docs_modal_state" :is-hidden="!show_documents_modal" @close-docs-modal="show_documents_modal = false" @update-doc-detail-id="document_detail_id = $event" />
         </main>
       </div>
     </script>
     <script type="text/x-template" id="list-component">
       <div class="container mb-5">
-        <template v-for="(doc_type, index) in doc_types" :key="index">
-          <div :class="doc_type ? 'doc-type-' + doc_type.toLowerCase().replace(/[ \/]/g,'-') : 'doc-type-unknown'">
-            <h5 class="d-flex justify-content-between align-items-center px-3 text-uppercase font-weight-bolder">
+        <template v-for="(doc_type, index) in doc_types" :key="index" >
+          <div :class="doc_type ? 'doc-type-' + doc_type.toLowerCase().replace(/[ \/]/g,'-') : 'doc-type-unknown'" >
+            <h5 class="d-flex justify-content-between align-items-center px-3 text-uppercase font-weight-bolder" >
               {{ doc_type ? doc_type : 'Unknown Type' }}
               <span class="badge badge-secondary badge-pill" >{{ docs_in_categories[doc_type].length }}</span>
             </h5>
             <ul class="list-group list-group-flush mb-4">
               <li v-for="(doc, index) in docs_in_categories[doc_type]" :key="index" class="list-group-item">
-                <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }">{{ doc['Document Title'] }}</router-link>
+                <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}</router-link>
               </li>
             </ul>
           </div>
@@ -1223,42 +1644,42 @@
                   <li v-if="document_details['PSE Ways We Engage']" class="list-group-item p-0 border-left-0 border-right-0">
                     <h6 class="mb-0 px-3 py-2 wash-400 narrow-font text-uppercase font-weight-bolder">PSE Ways We Engage</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100" >
-                      <li v-for="(way, index) in document_details['PSE Ways We Engage']" :key="index">{{ way.replace(';', '') }}</li>
+                      <li v-for="(way, index) in document_details['PSE Ways We Engage']" :key="index" >{{ way.replace(';', '') }}</li>
                     </ul>
                   </li>
                   <li v-if="document_details['PSE Key Values']" class="list-group-item p-0 border-left-0 border-right-0">
                     <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder">Private Sector Value Propositions</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
-                      <li v-for="(value, index) in document_details['PSE Key Values']" :key="index">{{value}}</li>
+                      <li v-for="(value, index) in document_details['PSE Key Values']" :key="index" >{{value}}</li>
                     </ul>
                   </li>
                   <li v-if="document_details['PSE Key Values USAID Offers']"  class="list-group-item p-0 border-left-0 border-right-0">
                     <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder">Development Actor Value Propositions</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
-                      <li v-for="(value, index) in document_details['PSE Key Values USAID Offers']" :key="index">{{value}}</li>
+                      <li v-for="(value, index) in document_details['PSE Key Values USAID Offers']" :key="index" >{{value}}</li>
                     </ul>
                   </li>
                 </ul>
                 <ul class="list-group list-group-flush">
                   <li v-if="document_details['Technical Sector']" class="list-group-item">
                     <h5 class="mb-1">Technical Sector</h5>
-                    <p class="mb-0" v-for="(sector, index) in document_details['Technical Sector']" :key="sector">{{ sector }}</p>
+                    <p class="mb-0" v-for="(sector, index) in document_details['Technical Sector']" :key="sector" >{{ sector }}</p>
                   </li>
                   <li v-if="document_details['Special Considerations']" class="list-group-item">
                     <h5 class="mb-1">Special Considerations</h5>
-                    <p class="mb-0"v-for="(consideration, index) in document_details['Special Considerations']" :key="consideration">{{ consideration }}</p>
+                    <p class="mb-0"v-for="(consideration, index) in document_details['Special Considerations']" :key="consideration" >{{ consideration }}</p>
                   </li>
                   <li v-if="document_details['Private Sector Industry']" class="list-group-item">
                     <h5 class="mb-1">Private Sector Industry</h5>
-                    <p class="mb-0"v-for="(industry, index) in document_details['Private Sector Industry']" :key="industry">{{ industry }}</p>
+                    <p class="mb-0"v-for="(industry, index) in document_details['Private Sector Industry']" :key="industry" >{{ industry }}</p>
                   </li>
                   <li v-if="document_details['Country(ies)']" class="list-group-item">
                     <h5 class="mb-1">Country(ies)</h5>
-                    <p class="mb-0" v-for="(country, index) in document_details['Country(ies)']" :key="country">{{country}}</p>
+                    <p class="mb-0" v-for="(country, index) in document_details['Country(ies)']" :key="country" >{{country}}</p>
                   </li>
                   <li v-if="document_details['USAID Region']" class="list-group-item">
                     <h5 class="mb-1">USAID Region</h5>
-                    <p class="mb-0"v-for="(region, index) in document_details['USAID Region']" :key="region">{{region}}</p>
+                    <p class="mb-0"v-for="(region, index) in document_details['USAID Region']" :key="region" >{{region}}</p>
                   </li>
                   <li v-if="document_details['Internet URL of Document']" class="list-group-item">
                     <h5 class="mb-1">Internet URL</h5>
@@ -1314,7 +1735,7 @@
                         </h6>
                         <ul class="list-group list-group-flush">
                           <li v-for="doc in docs_in_categories[doc_type]" :key="doc['Document ID']" class="list-group-item">
-                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }">{{ doc['Document Title'] }}</router-link>
+                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}</router-link>
                           </li>
                         </ul>
                       </template>
@@ -1371,7 +1792,8 @@
 
     <script>
       $(function() {
-        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover()
+        $('[data-toggle="tooltip"]').tooltip()
       });
     </script>
 

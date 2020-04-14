@@ -666,3 +666,8 @@ ul.list-spaced li {
   color: #fff;
   background: #5f7c8a; 
 }
+
+.fa-info-circle {
+  cursor: pointer;
+  color: #91989e;
+}
