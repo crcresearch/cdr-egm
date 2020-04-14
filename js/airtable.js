@@ -96,6 +96,11 @@ const ALLOWED_FIELDS = [
     name: 'USAID Region',
     isArray: true,
     isFiltered: true
+  },
+  {
+    name: 'Year',
+    isArray: false,
+    isFiltered: false
   }
 ];
 
