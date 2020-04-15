@@ -45,12 +45,18 @@ p.p-inst {
 #egm-title {
   line-height: 1;
 }
+#egm-title span {
+  font-size: 2.0rem;
+}
 #egm-tagline {
   opacity: 0.85;
 }
 @media screen and (max-width: 1200px) {
   #egm-title {
     font-size: 2.1rem;
+  }
+  #egm-title span {
+    font-size: 1.8rem;
   }
   #egm-tagline {
     font-size: 1.1rem;
