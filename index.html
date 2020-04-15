@@ -53,7 +53,7 @@
             <div class="col-lg-3 desc-col text-center text-lg-left">
               <p class="my-0 text-muted pb-4 pb-lg-0">
                 This work is a partnership between USAID, the University of
-                Notre Dame, and Purdue University. It is funded under grant #.
+                Notre Dame, and Purdue University. It is funded under grant #AID-7200AA18CA00009.
               </p>
             </div>
             <div class="col-lg-9">
@@ -120,7 +120,7 @@
             <div class="container" id="top-container">
               <div class="row mt-3 mb-2 align-items-center">
                 <div class="col-md-4">
-                  <h1 id="egm-title" class="my-0 text-vb-lt-blue">Evidence Gap Map</h1>
+                  <h1 id="egm-title" class="my-0 text-vb-lt-blue">Private Sector Engagement Evidence Gap Map</h1>
                   <h5 id="egm-tagline" class="mt-1 mb-0 text-soft font-weight-light">Engagement mapped to key values</h5>
                 </div>
                 <div class="col-md-8">
@@ -1555,9 +1555,13 @@
           <div class="container mt-5 mb-4">
             <h4>About the Evidence Gap Map</h4>
             <p>
-              The vertical axis reflects the ways we engage... The horizontal axis
-              reflects key values... It is divided into two sections, on the
-              right... and on the left...
+              The Evidence Gap Map could just as easily be called the “Evidence Map”, meaning that it is a visual representation of existing evidence, using a matrix of USAID’s conceptualization of PSE means and value propositions that both the private sector and USAID offeradded.  We hope that by compiling this evidence in one place with a number of filter and search features, we will help facilitate the use of evidence.
+            </p>
+            <p>
+              The “gap” in the title is referring to understanding where there is good evidence in the matrix and where there are holes in our knowledge base and understanding. As users interact with the evidence gap map and the filters, they will be able to visually see where there is knowledge and where additional investments in research and evaluation might be warranted to further build the evidence base. This is also an opportunity to collaborate with our team as well as alert us to any evidence we may have missed.
+            </p>
+            <p>
+              The map was designed for a primary audience of USAID technical staff and program designers. Secondary intended audiences include USAID implementing partner staff and private sector employees seeking to engage in development work. 
             </p>
           </div>
           <div class="container mb-5">
@@ -1624,7 +1628,7 @@
                 {{ document_details['Document Title'] }}
               </h1>
               <p class="my-0"><span class="text-uppercase font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
-              <p class="my-0"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }} <span v-if="document_details['Year']">{{ document_details['Year'] }}</span></p>
+              <p class="my-0"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }}<span v-if="document_details['Year']">, {{ document_details['Year'] }}</span></p>
               <a v-if="document_details['Internet URL of Document']" class="btn btn-dark btn-lg" id="view-document-link" :href="document_details['Internet URL of Document']" target="_blank" role="button">View Document <i class="fas fa-external-link-alt ml-2"></i></a>
             </div>
           </div>
