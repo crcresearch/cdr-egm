@@ -459,6 +459,10 @@ ul.list-spaced li {
   max-height: 65px;
   margin-top: -10px;
 }
+.footer img.img-75 {
+  max-height: 75px;
+  margin-top: -15px;
+}
 .footer .desc-col {
 }
 
