@@ -114,6 +114,7 @@ const egm_layout = {
         searched_and_filtered_docs = filtered_docs;
       }
       else {
+        gtag('event', 'search', { 'search_term' : this.search });
         searched_and_filtered_docs = filtered_docs.filter(function(doc) {
           return (
             vue_object.search_list_field(doc, "USAID Region", vue_object.search ) ||
@@ -310,6 +311,7 @@ const details = {
           // Show error message if document ID is not found
           this.error = `Unable to find document with ID: ${doc_id}`;
         }
+        gtag('event', 'view_item', { 'event_label' : doc_id + ' - ' + this.document_details['Document Title'] });
     } catch (err) {
       this.error = err.toString();
     }
