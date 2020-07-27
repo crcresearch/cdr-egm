@@ -333,6 +333,10 @@ const details = {
   template: '#details-component'
 };
 
+const faq = {
+  template: '#faq-component'
+};
+
 ////// ROUTER ///////////
 const routes = [
   { path: '', redirect: { name: 'egm' }},
@@ -347,10 +351,15 @@ const routes = [
         path: '/list',
         component: list,
         name: 'list'
-      }
+      },
     ]  
   },
-  { path: '/doc/:id', component: details, name: 'details' }
+  { path: '/doc/:id', component: details, name: 'details' },
+  {
+    path: '/faq',
+    component: faq,
+    name: 'faq'
+  }
 ];
 
 const router = new VueRouter({
