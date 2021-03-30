@@ -1,0 +1,164 @@
+{
+    "titleContents": {
+        "mainTitle": "Private Sector Engagement",
+        "mainSubtitle": "Evidence Gap Map",
+        "mainTagline": "Engagement mapped to key values",
+        "mainDescription": "Use the map to identify gaps and locate relevant documents. Click a circle to see the documents matching a particular engagment &ndash; value pair. Use filters to narrow the documents displayed on the map, or search for documents in list view."
+    },
+    "columnTopHeaders": {
+        "headerLeft": "Private Sector Value Propositions",
+        "headerRight": "Development Actor Value Propositions"
+    },
+    "columnHeadersLeft": [
+        {
+            "title": "Scale, Sustainability, & Reach",
+            "description": "The private sector’s vast financial resources and expertise in market-based solutions have the potential for achieving scale and sustainability in tackling systemic societal challenges. The private sector’s extensive networks and operations provide distribution channels to reach, and communicate with, underserved populations and individuals.",
+            "titleLineOne": "",
+            "titleLineTwo": "Scale,",
+            "titleLineThree": "Sustainability,",
+            "titleLineFour": "& Reach"
+        },
+        {
+            "title": "Ability to Influence Policy",
+            "description": "The private sector’s ability to deliver what host-country governments seek to achieve—such as improved service-delivery, investment, tax revenues, jobs, and life-saving interventions—gives businesses and investors a strong, knowledgeable voice to inform policy that supports transparent, inclusive economic growth.",
+            "titleLineOne": "",
+            "titleLineTwo": "Ability",
+            "titleLineThree": "to Influence",
+            "titleLineFour": "Policy"
+        },
+        {
+            "title": "Innovation, Expertise, and Capabilities",
+            "description": "Businesses and investors can bring innovation and technologies; entrepreneurship; industry expertise; market-based solutions; distribution networks; investment capacity; and managerial and operational expertise, including risk-management.",
+            "titleLineOne": "",
+            "titleLineTwo": "Innovation,",
+            "titleLineThree": "Expertise,",
+            "titleLineFour": "& Capabilities"
+        },
+        {
+            "title": "Efficiency & Effectiveness",
+            "description": "With improved systems, processes, and logistics, the private sector can bring more efficiency and effectiveness to achieving outcomes.",
+            "titleLineOne": "",
+            "titleLineTwo": "\u00A0",
+            "titleLineThree": "Efficiency ",
+            "titleLineFour": "& Effectiveness"
+        },
+        {
+            "title": "Flexibility & Pace",
+            "description": "The private sector is often inherently more flexible than the public sector, as it has a financial incentive to respond quickly to opportunities and develop new markets.",
+            "titleLineOne": "",
+            "titleLineTwo": "\u00A0",
+            "titleLineThree": "Flexibility",
+            "titleLineFour": "& Pace"
+        }
+    ],
+    "columnHeadersRight": [
+        {
+            "title": "Strong In-Country Networks & Relationships",
+            "description": "Development Actors have relationships with national and local governments, businesses, faith-based organizations, local community leaders, and civil society that are useful to the private sector in making locally informed plans for market entry, collaboration, and co-investment.",
+            "titleLineOne": "Strong",
+            "titleLineTwo": "In-Country",
+            "titleLineThree": "Networks",
+            "titleLineFour": "& Relationships"
+        },
+        {
+            "title": "Support to Strengthen Enabling Environments",
+            "description": "Working with host-country governments, development actors can help create a stronger enabling environment that fosters transparent, inclusive economic growth. Development actors can support policy and regulatory reform that encourages fair and open competition, institutional reforms and the adoption of standards, and government capacity-building.",
+            "titleLineOne": "Support",
+            "titleLineTwo": "to Strengthen",
+            "titleLineThree": "Enabling",
+            "titleLineFour": "Environments"
+        },
+        {
+            "title": "Sectoral Expertise & Knowledge",
+            "description": "Development actors have wide-ranging technical expertise across development and humanitarian sectors. Development actors offer deep economic, political, conflict, and gender-sensitive understanding of developing markets, market intelligence that can inform and shape private-sector investment, and robust, evidence-based monitoring and evaluation.",
+            "titleLineOne": "",
+            "titleLineTwo": "Sectoral",
+            "titleLineThree": "Expertise",
+            "titleLineFour": "& Knowledge"
+        },
+        {
+            "title": "Risk-Mitigation & Flexible Authorities",
+            "description": "Development actors can use funds, authorities, and technical expertise to mitigate the risks of investments and “crowd in” public and private resources that further humanitarian and development goals. Development actor technical assistance can ready smaller companies for financing, or help expand their markets.",
+            "titleLineOne": "",
+            "titleLineTwo": "Risk-Mitigation",
+            "titleLineThree": "& Flexible",
+            "titleLineFour": "Authorities"
+        },
+        {
+            "title": "Reputation & Credible Convening Power",
+            "description": "Development actors have strong capabilities in convening actors around business opportunities that address development challenges. Development actors offer a neutral platform for other actors to collaborate in addressing larger challenges.",
+            "titleLineOne": "Reputation",
+            "titleLineTwo": "& Credible",
+            "titleLineThree": "Convening",
+            "titleLineFour": "Power"
+        }
+    ],
+    "rows": [
+        {
+            "title": "Information-Sharing & Strategic Alignment",
+            "description": "Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources.",
+            "titleLineOne": "Information",
+            "titleLineTwo": "-Sharing",
+            "titleLineThree": "& Stragtegic",
+            "titleLineFour": "Alignment"
+        },
+        {
+            "title": "Advancing Learning & Market Research",
+            "description": "Engagement that advances shared market research, good practices for PSE, and joint strategic planning and project design within the USAID Program Cycle.",
+            "titleLineOne": "Advancing",
+            "titleLineTwo": "Learning &",
+            "titleLineThree": "Market Research",
+            "titleLineFour": ""
+        },
+        {
+            "title": "Harnessing Private Sector Expertise & Innovation",
+            "description": "Engagement that harnesses innovation, technology, research and development, industry expertise, and/or entrepreneurial skills to achieve development outcomes.",
+            "titleLineOne": "Harnessing",
+            "titleLineTwo": "Private Sector",
+            "titleLineThree": "Expertise",
+            "titleLineFour": "& Innovation"
+        },
+        {
+            "title": "Catalyzing Private Sector Resources",
+            "description": "Engagement that mobilizes private-sector resources and action – including philanthropy and CSR assets – to address a specific issue and/or objective. This category also includes the unlocking of private investment.",
+            "titleLineOne": "Catalyzing",
+            "titleLineTwo": "Private Sector",
+            "titleLineThree": "Resources",
+            "titleLineFour": ""
+        },
+        {
+            "title": "Strengthening the Enabling Environment",
+            "description": "Engagement on issues of importance to multiple U.S. and local private-sector actors, such as regulatory reforms, policy, compliance with standards, and government capacity building.",
+            "titleLineOne": "Strengthening",
+            "titleLineTwo": "the Enabling",
+            "titleLineThree": "Environment",
+            "titleLineFour": ""
+        }
+    ],
+    "sideHeader": "Ways We Engage",
+    "searchOptions": {
+            "region": "USAID Region",
+            "country": "Country(ies)",
+            "technical_sector": "Technical Sector",
+            "industry": "Private Sector Industry",
+            "enterprise_type": "Type of Enterprise",
+            "resource_type": "Type of Document"
+    },
+    "aboutSection": {
+        "aboutHeader": "About the Evidence Gap Map",
+        "paragraphs": [
+            "The Evidence Gap Map could just as easily be called the “Evidence Map”, meaning that it is a visual representation of existing evidence, using a matrix of USAID’s conceptualization of PSE means and value propositions that both the private sector and development actors offer. We hope that by compiling this evidence in one place with a number of filter and search features, we will help facilitate the use of evidence.",
+            "The “gap” in the title is referring to understanding where there is good evidence in the matrix and where there are holes in our knowledge base and understanding. As users interact with the evidence gap map and the filters, they will be able to visually see where there is knowledge and where additional investments in research and evaluation might be warranted to further build the evidence base. This is also an opportunity to collaborate with our team as well as alert us to any evidence we may have missed. ",
+            "The map was designed for a primary audience of USAID technical staff and program designers. Secondary intended audiences include USAID implementing partner staff and private sector employees seeking to engage in development work. "
+        ],
+        "linkToContribute": "https://forms.gle/dPC55Lcaq5PyGV6QA"
+    },
+    "colors": {
+        "titleBackgroundColor": "#243953",
+        "columnHeaderLeftColor": "#3d9bb4",
+        "columnHeaderRightColor": "#002f6c",
+        "leftSideTableColorRGBValues": "61,155,180",
+        "rightSideTableColorRGBValues": "0,47,108",
+        "sideHeaderColor": "#ced4da"
+    }
+}

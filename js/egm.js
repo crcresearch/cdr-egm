@@ -68,7 +68,8 @@ const egm_layout = {
   },
   props: {
     documents: Array,
-    filter_categories: Object
+    filter_categories: Object,
+    config: Object
   },
   data: function () {
     return {
@@ -178,7 +179,8 @@ const map = {
     'relevant-documents': relevantDocumentsModal
   },
   props: {
-    filtered_documents: Array
+    filtered_documents: Array,
+    config: Object
   },
   data: function () {
     return {
@@ -292,10 +294,19 @@ const list = {
   template: '#list-component',
 };
 
+const footer = {
+  name: 'footer',
+  props: {
+    config: Object
+  },
+  template: '#footer',
+};
+
 const details = {
   props: {
     documents: Array,
-    filter_categories: Object
+    filter_categories: Object,
+    config: Object
   },
   data: function () {
     return {
@@ -384,12 +395,15 @@ const app = new Vue({
       loading: true,
       error: null,
       documents: [],
-      filter_categories: {} 
+      filter_categories: {},
+      config: {}
     }
   },
   mounted: async function () {
     // this is the ONLY place where all of the documents are fetched now.
     const response = await axios.get('data/latest.json', { responseType: 'json' });
+    const configResponse = await axios.get('config.json', { responseType: 'json' });
+    this.config = configResponse.data;
     this.documents = response.data.records;
     this.filter_categories = response.data.filteredFields;
     this.loading = false;
