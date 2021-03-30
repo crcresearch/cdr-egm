@@ -48,17 +48,12 @@ const ALLOWED_FIELDS = [
     isFiltered: true
   },
   {
-    name: 'PSE Key Values',
+    name: 'R4D Activities',
     isArray: true,
     isFiltered: true
   },
   {
-    name: 'PSE Key Values USAID Offers',
-    isArray: true,
-    isFiltered: true
-  },
-  {
-    name: 'PSE Ways We Engage',
+    name: 'R4D Outcomes',
     isArray: true,
     isFiltered: true
   },
