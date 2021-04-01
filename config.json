@@ -6,133 +6,342 @@
         "mainDescription": "Use the map to identify gaps and locate relevant documents. Click a circle to see the documents matching a particular engagment &ndash; value pair. Use filters to narrow the documents displayed on the map, or search for documents in list view."
     },
     "columnTopHeaders": {
-        "headerLeft": "Private Sector Value Propositions",
-        "headerRight": "Development Actor Value Propositions"
+        "headerLeft": "HEI generation/ dissemination of development relevant evidence",
+        "headerCenter": "Ability and Commitment of policy and development organizations to apply evidence",
+        "headerRight": "Use of research for more effective programs and policy"
     },
     "columnHeadersLeft": [
         {
-            "title": "Scale, Sustainability, & Reach",
-            "description": "The private sector’s vast financial resources and expertise in market-based solutions have the potential for achieving scale and sustainability in tackling systemic societal challenges. The private sector’s extensive networks and operations provide distribution channels to reach, and communicate with, underserved populations and individuals.",
-            "titleLineOne": "",
-            "titleLineTwo": "Scale,",
-            "titleLineThree": "Sustainability,",
-            "titleLineFour": "& Reach"
+            "title": "[O-HEI1] HEI institutional capacity to manage, support, and conduct high quality development-relevant research has increased",
+            "description": "",
+            "titleLineOne": "HEI",
+            "titleLineTwo": "Institutional",
+            "titleLineThree": "Capactity",
+            "titleLineFour": "to Manage"
         },
         {
-            "title": "Ability to Influence Policy",
-            "description": "The private sector’s ability to deliver what host-country governments seek to achieve—such as improved service-delivery, investment, tax revenues, jobs, and life-saving interventions—gives businesses and investors a strong, knowledgeable voice to inform policy that supports transparent, inclusive economic growth.",
-            "titleLineOne": "",
-            "titleLineTwo": "Ability",
-            "titleLineThree": "to Influence",
-            "titleLineFour": "Policy"
+            "title": "[O-HEI2] Capacity of researchers to conduct high quality development-relevant research has increased",
+            "description": "",
+            "titleLineOne": "Capacity of",
+            "titleLineTwo": "Researchers",
+            "titleLineThree": "to Conduct",
+            "titleLineFour": "High Quality"
         },
         {
-            "title": "Innovation, Expertise, and Capabilities",
-            "description": "Businesses and investors can bring innovation and technologies; entrepreneurship; industry expertise; market-based solutions; distribution networks; investment capacity; and managerial and operational expertise, including risk-management.",
-            "titleLineOne": "",
-            "titleLineTwo": "Innovation,",
-            "titleLineThree": "Expertise,",
-            "titleLineFour": "& Capabilities"
+            "title": "[O-HEI3] Capacity of researchers and/or institutions to translate research into (use) practice, program, and policy",
+            "description": "",
+            "titleLineOne": "Capacity of",
+            "titleLineTwo": "Researchers",
+            "titleLineThree": "to Translate",
+            "titleLineFour": "Research"
         },
         {
-            "title": "Efficiency & Effectiveness",
-            "description": "With improved systems, processes, and logistics, the private sector can bring more efficiency and effectiveness to achieving outcomes.",
-            "titleLineOne": "",
-            "titleLineTwo": "\u00A0",
-            "titleLineThree": "Efficiency ",
-            "titleLineFour": "& Effectiveness"
+            "title": "[O-HEI4] HEI research networks expanded to identify and solve development challenges",
+            "description": "",
+            "titleLineOne": "HEI Research",
+            "titleLineTwo": "Networks Expanded",
+            "titleLineThree": "to Identify",
+            "titleLineFour": "Development Challenges"
         },
         {
-            "title": "Flexibility & Pace",
-            "description": "The private sector is often inherently more flexible than the public sector, as it has a financial incentive to respond quickly to opportunities and develop new markets.",
-            "titleLineOne": "",
-            "titleLineTwo": "\u00A0",
-            "titleLineThree": "Flexibility",
-            "titleLineFour": "& Pace"
+            "title": "[O-PDO1] Linkage between research networks and policy/ development community has improved",
+            "description": "",
+            "titleLineOne": "Linkage",
+            "titleLineTwo": "Between Research",
+            "titleLineThree": "Networks",
+            "titleLineFour": "& Policy"
         }
     ],
     "columnHeadersRight": [
         {
-            "title": "Strong In-Country Networks & Relationships",
-            "description": "Development Actors have relationships with national and local governments, businesses, faith-based organizations, local community leaders, and civil society that are useful to the private sector in making locally informed plans for market entry, collaboration, and co-investment.",
-            "titleLineOne": "Strong",
-            "titleLineTwo": "In-Country",
+            "title": "[O-PDO2] Linkages between research networks and private sector community increased",
+            "description": "",
+            "titleLineOne": "Linkages",
+            "titleLineTwo": "Between Research",
             "titleLineThree": "Networks",
-            "titleLineFour": "& Relationships"
+            "titleLineFour": "& Private Sector"
         },
         {
-            "title": "Support to Strengthen Enabling Environments",
-            "description": "Working with host-country governments, development actors can help create a stronger enabling environment that fosters transparent, inclusive economic growth. Development actors can support policy and regulatory reform that encourages fair and open competition, institutional reforms and the adoption of standards, and government capacity-building.",
-            "titleLineOne": "Support",
-            "titleLineTwo": "to Strengthen",
-            "titleLineThree": "Enabling",
-            "titleLineFour": "Environments"
+            "title": "[O-PDO3] Capacity of development actors to integrate evidence in programming increased",
+            "description": "",
+            "titleLineOne": "Capacity of",
+            "titleLineTwo": "Development Actors",
+            "titleLineThree": "to Integrate",
+            "titleLineFour": "Evidence"
         },
         {
-            "title": "Sectoral Expertise & Knowledge",
-            "description": "Development actors have wide-ranging technical expertise across development and humanitarian sectors. Development actors offer deep economic, political, conflict, and gender-sensitive understanding of developing markets, market intelligence that can inform and shape private-sector investment, and robust, evidence-based monitoring and evaluation.",
+            "title": "[O-PDO4] Commitment of development actors to integrate evidence in programming increased",
+            "description": "",
+            "titleLineOne": "Commitment",
+            "titleLineTwo": "of Development",
+            "titleLineThree": "Actors to",
+            "titleLineFour": "Integrate Evidence"
+        },
+        {
+            "title": "[O-RU1] Translation of research into programs and practice has increased",
+            "description": "",
+            "titleLineOne": "Translation",
+            "titleLineTwo": "of Research",
+            "titleLineThree": "Into Programs",
+            "titleLineFour": "& Practice"
+        },
+        {
+            "title": "[O-RU2] Translation of research into policy has increased",
+            "description": "",
             "titleLineOne": "",
-            "titleLineTwo": "Sectoral",
-            "titleLineThree": "Expertise",
-            "titleLineFour": "& Knowledge"
-        },
-        {
-            "title": "Risk-Mitigation & Flexible Authorities",
-            "description": "Development actors can use funds, authorities, and technical expertise to mitigate the risks of investments and “crowd in” public and private resources that further humanitarian and development goals. Development actor technical assistance can ready smaller companies for financing, or help expand their markets.",
-            "titleLineOne": "",
-            "titleLineTwo": "Risk-Mitigation",
-            "titleLineThree": "& Flexible",
-            "titleLineFour": "Authorities"
-        },
-        {
-            "title": "Reputation & Credible Convening Power",
-            "description": "Development actors have strong capabilities in convening actors around business opportunities that address development challenges. Development actors offer a neutral platform for other actors to collaborate in addressing larger challenges.",
-            "titleLineOne": "Reputation",
-            "titleLineTwo": "& Credible",
-            "titleLineThree": "Convening",
-            "titleLineFour": "Power"
+            "titleLineTwo": "Translation",
+            "titleLineThree": "of Research",
+            "titleLineFour": "Into Policy"
         }
     ],
     "rows": [
         {
-            "title": "Information-Sharing & Strategic Alignment",
-            "description": "Engagement that aims to identify shared interests, respective capabilities, and experiences. It does not necessarily entail investment of financial resources.",
-            "titleLineOne": "Information",
-            "titleLineTwo": "-Sharing",
-            "titleLineThree": "& Stragtegic",
-            "titleLineFour": "Alignment"
+            "title": "BRC1 - Between development organizations and scientific, research, and academic institutions, both domestic and international",
+            "description": "",
+            "titleLineOne": "Between",
+            "titleLineTwo": "Organizations and Scientific,",
+            "titleLineThree": "Research and Academic Institutions",
+            "titleLineFour": "Domestic and International"
         },
         {
-            "title": "Advancing Learning & Market Research",
-            "description": "Engagement that advances shared market research, good practices for PSE, and joint strategic planning and project design within the USAID Program Cycle.",
-            "titleLineOne": "Advancing",
-            "titleLineTwo": "Learning &",
-            "titleLineThree": "Market Research",
-            "titleLineFour": ""
+            "title": "BRC2 - Between individual researchers, both domestic and international",
+            "description": "",
+            "titleLineOne": "Between",
+            "titleLineTwo": "Individual Researchers",
+            "titleLineThree": "Domestic",
+            "titleLineFour": "& International"
         },
         {
-            "title": "Harnessing Private Sector Expertise & Innovation",
-            "description": "Engagement that harnesses innovation, technology, research and development, industry expertise, and/or entrepreneurial skills to achieve development outcomes.",
-            "titleLineOne": "Harnessing",
-            "titleLineTwo": "Private Sector",
-            "titleLineThree": "Expertise",
-            "titleLineFour": "& Innovation"
+            "title": "BRC3 - Between individual policymakers/practitioners and researchers",
+            "description": "",
+            "titleLineOne": "Between",
+            "titleLineTwo": "Individual Poliymakers/",
+            "titleLineThree": "Practitioners",
+            "titleLineFour": "& Researchers"
         },
         {
-            "title": "Catalyzing Private Sector Resources",
-            "description": "Engagement that mobilizes private-sector resources and action – including philanthropy and CSR assets – to address a specific issue and/or objective. This category also includes the unlocking of private investment.",
-            "titleLineOne": "Catalyzing",
-            "titleLineTwo": "Private Sector",
-            "titleLineThree": "Resources",
-            "titleLineFour": ""
+            "title": "BRC4 - Between scientific, research, and academic institutions, both domestic and international",
+            "description": "",
+            "titleLineOne": "Between",
+            "titleLineTwo": "Scientific, Research",
+            "titleLineThree": "and Acedemic",
+            "titleLineFour": "Institutions"
         },
         {
-            "title": "Strengthening the Enabling Environment",
-            "description": "Engagement on issues of importance to multiple U.S. and local private-sector actors, such as regulatory reforms, policy, compliance with standards, and government capacity building.",
-            "titleLineOne": "Strengthening",
-            "titleLineTwo": "the Enabling",
-            "titleLineThree": "Environment",
-            "titleLineFour": ""
+            "title": "BRC5 - In partnership with community-level actors",
+            "description": "",
+            "titleLineOne": "Partnership",
+            "titleLineTwo": "with",
+            "titleLineThree": "Community-Level",
+            "titleLineFour": "Actors"
+        },
+        {
+            "title": "CB-HEI1 - In project management and research administration",
+            "description": "",
+            "titleLineOne": "Project",
+            "titleLineTwo": "Management &",
+            "titleLineThree": "Research",
+            "titleLineFour": "Administration"
+        },
+        {
+            "title": "CB-HEI2 - In curriculum development, pedagogy, or other teaching and trainings skills",
+            "description": "",
+            "titleLineOne": "Curriculum",
+            "titleLineTwo": "Development",
+            "titleLineThree": "Pedagogy or",
+            "titleLineFour": "Other Teaching"
+        },
+        {
+            "title": "CB-RE1 - In conceptualization and design of policy- and social impact-relevant research",
+            "description": "",
+            "titleLineOne": "Conceptualization",
+            "titleLineTwo": "& Design of",
+            "titleLineThree": "Policy- & Societal",
+            "titleLineFour": "Impact Research"
+        },
+        {
+            "title": "CB-RE2 - Through research translation training (also with HEIs)",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "Through",
+            "titleLineThree": "Research Translation",
+            "titleLineFour": "Training"
+        },
+        {
+            "title": "CB-RE3 - Through specialized research implementation and translation technical assistance",
+            "description": "",
+            "titleLineOne": "Through",
+            "titleLineTwo": "Specialized Research",
+            "titleLineThree": "Implementation",
+            "titleLineFour": "& Translation"
+        },
+        {
+            "title": "CB-RE4 - Through creation of centers of excellence",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "Through Creation",
+            "titleLineThree": "of Centers of",
+            "titleLineFour": "Excellence"
+        },
+        {
+            "title": "CB-RE5 - On use of advanced digital tools",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "On Use of",
+            "titleLineThree": "Advanced Digital",
+            "titleLineFour": "Tools"
+        },
+        {
+            "title": "CB-PP1 - On data literacy and use",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "On Data",
+            "titleLineThree": "Literacy and",
+            "titleLineFour": "Use"
+        },
+        {
+            "title": "CB-PP2 - On partnering with researchers",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "On",
+            "titleLineThree": "Partnering with",
+            "titleLineFour": "Researchers"
+        },
+        {
+            "title": "CB-PP3 - Through specialized technical assistance on research translation and use",
+            "description": "",
+            "titleLineOne": "Through",
+            "titleLineTwo": "Specialized Technical",
+            "titleLineThree": "Assistance",
+            "titleLineFour": "on Research"
+        },
+        {
+            "title": "RP1 - To individual researchers in the form of monetary support",
+            "description": "",
+            "titleLineOne": "To Individual",
+            "titleLineTwo": "Researchers in the",
+            "titleLineThree": "Form of",
+            "titleLineFour": "Monetary Support"
+        },
+        {
+            "title": "RP2 - To individual researchers in the form of equipment and other in-kind support",
+            "description": "",
+            "titleLineOne": "To Individual",
+            "titleLineTwo": "Researchers in the",
+            "titleLineThree": "Form of",
+            "titleLineFour": "Equipment"
+        },
+        {
+            "title": "RP3 - To academic, research, and other scientific institutions in the form of monetary support",
+            "description": "",
+            "titleLineOne": "To Academic",
+            "titleLineTwo": "Institutions in the",
+            "titleLineThree": "Form of",
+            "titleLineFour": "Monetary Support"
+        },
+        {
+            "title": "RP4 - To academic, research, and other scientific institutions in the form of equipment, infrastructure, and other in-kind support",
+            "description": "",
+            "titleLineOne": "To Academic",
+            "titleLineTwo": "Institutions in the",
+            "titleLineThree": "Form of",
+            "titleLineFour": "In-Kind Support"
+        },
+        {
+            "title": "RP5 - For joint funding of domestic and international collaborations",
+            "description": "",
+            "titleLineOne": "For Joint",
+            "titleLineTwo": "Funding of",
+            "titleLineThree": "Domestic &",
+            "titleLineFour": "International Collabs"
+        },
+        {
+            "title": "RP6 - For fellowships and exchanges",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "",
+            "titleLineThree": "For Fellowship",
+            "titleLineFour": "& Exchanges"
+        },
+        {
+            "title": "RP7 - For internship and work-study opportunities",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "For Internship",
+            "titleLineThree": "& Work-Study",
+            "titleLineFour": "Opportunities"
+        },
+        {
+            "title": "ES1 - For coordinating research across organizations through R&D councils, science academies, and similar entities",
+            "description": "",
+            "titleLineOne": "For",
+            "titleLineTwo": "Coordinating",
+            "titleLineThree": "Research Across",
+            "titleLineFour": "Organizations"
+        },
+        {
+            "title": "ES2 - For HEI-based innovation accelerators and incubators",
+            "description": "",
+            "titleLineOne": "For HEI-",
+            "titleLineTwo": "Based Innovation",
+            "titleLineThree": "Accelerators &",
+            "titleLineFour": "Incubators"
+        },
+        {
+            "title": "ES3 - To create and/or strengthen research networks",
+            "description": "",
+            "titleLineOne": "To Create",
+            "titleLineTwo": "And/Or Strengthen",
+            "titleLineThree": "Research",
+            "titleLineFour": "Networks"
+        },
+        {
+            "title": "ES4 - Through HEI -based tech transfer/commercialization programs",
+            "description": "",
+            "titleLineOne": "Through",
+            "titleLineTwo": "HEI-Based Tech",
+            "titleLineThree": "Transfer/Commercialization",
+            "titleLineFour": "Programs"
+        },
+        {
+            "title": "ES5 - By facilitating the design, implementation, and management of scientific research-related policies",
+            "description": "",
+            "titleLineOne": "Facilitating",
+            "titleLineTwo": "the Design",
+            "titleLineThree": "of Scientific",
+            "titleLineFour": "Research Policies"
+        },
+        {
+            "title": "RD1 - Through face-to-face events",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "",
+            "titleLineThree": "Through Face-",
+            "titleLineFour": "to-Face Events"
+        },
+        {
+            "title": "RD2 - Through workshops and problem-solving events",
+            "description": "",
+            "titleLineOne": "Through",
+            "titleLineTwo": "Workshops and",
+            "titleLineThree": "Problem-Solving",
+            "titleLineFour": "Events"
+        },
+        {
+            "title": "RD3 - On collaborative platforms",
+            "description": "",
+            "titleLineOne": "",
+            "titleLineTwo": "On",
+            "titleLineThree": "Collaborative",
+            "titleLineFour": "Platforms"
+        },
+        {
+            "title": "RD4 - On websites for disseminating evidence and research findings",
+            "description": "",
+            "titleLineOne": "On Websites",
+            "titleLineTwo": "for Disseminating",
+            "titleLineThree": "Evidence &",
+            "titleLineFour": "Research Findings"
         }
     ],
     "sideHeader": "Ways We Engage",
@@ -154,11 +363,11 @@
         "linkToContribute": "https://forms.gle/dPC55Lcaq5PyGV6QA"
     },
     "colors": {
-        "titleBackgroundColor": "#243953",
-        "columnHeaderLeftColor": "#3d9bb4",
-        "columnHeaderRightColor": "#002f6c",
-        "leftSideTableColorRGBValues": "61,155,180",
-        "rightSideTableColorRGBValues": "0,47,108",
-        "sideHeaderColor": "#ced4da"
+        "titleBackgroundColor": "#004c97",
+        "columnHeaderLeftColor": "#004C97",
+        "columnHeaderRightColor": "#004C97",
+        "leftSideTableColorRGBValues": "0,76,151",
+        "rightSideTableColorRGBValues": "0,76,151",
+        "sideHeaderColor": "#AC162C"
     }
 }

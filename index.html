@@ -33,7 +33,6 @@
 
       gtag('config', 'UA-164763421-1');
     </script>
-
   </head>
 
   <body class="d-flex flex-column h-100">
@@ -237,10 +236,14 @@
                 <tr>
                   <th scope="col" class="set-group-title-vert-width"></th>
                   <th scope="col"></th>
-                  <th scope="colgroup" colspan="5" class="group-title group-title-pse" :style='`background:${config.colors.columnHeaderLeftColor};`'>
-                    {{ config.columnTopHeaders.headerLeft }}
+                  <th scope="colgroup" colspan="4" class="group-title group-title-pse" :style='`background:${config.colors.columnHeaderLeftColor};`'>
+                    {{config.columnTopHeaders.headerLeft}}
                   </th>
-                  <th scope="colgroup" colspan="5" class="group-title group-title-usaid" :style='`background:${config.colors.columnHeaderRightColor};`'>
+                  <th scope="colgroup" colspan="4" class="group-title group-title-usaid" :style='`background:${config.colors.columnHeaderRightColor};`'>
+                    {{config.columnTopHeaders.headerCenter}}
+                    </a>
+                  </th>
+                  <th scope="colgroup" colspan="2" class="group-title group-title-usaid" :style='`background:${config.colors.columnHeaderRightColor};`'>
                     {{config.columnTopHeaders.headerRight}}
                     </a>
                   </th>
@@ -252,7 +255,7 @@
                   <th scope="col"></th>
 
                   <!-- Column Headers Left Side -->
-                  <th v-for="header in config.columnHeadersLeft" scope="col" class="value" :title="header.title">
+                  <th v-for="header in config.columnHeadersLeft" scope="col" class="value" :title="header.title" >
                     <div class="clip-content">
                       <span class="float-right">
                         <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="bottom" :title="header.title"  :data-content="header.description">
@@ -282,7 +285,7 @@
                 <tbody>
                 <!-- Row Headers -->
                 <tr v-for="(rowHeader, count) in config.rows">
-                  <th class="group-title-vert" rowspan="6" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -300,14 +303,14 @@
                     <div class="clip-content">{{rowHeader.titleLineThree}}</div>
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
-                  <td v-for="index in [0,1,2,3,4]">
+                  <td v-for="index in [0, 1, 2, 3, 4]">
                     <matrix-cell
                             v-bind:count="filtered_summary[count][index]"
                             :color_base="`${config.colors.leftSideTableColorRGBValues}`"
                             @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
                   </td>
 
-                  <td v-for="index in [5,6,7,8,9]">
+                  <td v-for="index in [5, 6, 7, 8, 9]">
                     <matrix-cell
                             v-bind:count="filtered_summary[count][index]"
                             :color_base="`${config.colors.rightSideTableColorRGBValues}`"
@@ -325,7 +328,7 @@
                     <div class="clip-content">{{rowHeader.titleLineThree}}</div>
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
-                  <th class="group-title-vert" rowspan="6" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -344,14 +347,15 @@
                   <tr>
                     <th scope="col" class="set-group-title-vert-width"></th>
                     <th scope="col"></th>
-                    <th scope="colgroup" colspan="5" class="group-title" :style='`background:${config.colors.columnHeaderLeftColor};`'>
+                    <th scope="colgroup" colspan="4" class="group-title" :style='`background:${config.colors.columnHeaderLeftColor};`'>
                       {{config.columnTopHeaders.headerLeft}}
                     </th>
+                    <th scope="colgroup" colspan="1" class="group-title" :style='`background:${config.colors.columnHeaderLeftColor};`'></th>
                   </tr>
                   <tr>
                     <th scope="col"></th>
                     <th scope="col"></th>
-                    <th v-for="header in config.columnHeadersLeft" scope="col" class="value" :title="header.title">
+                    <th v-for="header in config.columnHeadersLeft" scope="col" class="value" :title="header.title" >
                     <div class="clip-content">
                       <span class="float-right">
                         <a
@@ -373,7 +377,7 @@
                   </thead>
                   <tbody>
                   <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="group-title-vert" rowspan="6" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                    <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -398,7 +402,7 @@
                     <div class="clip-content">{{rowHeader.titleLineThree}}</div>
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
-                    <td v-for="index in [0,1,2,3,4]">
+                    <td v-for="index in [0, 1, 2, 3, 4]">
                       <matrix-cell
                               v-bind:count="filtered_summary[count][index]"
                               :color_base="config.colors.leftSideTableColorRGBValues"
@@ -414,7 +418,10 @@
                   <tr>
                     <th scope="col" class="d-lg-none set-group-title-vert-width"></th>
                     <th scope="col" class="d-lg-none"></th>
-                    <th scope="colgroup" colspan="5" class="group-title" :style='`background:${config.colors.columnHeaderRightColor};`'>
+                    <th scope="colgroup" colspan="3" class="group-title" :style='`background:${config.colors.columnHeaderRightColor};`'>
+                      {{config.columnTopHeaders.headerCenter}}
+                    </th>
+                    <th scope="colgroup" colspan="2" class="group-title" :style='`background:${config.colors.columnHeaderRightColor};`'>
                       {{config.columnTopHeaders.headerRight}}
                     </th>
                     <th scope="col" class="d-none d-lg-table-cell"></th>
@@ -423,7 +430,7 @@
                   <tr>
                     <th scope="col" class="d-lg-none"></th>
                     <th scope="col" class="d-lg-none"></th>
-                    <th v-for="header in config.columnHeadersRight" scope="col" class="value" :title="header.title">
+                    <th v-for="header in config.columnHeadersRight" scope="col" class="value" :title="header.title" >
                   <div class="clip-content">
                   <span class="float-right">
                   <a
@@ -447,7 +454,7 @@
                   </thead>
                   <tbody>
                   <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="d-lg-none d-lg-table-cell group-title-vert" rowspan="6" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                    <th class="d-lg-none d-lg-table-cell group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -473,13 +480,13 @@
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
 
-                    <td v-for="index in [5,6,7,8,9]">
+                    <td v-for="index in [5, 6, 7, 8, 9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[count][index]"
                               :color_base="config.colors.rightSideTableColorRGBValues"
                               @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
                     </td>
-                    <th class="d-none d-lg-table-cell group-title-vert" rowspan="6" v-if="count === 0">
+                    <th class="d-none d-lg-table-cell group-title-vert" rowspan="31" v-if="count === 0">
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
