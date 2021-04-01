@@ -345,7 +345,6 @@ const map = {
             if (doc["R4D Outcomes"]) {
               doc["R4D Outcomes"].forEach(key_value => {
                 if ((way in WAYS_WE_ENGAGE) && (key_value in PSE_VALUES)) {
-                  console.log(new_summary);
                   new_summary[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]] += 1;
                   filtered_summary_docs[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]].push(doc);
                 }
