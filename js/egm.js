@@ -1,10 +1,15 @@
 /////// CONSTANTS ///////////
 const PSE_VALUES = {
-  "Scale, Sustainability, and Reach": 0,
-  "Ability to Influence Policy": 1,
-  "Innovation, Expertise, and Capabilities": 2,
-  "Efficiency and Effectiveness": 3,
-  "Flexibility and Pace": 4,
+  "[O-HEI1] HEI institutional capacity to manage, support, and conduct high quality development-relevant research has increased": 0,
+  "[O-HEI2] Capacity of researchers to conduct high quality development-relevant research has increased": 1,
+  "[O-HEI3] Capacity of researchers and/or institutions to translate research into (use) practice, program, and policy": 2,
+  "[O-HEI4] HEI research networks expanded to identify and solve development challenges": 3,
+  "[O-PDO1] Linkage between research networks and policy/ development community has improved": 4,
+  "[O-PDO2] Linkages between research networks and private sector community increased": 5,
+  "[O-PDO3] Capacity of development actors to integrate evidence in programming increased": 6,
+  "[O-PDO4] Commitment of development actors to integrate evidence in programming increased": 7,
+  "[O-RU1] Translation of research into programs and practice has increased": 8,
+  "[O-RU2] Translation of research into policy has increased": 9
 };
 
 const PSE_UNITAID_VALUES = {
@@ -16,12 +21,37 @@ const PSE_UNITAID_VALUES = {
 };
 
 const WAYS_WE_ENGAGE = {
-  "Information-Sharing and Strategic Alignment": 0,
-  "Advancing Learning and Market Research;": 1,
-  "Harnessing Private-Sector Expertise and Innovation;": 2,
-  "Catalyzing Private-Sector Resources;": 3,
-  "Strengthening the Enabling Environment": 4,
-  "Unlocking Private Investment;": 3
+  "BRC1 - Between development organizations and scientific, research, and academic institutions, both domestic and international": 0,
+  "BRC2 - Between individual researchers, both domestic and international": 1,
+  "BRC3 - Between individual policymakers/practitioners and researchers": 2,
+  "BRC4 - Between scientific, research, and academic institutions, both domestic and international": 3,
+  "BRC5 - In partnership with community-level actors": 4,
+  "CB-HEI1 - In project management and research administration": 5,
+  "CB-HEI2 - In curriculum development, pedagogy, or other teaching and trainings skills": 6,
+  "CB-RE1 - In conceptualization and design of policy- and social impact-relevant research": 7,
+  "CB-RE2 - Through research translation training (also with HEIs)": 8,
+  "CB-RE3 - Through specialized research implementation and translation technical assistance": 9,
+  "CB-RE4 - Through creation of centers of excellence": 10,
+  "CB-RE5 - On use of advanced digital tools": 11,
+  "CB-PP1 - On data literacy and use": 12,
+  "CB-PP2 - On partnering with researchers": 13,
+  "CB-PP3 - Through specialized technical assistance on research translation and use": 14,
+  "RP1 - To individual researchers in the form of monetary support": 15,
+  "RP2 - To individual researchers in the form of equipment and other in-kind support": 16,
+  "RP3 - To academic, research, and other scientific institutions in the form of monetary support": 17,
+  "RP4 - To academic, research, and other scientific institutions in the form of equipment, infrastructure, and other in-kind support": 18,
+  "RP5 - For joint funding of domestic and international collaborations": 19,
+  "RP6 - For fellowships and exchanges": 20,
+  "RP7 - For internship and work-study opportunities": 21,
+  "ES1 - For coordinating research across organizations through R&D councils, science academies, and similar entities": 22,
+  "ES2 - For HEI-based innovation accelerators and incubators": 23,
+  "ES3 - To create and/or strengthen research networks": 24,
+  "ES4 - Through HEI -based tech transfer/commercialization programs": 25,
+  "ES5 - By facilitating the design, implementation, and management of scientific research-related policies": 26,
+  "RD1 - Through face-to-face events": 27,
+  "RD2 - Through workshops and problem-solving events": 28,
+  "RD3 - On collaborative platforms": 29,
+  "RD4 - On websites for disseminating evidence and research findings": 30
 };
 
 
@@ -68,7 +98,8 @@ const egm_layout = {
   },
   props: {
     documents: Array,
-    filter_categories: Object
+    filter_categories: Object,
+    config: Object
   },
   data: function () {
     return {
@@ -105,8 +136,7 @@ const egm_layout = {
           // (vue_object.filters.enterprise_type === "" || (doc["Type of Enterprise"] && doc["Type of Enterprise"].includes(vue_object.filters.enterprise_type))) &&
           // (vue_object.filters.industry === "" || (doc["Private Sector Industry"] && doc["Private Sector Industry"].includes(vue_object.filters.industry))) &&
           // (vue_object.filters.resource_type === "" || (doc["Type of Document"] && doc["Type of Document"] === vue_object.filters.resource_type))
-        )
-
+         )
       });
 
       var searched_and_filtered_docs;
@@ -178,11 +208,37 @@ const map = {
     'relevant-documents': relevantDocumentsModal
   },
   props: {
-    filtered_documents: Array
+    filtered_documents: Array,
+    config: Object
   },
   data: function () {
     return {
       filtered_summary: [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -203,7 +259,7 @@ const map = {
     };
   },
   template: '#map-component',
-  mounted: function() {
+  mounted: function () {
     this.filter_records(this.filtered_documents)
     $('[data-toggle="popover"]').popover()
     $('[data-toggle="tooltip"]').tooltip()
@@ -222,6 +278,31 @@ const map = {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ];
       const filtered_summary_docs = [
@@ -230,17 +311,43 @@ const map = {
         [[], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], []]
       ];
       const vue_object = this;
-
       filtered_docs.forEach(doc => {
-        if (doc["PSE Ways We Engage"]) {
-          doc["PSE Ways We Engage"].forEach(way => {
-            if (doc["PSE Key Values"]) {
-              doc["PSE Key Values"].forEach(key_value => {
-                new_summary[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]] += 1;
-                filtered_summary_docs[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]].push(doc);
+        if (doc["R4D Activities"]) {
+          doc["R4D Activities"].forEach(way => {
+            if (doc["R4D Outcomes"]) {
+              doc["R4D Outcomes"].forEach(key_value => {
+                if ((way in WAYS_WE_ENGAGE) && (key_value in PSE_VALUES)) {
+                  new_summary[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]] += 1;
+                  filtered_summary_docs[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]].push(doc);
+                }
               })
             }
             if (doc["PSE Key Values USAID Offers"]) {
@@ -292,10 +399,19 @@ const list = {
   template: '#list-component',
 };
 
+const footer = {
+  name: 'footer',
+  props: {
+    config: Object
+  },
+  template: '#footer',
+};
+
 const details = {
   props: {
     documents: Array,
-    filter_categories: Object
+    filter_categories: Object,
+    config: Object
   },
   data: function () {
     return {
@@ -384,12 +500,15 @@ const app = new Vue({
       loading: true,
       error: null,
       documents: [],
-      filter_categories: {} 
+      filter_categories: {},
+      config: {}
     }
   },
   mounted: async function () {
     // this is the ONLY place where all of the documents are fetched now.
     const response = await axios.get('data/latest.json', { responseType: 'json' });
+    const configResponse = await axios.get('config.json', { responseType: 'json' });
+    this.config = configResponse.data;
     this.documents = response.data.records;
     this.filter_categories = response.data.filteredFields;
     this.loading = false;
