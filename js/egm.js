@@ -339,7 +339,6 @@ const map = {
         [[], [], [], [], [], [], [], [], [], []]
       ];
       const vue_object = this;
-      console.log(filtered_docs);
       filtered_docs.forEach(doc => {
         if (doc["R4D Activities"]) {
           doc["R4D Activities"].forEach(way => {
