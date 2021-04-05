@@ -363,13 +363,14 @@
         "linkToContribute": "https://forms.gle/dPC55Lcaq5PyGV6QA"
     },
     "colors": {
-        "titleBackgroundColor": "#004c97",
+        "titleBackgroundColor": "#004C97",
         "columnHeaderLeftColor": "#004C97",
         "columnHeaderRightColor": "#004C97",
         "leftSideTableColorRGBValues": "0,76,151",
         "rightSideTableColorRGBValues": "0,76,151",
         "sideHeaderColor": "#AC162C",
-        "footerColor": "#004c97"
+        "footerColor": "#004C97",
+        "docTitleBackgroundColor": "#7B303E"
     },
     "footerSection": {
         "text": "This work is a partnership between USAID, the University of Notre Dame, and Purdue University. It is funded under grant #AID-7200AA18CA00009.",

@@ -53,7 +53,7 @@
 
   <script type="text/x-template" id="config-footer-component">
     <div>
-    <footer class="footer mt-auto bg-dark">
+    <footer class="footer mt-auto bg-dark" :style="`background: ${config.colors.titleBackgroundColor} !important;`">
       <div class="wash-200">
         <div class="container-fluid">
           <div class="row py-4">
@@ -522,15 +522,15 @@
       <div>
         <header>
           <!-- Fixed navbar -->
-          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" :style="`background-color: ${config.colors.titleBackgroundColor} !important;`">
             <router-link :to="{name: 'egm'}" class="navbar-brand"><i class="fas fa-chevron-left mr-2"></i> Evidence Gap Map</router-link>
           </nav>
         </header>
         <div v-if="error" class="alert alert-danger details-error" role="alert">
           {{ error }}
         </div>
-        <main v-if="document_details" role="main">=
-          <div class="bg-vb-lt-blue">
+        <main v-if="document_details" role="main">
+          <div class="bg-vb-lt-blue" :style="`background-color: ${config.colors.docTitleBackgroundColor} !important;`">
             <div class="container position-relative text-dark" id="top-document-detail">
               <h5 id="doc-type" class="mb-1 text-uppercase text-dark font-weight-bolder">
                 {{ document_details['Type of Document'] }}
@@ -615,6 +615,7 @@
             </div>
           </div>
         </main>
+        <footer-component :config='config' />
       </div>
     </script>
 

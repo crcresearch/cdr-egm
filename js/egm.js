@@ -352,7 +352,10 @@ const details = {
   props: {
     documents: Array,
     filter_categories: Object,
-    config: Object
+    config: Object,
+  },
+  components: {
+    'footer-component': configFooter
   },
   data: function () {
     return {
