@@ -51,53 +51,27 @@
     </transition>
   </div>
 
+  <script type="text/x-template" id="config-footer-component">
+    <div>
     <footer class="footer mt-auto bg-dark">
       <div class="wash-200">
         <div class="container-fluid">
           <div class="row py-4">
             <div class="col-lg-3 desc-col text-center text-lg-left">
               <p class="my-0 text-muted pb-4 pb-lg-0">
-                This work is a partnership between USAID, the University of
-                Notre Dame, and Purdue University. It is funded under grant #AID-7200AA18CA00009.
+                {{config.footerSection.text}}
               </p>
             </div>
             <div class="col-lg-9">
               <div class="row brand-line">
-                <div class="col-sm-3 py-3">
-                  <a href="https://www.usaid.gov" target ="_blank">
+                <div class="col-sm-3 py-3" v-for="foot in config.footerSection.partners">
+                  <a :href="foot.link" target ="_blank">
                   <img
-                    src="images/usaid-logo.png"
-                    class="img-fluid img-65"
-                    alt="USAID Dame"
+                    :src="foot.imageLocation"
+                    :class="`img-fluid img-${foot.size}`"
+                    :alt="foot.name"
                   />
                   </a>
-                </div>
-                <div class="col-sm-3 py-3">
-                  <a href="https://stemedhub.org/groups/laserpulse/aboutus" target ="_blank">
-                  <img
-                    src="images/purdue-laser-pulse.png"
-                    class="img-fluid img-65"
-                    alt="Purdue LASER PULSE logo"
-                  />
-                  </a>
-                </div>
-                <div class="col-sm-3 py-3">
-                  <a href="https://www.nd.edu" target ="_blank">
-                  <img
-                    src="images/nd_mark_blue.png"
-                    class="img-fluid img-50"
-                    alt="Notre Dame logo"
-                  />
-                  </a>
-                </div>
-                <div class="col-sm-3 py-3">
-                  <a href="https://www.purdue.edu" target ="_blank">
-                  <img
-                    src="images/purdue.png"
-                    class="img-fluid img-50"
-                    alt="Purdue logo"
-                  />
-                </a>
                 </div>
               </div>
             </div>
@@ -125,6 +99,8 @@
         </div>
       </div>
     </footer>
+  </div>
+  </script>
 
     <script type="text/x-template" id="egm-layout">
       <div>
@@ -224,6 +200,7 @@
               <router-view :filtered_documents="filtered_documents" :config="config"></router-view>
           </keep-alive>
         </main>
+        <footer-component :config='config' />
       </div>
     </script>
 
@@ -522,6 +499,7 @@
         </main>
       </div>
     </script>
+
     <script type="text/x-template" id="list-component">
       <div class="container mb-5">
         <template v-for="(doc_type, index) in doc_types" :key="index" >

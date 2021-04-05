@@ -1,60 +1,3 @@
-/////// CONSTANTS ///////////
-const PSE_VALUES = {
-  "[O-HEI1] HEI institutional capacity to manage, support, and conduct high quality development-relevant research has increased": 0,
-  "[O-HEI2] Capacity of researchers to conduct high quality development-relevant research has increased": 1,
-  "[O-HEI3] Capacity of researchers and/or institutions to translate research into (use) practice, program, and policy": 2,
-  "[O-HEI4] HEI research networks expanded to identify and solve development challenges": 3,
-  "[O-PDO1] Linkage between research networks and policy/ development community has improved": 4,
-  "[O-PDO2] Linkages between research networks and private sector community increased": 5,
-  "[O-PDO3] Capacity of development actors to integrate evidence in programming increased": 6,
-  "[O-PDO4] Commitment of development actors to integrate evidence in programming increased": 7,
-  "[O-RU1] Translation of research into programs and practice has increased": 8,
-  "[O-RU2] Translation of research into policy has increased": 9
-};
-
-const PSE_UNITAID_VALUES = {
-  "Strong In-Country Networks and Relationships": 5,
-  "Support to Strengthen Enabling Environments": 6,
-  "Sectoral Expertise and Knowledge": 7,
-  "Risk-Mitigation and Flexible Authorities": 8,
-  "Reputation and Credible Convening Power": 9,
-};
-
-const WAYS_WE_ENGAGE = {
-  "BRC1 - Between development organizations and scientific, research, and academic institutions, both domestic and international": 0,
-  "BRC2 - Between individual researchers, both domestic and international": 1,
-  "BRC3 - Between individual policymakers/practitioners and researchers": 2,
-  "BRC4 - Between scientific, research, and academic institutions, both domestic and international": 3,
-  "BRC5 - In partnership with community-level actors": 4,
-  "CB-HEI1 - In project management and research administration": 5,
-  "CB-HEI2 - In curriculum development, pedagogy, or other teaching and trainings skills": 6,
-  "CB-RE1 - In conceptualization and design of policy- and social impact-relevant research": 7,
-  "CB-RE2 - Through research translation training (also with HEIs)": 8,
-  "CB-RE3 - Through specialized research implementation and translation technical assistance": 9,
-  "CB-RE4 - Through creation of centers of excellence": 10,
-  "CB-RE5 - On use of advanced digital tools": 11,
-  "CB-PP1 - On data literacy and use": 12,
-  "CB-PP2 - On partnering with researchers": 13,
-  "CB-PP3 - Through specialized technical assistance on research translation and use": 14,
-  "RP1 - To individual researchers in the form of monetary support": 15,
-  "RP2 - To individual researchers in the form of equipment and other in-kind support": 16,
-  "RP3 - To academic, research, and other scientific institutions in the form of monetary support": 17,
-  "RP4 - To academic, research, and other scientific institutions in the form of equipment, infrastructure, and other in-kind support": 18,
-  "RP5 - For joint funding of domestic and international collaborations": 19,
-  "RP6 - For fellowships and exchanges": 20,
-  "RP7 - For internship and work-study opportunities": 21,
-  "ES1 - For coordinating research across organizations through R&D councils, science academies, and similar entities": 22,
-  "ES2 - For HEI-based innovation accelerators and incubators": 23,
-  "ES3 - To create and/or strengthen research networks": 24,
-  "ES4 - Through HEI -based tech transfer/commercialization programs": 25,
-  "ES5 - By facilitating the design, implementation, and management of scientific research-related policies": 26,
-  "RD1 - Through face-to-face events": 27,
-  "RD2 - Through workshops and problem-solving events": 28,
-  "RD3 - On collaborative platforms": 29,
-  "RD4 - On websites for disseminating evidence and research findings": 30
-};
-
-
 /////// GLOBAL REGISTRATIONS 
 // used to shorten the internet URL field in the details component.
 Vue.filter('truncate', function (value, max_length = 115) {
@@ -90,11 +33,19 @@ const matrixCellComponent = {
   template: '#matrix-cell-component'
 };
 
+const configFooter = {
+  props: {
+    config: Object
+  },
+  template: '#config-footer-component',
+};
+
 const egm_layout = {
   name: 'egm_layout',
   components: {
     'matrix-cell': matrixCellComponent,
-    'relevant-documents': relevantDocumentsModal
+    'relevant-documents': relevantDocumentsModal,
+    'footer-component': configFooter
   },
   props: {
     documents: Array,
@@ -339,21 +290,17 @@ const map = {
         [[], [], [], [], [], [], [], [], [], []]
       ];
       const vue_object = this;
+      const row_values = this.config.rows.map(function (el) { return el.title });
+      const column_values = this.config.columnHeadersLeft.concat(this.config.columnHeadersRight).map(function(el) {return el.title});
       filtered_docs.forEach(doc => {
         if (doc["R4D Activities"]) {
           doc["R4D Activities"].forEach(way => {
             if (doc["R4D Outcomes"]) {
               doc["R4D Outcomes"].forEach(key_value => {
-                if ((way in WAYS_WE_ENGAGE) && (key_value in PSE_VALUES)) {
-                  new_summary[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]] += 1;
-                  filtered_summary_docs[WAYS_WE_ENGAGE[way]][PSE_VALUES[key_value]].push(doc);
+                if ((row_values.includes(way)) && (column_values.includes(key_value))) {
+                  new_summary[row_values.indexOf(way)][column_values.indexOf(key_value)] += 1;
+                  filtered_summary_docs[row_values.indexOf(way)][column_values.indexOf(key_value)].push(doc);
                 }
-              })
-            }
-            if (doc["PSE Key Values USAID Offers"]) {
-              doc["PSE Key Values USAID Offers"].forEach(key_value => {
-                new_summary[WAYS_WE_ENGAGE[way]][PSE_UNITAID_VALUES[key_value]] += 1;
-                filtered_summary_docs[WAYS_WE_ENGAGE[way]][PSE_UNITAID_VALUES[key_value]].push(doc);
               })
             }
           })
@@ -366,15 +313,17 @@ const map = {
       // Map reduce the documents somehow here to get a new summary table.
     },
     build_docs_modal: function (options) {
-      const values_length = Object.keys(PSE_VALUES).length;
-      const offers_length = Object.keys(PSE_UNITAID_VALUES).length;
-      this.docs_modal_state.value_title = options.value_index >= values_length ? 'Development Actor Value Proposition' : 'Private Sector Value Proposition';
-      if (options.value_index < values_length) {
-        this.docs_modal_state.value_text = Object.keys(PSE_VALUES).find(key => PSE_VALUES[key] === options.value_index);
-      } else if (options.value_index < values_length + offers_length) {
-        this.docs_modal_state.value_text = Object.keys(PSE_UNITAID_VALUES).find(key => PSE_UNITAID_VALUES[key] === options.value_index);
+      const values_length = Object.keys(this.config.columnHeadersLeft).length;
+      const offers_length = Object.keys(this.config.columnHeadersRight).length;
+      const column_values = this.config.columnHeadersLeft.concat(this.config.columnHeadersRight).map(function (el) { return el.title });
+      const row_values = this.config.rows.map(function (el) { return el.title });
+      // This value title may have to be changed manually, depending on how many column header headers they want.
+      this.docs_modal_state.value_title = options.value_index >= 8 ? 'Use of Research for More Effective Programs and Policy' : options.value_index >= 4 && options.value_index <= 7 ? 'Ability and Commitment of policy and development organizations to apply evidence' : "HEI generation/ dissemination of development relevant evidence";
+      
+      if (options.value_index < values_length + offers_length) {
+        this.docs_modal_state.value_text = column_values[options.value_index];
       }
-      this.docs_modal_state.way_text = Object.keys(WAYS_WE_ENGAGE).find(key => WAYS_WE_ENGAGE[key] === options.way_index);
+      this.docs_modal_state.way_text = row_values[options.way_index];
       this.docs_modal_state.num_relevant_docs = this.filtered_summary[options.way_index][options.value_index];
       this.docs_modal_state.relevant_docs = this.filtered_summary_docs[options.way_index][options.value_index];
       this.show_documents_modal = true;
@@ -397,14 +346,6 @@ const list = {
     }
   },
   template: '#list-component',
-};
-
-const footer = {
-  name: 'footer',
-  props: {
-    config: Object
-  },
-  template: '#footer',
 };
 
 const details = {
