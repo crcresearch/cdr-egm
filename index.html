@@ -569,16 +569,16 @@
                       <li v-for="(way, index) in document_details['PSE Ways We Engage']" :key="index" >{{ way.replace(';', '') }}</li>
                     </ul>
                   </li>
-                  <li v-if="document_details['PSE Key Values']" class="list-group-item p-0 border-left-0 border-right-0">
-                    <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder">{{config.columnTopHeaders.headerLeft}}</h6>
+                  <li v-if="document_details['R4D Activities']" class="list-group-item p-0 border-left-0 border-right-0">
+                    <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder" :style="`background-color: ${config.colors.columnHeaderLeftColor};`">R4D Activities</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
-                      <li v-for="(value, index) in document_details['PSE Key Values']" :key="index" >{{value}}</li>
+                      <li v-for="(value, index) in document_details['R4D Activities']" :key="index" >{{value}}</li>
                     </ul>
                   </li>
-                  <li v-if="document_details['PSE Key Values USAID Offers']"  class="list-group-item p-0 border-left-0 border-right-0">
-                    <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder">{{config.columnTopHeaders.headerRight}}</h6>
+                  <li v-if="document_details['R4D Outcomes']"  class="list-group-item p-0 border-left-0 border-right-0">
+                    <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder" :style="`background-color: ${config.colors.columnHeaderLeftColor};`">R4D Outcomes</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
-                      <li v-for="(value, index) in document_details['PSE Key Values USAID Offers']" :key="index" >{{value}}</li>
+                      <li v-for="(value, index) in document_details['R4D Outcomes']" :key="index" >{{value}}</li>
                     </ul>
                   </li>
                 </ul>
