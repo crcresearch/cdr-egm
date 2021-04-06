@@ -51,53 +51,27 @@
     </transition>
   </div>
 
-    <footer class="footer mt-auto bg-dark">
+  <script type="text/x-template" id="config-footer-component">
+    <div>
+    <footer class="footer mt-auto bg-dark" :style="`background: ${config.colors.titleBackgroundColor} !important;`">
       <div class="wash-200">
         <div class="container-fluid">
           <div class="row py-4">
             <div class="col-lg-3 desc-col text-center text-lg-left">
               <p class="my-0 text-muted pb-4 pb-lg-0">
-                This work is a partnership between USAID, the University of
-                Notre Dame, and Purdue University. It is funded under grant #AID-7200AA18CA00009.
+                {{config.footerSection.text}}
               </p>
             </div>
             <div class="col-lg-9">
               <div class="row brand-line">
-                <div class="col-sm-3 py-3">
-                  <a href="https://www.usaid.gov" target ="_blank">
+                <div class="col-sm-3 py-3" v-for="foot in config.footerSection.partners">
+                  <a :href="foot.link" target ="_blank">
                   <img
-                    src="images/usaid-logo.png"
-                    class="img-fluid img-65"
-                    alt="USAID Dame"
+                    :src="foot.imageLocation"
+                    :class="`img-fluid img-${foot.size}`"
+                    :alt="foot.name"
                   />
                   </a>
-                </div>
-                <div class="col-sm-3 py-3">
-                  <a href="https://stemedhub.org/groups/laserpulse/aboutus" target ="_blank">
-                  <img
-                    src="images/purdue-laser-pulse.png"
-                    class="img-fluid img-65"
-                    alt="Purdue LASER PULSE logo"
-                  />
-                  </a>
-                </div>
-                <div class="col-sm-3 py-3">
-                  <a href="https://www.nd.edu" target ="_blank">
-                  <img
-                    src="images/nd_mark_blue.png"
-                    class="img-fluid img-50"
-                    alt="Notre Dame logo"
-                  />
-                  </a>
-                </div>
-                <div class="col-sm-3 py-3">
-                  <a href="https://www.purdue.edu" target ="_blank">
-                  <img
-                    src="images/purdue.png"
-                    class="img-fluid img-50"
-                    alt="Purdue logo"
-                  />
-                </a>
                 </div>
               </div>
             </div>
@@ -125,6 +99,8 @@
         </div>
       </div>
     </footer>
+  </div>
+  </script>
 
     <script type="text/x-template" id="egm-layout">
       <div>
@@ -151,17 +127,14 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                  <ul class="navbar-nav ml-auto">
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="#">Instructions</a>
-                    </li> -->
+                  <!-- <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                       <a class="nav-link" href="./faq.html">FAQ</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="./files/EVIDENCE_GAP_MAP_USER_MANUAL.pdf" target="_blank">EGM Instructions</a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </nav>
         </header>
@@ -194,7 +167,6 @@
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
                           <span class="multiselect__single" v-else>{{lookup}}</span>
-                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
                         </template>
                       </vue-multiselect>
                     </div>
@@ -204,7 +176,8 @@
               <div class="col-md-1 text-center text-md-left">
                 <a class="btn btn-light btn-sm rounded-pill ml-2 mt-2 mt-md-1 text-small" role="button" title="Reset filters" @click="reset_filters" ><i class="fas fa-redo"></i> Reset</a>
               </div>
-            </div> <!-- end filters -->
+            </div> 
+            <!-- end filters -->
 
               <div class="row pt-3 justify-content-center">
                 <div class="col-sm-12 col-lg-8">
@@ -215,8 +188,8 @@
                     </div>
                   </div>
                 </div>
-              </div> <!-- end search bar -->
-
+              </div> 
+              <!-- end search bar -->
             </div>
           </div>
 
@@ -224,6 +197,7 @@
               <router-view :filtered_documents="filtered_documents" :config="config"></router-view>
           </keep-alive>
         </main>
+        <footer-component :config='config' />
       </div>
     </script>
 
@@ -285,7 +259,7 @@
                 <tbody>
                 <!-- Row Headers -->
                 <tr v-for="(rowHeader, count) in config.rows">
-                  <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -328,7 +302,7 @@
                     <div class="clip-content">{{rowHeader.titleLineThree}}</div>
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
-                  <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -377,7 +351,7 @@
                   </thead>
                   <tbody>
                   <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                    <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -454,7 +428,7 @@
                   </thead>
                   <tbody>
                   <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="d-lg-none d-lg-table-cell group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                    <th class="d-lg-none d-lg-table-cell group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -486,7 +460,7 @@
                               :color_base="config.colors.rightSideTableColorRGBValues"
                               @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
                     </td>
-                    <th class="d-none d-lg-table-cell group-title-vert" rowspan="31" v-if="count === 0">
+                    <th class="d-none d-lg-table-cell group-title-vert" :rowspan="config.rows.length" v-if="count === 0">
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -522,6 +496,7 @@
         </main>
       </div>
     </script>
+
     <script type="text/x-template" id="list-component">
       <div class="container mb-5">
         <template v-for="(doc_type, index) in doc_types" :key="index" >
@@ -544,15 +519,15 @@
       <div>
         <header>
           <!-- Fixed navbar -->
-          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" :style="`background-color: ${config.colors.titleBackgroundColor} !important;`">
             <router-link :to="{name: 'egm'}" class="navbar-brand"><i class="fas fa-chevron-left mr-2"></i> Evidence Gap Map</router-link>
           </nav>
         </header>
         <div v-if="error" class="alert alert-danger details-error" role="alert">
           {{ error }}
         </div>
-        <main v-if="document_details" role="main">=
-          <div class="bg-vb-lt-blue">
+        <main v-if="document_details" role="main">
+          <div class="bg-vb-lt-blue" :style="`background-color: ${config.colors.docTitleBackgroundColor} !important;`">
             <div class="container position-relative text-dark" id="top-document-detail">
               <h5 id="doc-type" class="mb-1 text-uppercase text-dark font-weight-bolder">
                 {{ document_details['Type of Document'] }}
@@ -560,8 +535,8 @@
               <h1 id="doc-title" class="mb-1 text-white">
                 {{ document_details['Document Title'] }}
               </h1>
-              <p class="my-0"><span class="text-uppercase font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
-              <p class="my-0"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }}<span v-if="document_details['Year']">, {{ document_details['Year'] }}</span></p>
+              <p class="my-0" v-if="document_details['Author(s)']"><span class="text-uppercase font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
+              <p class="my-0" v-if="document_details['Publishing Institution(s)']"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }}<span v-if="document_details['Year']">, {{ document_details['Year'] }}</span></p>
               <a v-if="document_details['Internet URL of Document']" class="btn btn-dark btn-lg" id="view-document-link" :href="document_details['Internet URL of Document']" target="_blank" role="button">View Document <i class="fas fa-external-link-alt ml-2"></i></a>
             </div>
           </div>
@@ -591,16 +566,16 @@
                       <li v-for="(way, index) in document_details['PSE Ways We Engage']" :key="index" >{{ way.replace(';', '') }}</li>
                     </ul>
                   </li>
-                  <li v-if="document_details['PSE Key Values']" class="list-group-item p-0 border-left-0 border-right-0">
-                    <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder">{{config.columnTopHeaders.headerLeft}}</h6>
+                  <li v-if="document_details['R4D Activities']" class="list-group-item p-0 border-left-0 border-right-0">
+                    <h6 class="mb-0 px-3 py-2 bg-pse-lt-blue text-white narrow-font text-uppercase font-weight-bolder" :style="`background-color: ${config.colors.columnHeaderLeftColor};`">R4D Activities</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
-                      <li v-for="(value, index) in document_details['PSE Key Values']" :key="index" >{{value}}</li>
+                      <li v-for="(value, index) in document_details['R4D Activities']" :key="index" >{{value}}</li>
                     </ul>
                   </li>
-                  <li v-if="document_details['PSE Key Values USAID Offers']"  class="list-group-item p-0 border-left-0 border-right-0">
-                    <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder">{{config.columnTopHeaders.headerRight}}</h6>
+                  <li v-if="document_details['R4D Outcomes']"  class="list-group-item p-0 border-left-0 border-right-0">
+                    <h6 class="mb-0 px-3 py-2 bg-usaid-blue text-white narrow-font text-uppercase font-weight-bolder" :style="`background-color: ${config.colors.columnHeaderLeftColor};`">R4D Outcomes</h6>
                     <ul class="list-unstyled px-3 py-2 list-spaced wash-100">
-                      <li v-for="(value, index) in document_details['PSE Key Values USAID Offers']" :key="index" >{{value}}</li>
+                      <li v-for="(value, index) in document_details['R4D Outcomes']" :key="index" >{{value}}</li>
                     </ul>
                   </li>
                 </ul>
@@ -637,6 +612,7 @@
             </div>
           </div>
         </main>
+        <footer-component :config='config' />
       </div>
     </script>
 

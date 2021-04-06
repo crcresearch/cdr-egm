@@ -3,7 +3,7 @@
         "mainTitle": "Private Sector Engagement",
         "mainSubtitle": "Evidence Gap Map",
         "mainTagline": "Engagement mapped to key values",
-        "mainDescription": "Use the map to identify gaps and locate relevant documents. Click a circle to see the documents matching a particular engagment &ndash; value pair. Use filters to narrow the documents displayed on the map, or search for documents in list view."
+        "mainDescription": "Use the map to identify gaps and locate relevant documents. Click a circle to see the documents matching a particular engagment-value pair. Use filters to narrow the documents displayed on the map, or search for documents in list view."
     },
     "columnTopHeaders": {
         "headerLeft": "HEI generation/ dissemination of development relevant evidence",
@@ -344,7 +344,7 @@
             "titleLineFour": "Research Findings"
         }
     ],
-    "sideHeader": "Ways We Engage",
+    "sideHeader": "",
     "searchOptions": {
             "region": "USAID Region",
             "country": "Country(ies)",
@@ -363,11 +363,42 @@
         "linkToContribute": "https://forms.gle/dPC55Lcaq5PyGV6QA"
     },
     "colors": {
-        "titleBackgroundColor": "#004c97",
+        "titleBackgroundColor": "#004C97",
         "columnHeaderLeftColor": "#004C97",
         "columnHeaderRightColor": "#004C97",
         "leftSideTableColorRGBValues": "0,76,151",
         "rightSideTableColorRGBValues": "0,76,151",
-        "sideHeaderColor": "#AC162C"
+        "sideHeaderColor": "#AC162C",
+        "footerColor": "#004C97",
+        "docTitleBackgroundColor": "#0b65bd"
+    },
+    "footerSection": {
+        "text": "This work is a partnership between USAID, the University of Notre Dame, and Purdue University. It is funded under grant #AID-7200AA18CA00009.",
+        "partners": [
+            {
+                "name": "USAID Dame",
+                "link": "https://www.usaid.gov",
+                "imageLocation": "images/usaid-logo.png",
+                "size": "65"
+            },
+            {
+                "name": "Purdue LASER PULSE",
+                "link": "https://stemedhub.org/groups/laserpulse/aboutus",
+                "imageLocation": "images/purdue-laser-pulse.png",
+                "size": "65"
+            },
+            {
+                "name": "Notre Dame",
+                "link": "https://www.nd.edu",
+                "imageLocation": "images/nd_mark_blue.png",
+                "size": "50"
+            },
+            {
+                "name": "Purdue",
+                "link": "https://www.purdue.edu",
+                "imageLocation": "images/purdue.png",
+                "size": "50"
+            }
+        ]
     }
 }
