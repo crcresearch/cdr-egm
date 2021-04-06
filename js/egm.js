@@ -71,7 +71,7 @@ const egm_layout = {
   template: '#egm-layout',
   mounted: function () {
     this.filtered_documents = this.documents;
-    this.rows_displayed = this.config.rows.slice(0, 5);
+    this.rows_displayed = this.config.rows["Building Research Collaborations"];
   },
   watch: {
     // Whenever rows_selected changes, this will run
@@ -79,29 +79,8 @@ const egm_layout = {
       var newList = [];
       // We need to change the value of what rows are displaying based on what is selected.
       newVal.forEach(rowName => {
-        if (rowName === 'Building Research Collaborations') {
-          newList.push(this.config.rows.slice(0, 5));
-        }
-        else if (rowName === 'Capacity Building for HEIS') {
-          newList.push(this.config.rows.slice(5, 7));
-        }
-        else if (rowName === 'Capacity Building for Researchers') {
-          newList.push(this.config.rows.slice(7, 12))
-        }
-        else if (rowName === 'Capacity Building for Policy Makers and Practitioners') {
-          newList.push(this.config.rows.slice(12, 15))
-        }
-        else if (rowName === 'Resource Provision') {
-          newList.push(this.config.rows.slice(15, 22))
-        }
-        else if (rowName === 'Ecosystem Strengthening') {
-          newList.push(this.config.rows.slice(22, 27))
-        }
-        else if (rowName === 'Research Dissemination') {
-          newList.push(this.config.rows.slice(27))
-        }
+          newList.push(this.config.rows[rowName]);
       })
-
       this.rows_displayed = newList.flat();
     }
   },
@@ -232,6 +211,7 @@ const map = {
       docs_modal_state: {
         value_title: '',
         value_text: '',
+        way_title: '',
         way_text: '',
         num_relevant_docs: 0,
         relevant_docs: []
@@ -319,7 +299,7 @@ const map = {
         [[], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], []]
       ];
-      const row_values = this.config.rows.map(function (el) { return el.title });
+      const row_values = Object.values(this.config.rows).flat().map(function (el) { return el.title });
       const column_values = this.config.columnHeadersLeft.concat(this.config.columnHeadersRight).map(function(el) {return el.title});
       filtered_docs.forEach(doc => {
         if (doc["R4D Activities"]) {
@@ -345,13 +325,24 @@ const map = {
       const values_length = Object.keys(this.config.columnHeadersLeft).length;
       const offers_length = Object.keys(this.config.columnHeadersRight).length;
       const column_values = this.config.columnHeadersLeft.concat(this.config.columnHeadersRight).map(function (el) { return el.title });
-      const row_values = this.config.rows.map(function (el) { return el.title });
+      const row_values = Object.values(this.config.rows).flat().map(function (el) { return el.title });
+      // Get the `Way` Title, this is the side column
+      function way_title_helper(config, way_index) {
+        for (const section in config.rows) {
+          for (const row of config.rows[section]) {
+            if (row.rowNumber === way_index) {
+              return section;
+            }
+          }
+        }
+      };
       // This value title may have to be changed manually, depending on how many column header headers they want.
       this.docs_modal_state.value_title = options.value_index >= 8 ? 'Use of Research for More Effective Programs and Policy' : options.value_index >= 4 && options.value_index <= 7 ? 'Ability and Commitment of policy and development organizations to apply evidence' : "HEI generation/ dissemination of development relevant evidence";
       
       if (options.value_index < values_length + offers_length) {
         this.docs_modal_state.value_text = column_values[options.value_index];
       }
+      this.docs_modal_state.way_title = way_title_helper(this.config, options.way_index);
       this.docs_modal_state.way_text = row_values[options.way_index];
       this.docs_modal_state.num_relevant_docs = this.filtered_summary[options.way_index][options.value_index];
       this.docs_modal_state.relevant_docs = this.filtered_summary_docs[options.way_index][options.value_index];
