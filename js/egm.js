@@ -64,11 +64,46 @@ const egm_layout = {
       },
       search: "",
       filtered_documents: [],
+      rows_displayed: [],
+      rows_selected: ["Building Research Collaborations"]
     };
   },
   template: '#egm-layout',
   mounted: function () {
     this.filtered_documents = this.documents;
+    this.rows_displayed = this.config.rows.slice(0, 5);
+  },
+  watch: {
+    // Whenever rows_selected changes, this will run
+    rows_selected: function (newVal, oldVal) {
+      var newList = [];
+      // We need to change the value of what rows are displaying based on what is selected.
+      newVal.forEach(rowName => {
+        if (rowName === 'Building Research Collaborations') {
+          newList.push(this.config.rows.slice(0, 5));
+        }
+        else if (rowName === 'Capacity Building for HEIS') {
+          newList.push(this.config.rows.slice(5, 7));
+        }
+        else if (rowName === 'Capacity Building for Researchers') {
+          newList.push(this.config.rows.slice(7, 12))
+        }
+        else if (rowName === 'Capacity Building for Policy Makers and Practitioners') {
+          newList.push(this.config.rows.slice(12, 15))
+        }
+        else if (rowName === 'Resource Provision') {
+          newList.push(this.config.rows.slice(15, 22))
+        }
+        else if (rowName === 'Ecosystem Strengthening') {
+          newList.push(this.config.rows.slice(22, 27))
+        }
+        else if (rowName === 'Research Dissemination') {
+          newList.push(this.config.rows.slice(27))
+        }
+      })
+
+      this.rows_displayed = newList.flat();
+    }
   },
   methods: {
     filter_records: function () {
@@ -81,12 +116,6 @@ const egm_layout = {
           (vue_object.filters.enterprise_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Enterprise", 'enterprise_type')) && 
           (vue_object.filters.industry.length == 0 || vue_object.multi_select_filter(doc, "Private Sector Industry", 'industry')) && 
           (vue_object.filters.resource_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Document", 'resource_type')) 
-          // (vue_object.filters.region === "" || (doc["USAID Region"] && doc["USAID Region"].includes(vue_object.filters.region))) &&
-          // (vue_object.filters.country === "" || (doc["Country(ies)"] && doc["Country(ies)"].includes(vue_object.filters.country))) &&
-          // (vue_object.filters.technical_sector === "" || (doc["Technical Sector"] && doc["Technical Sector"].includes(vue_object.filters.technical_sector))) &&
-          // (vue_object.filters.enterprise_type === "" || (doc["Type of Enterprise"] && doc["Type of Enterprise"].includes(vue_object.filters.enterprise_type))) &&
-          // (vue_object.filters.industry === "" || (doc["Private Sector Industry"] && doc["Private Sector Industry"].includes(vue_object.filters.industry))) &&
-          // (vue_object.filters.resource_type === "" || (doc["Type of Document"] && doc["Type of Document"] === vue_object.filters.resource_type))
          )
       });
 
@@ -148,7 +177,7 @@ const egm_layout = {
       }
       this.search = ""
       this.filter_records();
-    }
+    },
   }
 };
 
@@ -160,7 +189,8 @@ const map = {
   },
   props: {
     filtered_documents: Array,
-    config: Object
+    config: Object,
+    rows_displayed: Array
   },
   data: function () {
     return {
@@ -211,7 +241,7 @@ const map = {
   },
   template: '#map-component',
   mounted: function () {
-    this.filter_records(this.filtered_documents)
+    this.filter_records(this.filtered_documents);
     $('[data-toggle="popover"]').popover()
     $('[data-toggle="tooltip"]').tooltip()
   },
@@ -289,7 +319,6 @@ const map = {
         [[], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], []]
       ];
-      const vue_object = this;
       const row_values = this.config.rows.map(function (el) { return el.title });
       const column_values = this.config.columnHeadersLeft.concat(this.config.columnHeadersRight).map(function(el) {return el.title});
       filtered_docs.forEach(doc => {
@@ -334,7 +363,8 @@ const map = {
 const list = {
   name: 'list_page',
   props: {
-    filtered_documents: Array
+    filtered_documents: Array,
+    rows_displayed: Array
   },
   computed: {
     doc_types: function () {
