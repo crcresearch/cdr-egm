@@ -193,13 +193,7 @@
               <div class="row pt-3 justify-content-center">
                 <br />
                 <select v-model="rows_selected" multiple>
-                  <option>Building Research Collaborations</option>
-                  <option>Capacity Building for HEIS</option>
-                  <option>Capacity Building for Researchers</option>
-                  <option>Capacity Building for Policy Makers and Practitioners</option>
-                  <option>Resource Provision</option>
-                  <option>Ecosystem Strengthening</option>
-                  <option>Research Dissemination</option>
+                  <option v-for="(value, key) in config.rows">{{key}}</option>
                 </select>
               </div>
             </div>
