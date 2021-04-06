@@ -167,7 +167,6 @@
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
                           <span class="multiselect__single" v-else>{{lookup}}</span>
-                          <!-- <span class="multiselect__single" v-else>USAID Region</span> -->
                         </template>
                       </vue-multiselect>
                     </div>
@@ -177,7 +176,8 @@
               <div class="col-md-1 text-center text-md-left">
                 <a class="btn btn-light btn-sm rounded-pill ml-2 mt-2 mt-md-1 text-small" role="button" title="Reset filters" @click="reset_filters" ><i class="fas fa-redo"></i> Reset</a>
               </div>
-            </div> <!-- end filters -->
+            </div> 
+            <!-- end filters -->
 
               <div class="row pt-3 justify-content-center">
                 <div class="col-sm-12 col-lg-8">
@@ -188,8 +188,8 @@
                     </div>
                   </div>
                 </div>
-              </div> <!-- end search bar -->
-
+              </div> 
+              <!-- end search bar -->
             </div>
           </div>
 
@@ -259,7 +259,7 @@
                 <tbody>
                 <!-- Row Headers -->
                 <tr v-for="(rowHeader, count) in config.rows">
-                  <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -302,7 +302,7 @@
                     <div class="clip-content">{{rowHeader.titleLineThree}}</div>
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
-                  <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -351,7 +351,7 @@
                   </thead>
                   <tbody>
                   <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                    <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -428,7 +428,7 @@
                   </thead>
                   <tbody>
                   <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="d-lg-none d-lg-table-cell group-title-vert" rowspan="31" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                    <th class="d-lg-none d-lg-table-cell group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -460,7 +460,7 @@
                               :color_base="config.colors.rightSideTableColorRGBValues"
                               @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
                     </td>
-                    <th class="d-none d-lg-table-cell group-title-vert" rowspan="31" v-if="count === 0">
+                    <th class="d-none d-lg-table-cell group-title-vert" :rowspan="config.rows.length" v-if="count === 0">
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
