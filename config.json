@@ -96,6 +96,7 @@
     ],
     "rows": [
         {
+            "rowNumber": 0,
             "title": "BRC1 - Between development organizations and scientific, research, and academic institutions, both domestic and international",
             "description": "",
             "titleLineOne": "Between",
@@ -104,6 +105,7 @@
             "titleLineFour": "Domestic and International"
         },
         {
+            "rowNumber": 1,
             "title": "BRC2 - Between individual researchers, both domestic and international",
             "description": "",
             "titleLineOne": "Between",
@@ -112,6 +114,7 @@
             "titleLineFour": "& International"
         },
         {
+            "rowNumber": 2,
             "title": "BRC3 - Between individual policymakers/practitioners and researchers",
             "description": "",
             "titleLineOne": "Between",
@@ -120,6 +123,7 @@
             "titleLineFour": "& Researchers"
         },
         {
+            "rowNumber": 3,
             "title": "BRC4 - Between scientific, research, and academic institutions, both domestic and international",
             "description": "",
             "titleLineOne": "Between",
@@ -128,6 +132,7 @@
             "titleLineFour": "Institutions"
         },
         {
+            "rowNumber": 4,
             "title": "BRC5 - In partnership with community-level actors",
             "description": "",
             "titleLineOne": "Partnership",
@@ -136,6 +141,7 @@
             "titleLineFour": "Actors"
         },
         {
+            "rowNumber": 5,
             "title": "CB-HEI1 - In project management and research administration",
             "description": "",
             "titleLineOne": "Project",
@@ -144,6 +150,7 @@
             "titleLineFour": "Administration"
         },
         {
+            "rowNumber": 6,
             "title": "CB-HEI2 - In curriculum development, pedagogy, or other teaching and trainings skills",
             "description": "",
             "titleLineOne": "Curriculum",
@@ -152,6 +159,7 @@
             "titleLineFour": "Other Teaching"
         },
         {
+            "rowNumber": 7,
             "title": "CB-RE1 - In conceptualization and design of policy- and social impact-relevant research",
             "description": "",
             "titleLineOne": "Conceptualization",
@@ -160,6 +168,7 @@
             "titleLineFour": "Impact Research"
         },
         {
+            "rowNumber": 8,
             "title": "CB-RE2 - Through research translation training (also with HEIs)",
             "description": "",
             "titleLineOne": "",
@@ -168,6 +177,7 @@
             "titleLineFour": "Training"
         },
         {
+            "rowNumber": 9,
             "title": "CB-RE3 - Through specialized research implementation and translation technical assistance",
             "description": "",
             "titleLineOne": "Through",
@@ -176,6 +186,7 @@
             "titleLineFour": "& Translation"
         },
         {
+            "rowNumber": 10,
             "title": "CB-RE4 - Through creation of centers of excellence",
             "description": "",
             "titleLineOne": "",
@@ -184,6 +195,7 @@
             "titleLineFour": "Excellence"
         },
         {
+            "rowNumber": 11,
             "title": "CB-RE5 - On use of advanced digital tools",
             "description": "",
             "titleLineOne": "",
@@ -192,6 +204,7 @@
             "titleLineFour": "Tools"
         },
         {
+            "rowNumber": 12,
             "title": "CB-PP1 - On data literacy and use",
             "description": "",
             "titleLineOne": "",
@@ -200,6 +213,7 @@
             "titleLineFour": "Use"
         },
         {
+            "rowNumber": 13,
             "title": "CB-PP2 - On partnering with researchers",
             "description": "",
             "titleLineOne": "",
@@ -208,6 +222,7 @@
             "titleLineFour": "Researchers"
         },
         {
+            "rowNumber": 14,
             "title": "CB-PP3 - Through specialized technical assistance on research translation and use",
             "description": "",
             "titleLineOne": "Through",
@@ -216,6 +231,7 @@
             "titleLineFour": "on Research"
         },
         {
+            "rowNumber": 15,
             "title": "RP1 - To individual researchers in the form of monetary support",
             "description": "",
             "titleLineOne": "To Individual",
@@ -224,6 +240,7 @@
             "titleLineFour": "Monetary Support"
         },
         {
+            "rowNumber": 16,
             "title": "RP2 - To individual researchers in the form of equipment and other in-kind support",
             "description": "",
             "titleLineOne": "To Individual",
@@ -232,6 +249,7 @@
             "titleLineFour": "Equipment"
         },
         {
+            "rowNumber": 17,
             "title": "RP3 - To academic, research, and other scientific institutions in the form of monetary support",
             "description": "",
             "titleLineOne": "To Academic",
@@ -240,6 +258,7 @@
             "titleLineFour": "Monetary Support"
         },
         {
+            "rowNumber": 18,
             "title": "RP4 - To academic, research, and other scientific institutions in the form of equipment, infrastructure, and other in-kind support",
             "description": "",
             "titleLineOne": "To Academic",
@@ -248,6 +267,7 @@
             "titleLineFour": "In-Kind Support"
         },
         {
+            "rowNumber": 19,
             "title": "RP5 - For joint funding of domestic and international collaborations",
             "description": "",
             "titleLineOne": "For Joint",
@@ -256,6 +276,7 @@
             "titleLineFour": "International Collabs"
         },
         {
+            "rowNumber": 20,
             "title": "RP6 - For fellowships and exchanges",
             "description": "",
             "titleLineOne": "",
@@ -264,6 +285,7 @@
             "titleLineFour": "& Exchanges"
         },
         {
+            "rowNumber": 21,
             "title": "RP7 - For internship and work-study opportunities",
             "description": "",
             "titleLineOne": "",
@@ -272,6 +294,7 @@
             "titleLineFour": "Opportunities"
         },
         {
+            "rowNumber": 22,
             "title": "ES1 - For coordinating research across organizations through R&D councils, science academies, and similar entities",
             "description": "",
             "titleLineOne": "For",
@@ -280,6 +303,7 @@
             "titleLineFour": "Organizations"
         },
         {
+            "rowNumber": 23,
             "title": "ES2 - For HEI-based innovation accelerators and incubators",
             "description": "",
             "titleLineOne": "For HEI-",
@@ -288,6 +312,7 @@
             "titleLineFour": "Incubators"
         },
         {
+            "rowNumber": 24,
             "title": "ES3 - To create and/or strengthen research networks",
             "description": "",
             "titleLineOne": "To Create",
@@ -296,6 +321,7 @@
             "titleLineFour": "Networks"
         },
         {
+            "rowNumber": 25,
             "title": "ES4 - Through HEI -based tech transfer/commercialization programs",
             "description": "",
             "titleLineOne": "Through",
@@ -304,6 +330,7 @@
             "titleLineFour": "Programs"
         },
         {
+            "rowNumber": 26,
             "title": "ES5 - By facilitating the design, implementation, and management of scientific research-related policies",
             "description": "",
             "titleLineOne": "Facilitating",
@@ -312,6 +339,7 @@
             "titleLineFour": "Research Policies"
         },
         {
+            "rowNumber": 27,
             "title": "RD1 - Through face-to-face events",
             "description": "",
             "titleLineOne": "",
@@ -320,6 +348,7 @@
             "titleLineFour": "to-Face Events"
         },
         {
+            "rowNumber": 28,
             "title": "RD2 - Through workshops and problem-solving events",
             "description": "",
             "titleLineOne": "Through",
@@ -328,6 +357,7 @@
             "titleLineFour": "Events"
         },
         {
+            "rowNumber": 29,
             "title": "RD3 - On collaborative platforms",
             "description": "",
             "titleLineOne": "",
@@ -336,6 +366,7 @@
             "titleLineFour": "Platforms"
         },
         {
+            "rowNumber": 30,
             "title": "RD4 - On websites for disseminating evidence and research findings",
             "description": "",
             "titleLineOne": "On Websites",

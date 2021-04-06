@@ -190,11 +190,23 @@
                 </div>
               </div> 
               <!-- end search bar -->
+              <div class="row pt-3 justify-content-center">
+                <br />
+                <select v-model="rows_selected" multiple>
+                  <option>Building Research Collaborations</option>
+                  <option>Capacity Building for HEIS</option>
+                  <option>Capacity Building for Researchers</option>
+                  <option>Capacity Building for Policy Makers and Practitioners</option>
+                  <option>Resource Provision</option>
+                  <option>Ecosystem Strengthening</option>
+                  <option>Research Dissemination</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <keep-alive>
-              <router-view :filtered_documents="filtered_documents" :config="config"></router-view>
+              <router-view :filtered_documents="filtered_documents" :config="config" :rows_displayed="rows_displayed"></router-view>
           </keep-alive>
         </main>
         <footer-component :config='config' />
@@ -258,8 +270,8 @@
                 </thead>
                 <tbody>
                 <!-- Row Headers -->
-                <tr v-for="(rowHeader, count) in config.rows">
-                  <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                <tr v-for="(rowHeader, count) in rows_displayed">
+                  <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -279,16 +291,16 @@
                   </th>
                   <td v-for="index in [0, 1, 2, 3, 4]">
                     <matrix-cell
-                            v-bind:count="filtered_summary[count][index]"
+                            v-bind:count="filtered_summary[rowHeader.rowNumber][index]"
                             :color_base="`${config.colors.leftSideTableColorRGBValues}`"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: rowHeader.rowNumber })" />
                   </td>
 
                   <td v-for="index in [5, 6, 7, 8, 9]">
                     <matrix-cell
-                            v-bind:count="filtered_summary[count][index]"
+                            v-bind:count="filtered_summary[rowHeader.rowNumber][index]"
                             :color_base="`${config.colors.rightSideTableColorRGBValues}`"
-                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
+                            @show-docs-modal="build_docs_modal({ value_index: index, way_index: rowHeader.rowNumber })" />
                   </td>
                   <th scope="row" class="engage" :title="rowHeader.title">
                     <div class="clip-content">
@@ -302,7 +314,7 @@
                     <div class="clip-content">{{rowHeader.titleLineThree}}</div>
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
-                  <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
                       {{config.sideHeader}}
                       </a>
@@ -350,8 +362,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <tr v-for="(rowHeader, count) in rows_displayed">
+                    <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -378,9 +390,9 @@
                   </th>
                     <td v-for="index in [0, 1, 2, 3, 4]">
                       <matrix-cell
-                              v-bind:count="filtered_summary[count][index]"
+                              v-bind:count="filtered_summary[rowHeader.rowNumber][index]"
                               :color_base="config.colors.leftSideTableColorRGBValues"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: rowHeader.rowNumber })" />
                     </td>
                   </tr>
                   </tbody>
@@ -427,8 +439,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for="(rowHeader, count) in config.rows">
-                    <th class="d-lg-none d-lg-table-cell group-title-vert" :rowspan="config.rows.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                  <tr v-for="(rowHeader, count) in rows_displayed">
+                    <th class="d-lg-none d-lg-table-cell group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
@@ -456,11 +468,11 @@
 
                     <td v-for="index in [5, 6, 7, 8, 9]">
                       <matrix-cell
-                              v-bind:count="filtered_summary[count][index]"
+                              v-bind:count="filtered_summary[rowHeader.rowNumber][index]"
                               :color_base="config.colors.rightSideTableColorRGBValues"
-                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: count })" />
+                              @show-docs-modal="build_docs_modal({ value_index: index, way_index: rowHeader.rowNumber })" />
                     </td>
-                    <th class="d-none d-lg-table-cell group-title-vert" :rowspan="config.rows.length" v-if="count === 0">
+                    <th class="d-none d-lg-table-cell group-title-vert" :rowspan="rows_displayed.length" v-if="rowHeader.rowNumber === 0">
                       <div class="title-rotate">
                         {{config.sideHeader}}
                         </a>
