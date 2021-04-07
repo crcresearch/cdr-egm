@@ -192,7 +192,7 @@
               <!-- end search bar -->
                   <div class="row pt-3 justify-content-center">
                     <div class="col-md-4">
-                      <vue-multiselect v-model="rows_selected" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="Object.keys(config.rows)" @input="filter_change" >
+                      <vue-multiselect v-model="rows_selected" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="Object.keys(config.rows)">
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
