@@ -157,6 +157,10 @@ const egm_layout = {
       this.search = ""
       this.filter_records();
     },
+    reset_rows: function () {
+      this.rows_displayed = [];
+      this.rows_selected = [];
+    }
   }
 };
 
