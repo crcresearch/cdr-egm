@@ -81,7 +81,8 @@ const egm_layout = {
       newVal.forEach(rowName => {
           newList.push(this.config.rows[rowName]);
       })
-      this.rows_displayed = newList.flat();
+      // Sort the rows based on the row numbers.
+      this.rows_displayed = newList.flat().sort((a, b) => (a.rowNumber > b.rowNumber ? 1 : -1));
     }
   },
   methods: {
