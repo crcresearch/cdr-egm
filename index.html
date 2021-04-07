@@ -190,18 +190,27 @@
                 </div>
               </div> 
               <!-- end search bar -->
-              <div class="row pt-3 justify-content-center">
+                  <div class="row pt-3 justify-content-center">
+                    <div class="col-md-4">
+                      <vue-multiselect v-model="rows_selected" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="Object.keys(config.rows)" @input="filter_change" >
+                        <template slot="selection" slot-scope="{ values }">
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
+                          <span class="multiselect__single" v-else>Select Rows</span>
+                        </template>
+                      </vue-multiselect>
+                    </div>
+                    <div class="col-md-1 text-center text-md-left">
+                      <a class="btn btn-light btn-sm rounded-pill ml-2 mt-2 mt-md-1 text-small" role="button" title="Reset filters" @click="reset_rows" ><i class="fas fa-redo"></i> Reset</a>
+                    </div>
+            </div>
+              <!-- <div class="row pt-3 justify-content-center">
                 <br />
                 <select v-model="rows_selected" multiple>
-                  <option>Building Research Collaborations</option>
-                  <option>Capacity Building for HEIS</option>
-                  <option>Capacity Building for Researchers</option>
-                  <option>Capacity Building for Policy Makers and Practitioners</option>
-                  <option>Resource Provision</option>
-                  <option>Ecosystem Strengthening</option>
-                  <option>Research Dissemination</option>
+                  <option v-for="(value, key) in config.rows">{{key}}</option>
                 </select>
-              </div>
+              </div> -->
+              <!-- end row filters -->
             </div>
           </div>
 
