@@ -204,6 +204,11 @@
                       <a class="btn btn-light btn-sm rounded-pill ml-2 mt-2 mt-md-1 text-small" role="button" title="Reset filters" @click="reset_rows" ><i class="fas fa-redo"></i> Reset</a>
                     </div>
             </div>
+            <div class="row pt-3 justify-content-center">
+                <button @click="copy_link_with_filters" style="border-radius: 5px; background-color: #fff;">
+                  Copy Current View URL
+                </button>
+              </div>
               <!-- <div class="row pt-3 justify-content-center">
                 <br />
                 <select v-model="rows_selected" multiple>

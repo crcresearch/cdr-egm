@@ -72,6 +72,8 @@ const egm_layout = {
   mounted: function () {
     this.filtered_documents = this.documents;
     this.rows_displayed = this.config.rows["Building Research Collaborations"];
+    // This will update the EGM based on any query params
+    this.update_based_on_query_params();
   },
   watch: {
     // Whenever rows_selected changes, this will run
@@ -160,7 +162,79 @@ const egm_layout = {
     },
     reset_rows: function () {
       this.rows_displayed = [];
-      this.rows_selected = [];
+      this.rows_selected = ["Building Research Collaborations"];
+    },
+    update_based_on_query_params: function () {
+      function getParameterByName(name, url = window.location.href) {
+        // Some gross regex to get query params......
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      function update_given_filter(vue_object, query_key, filter_category) {
+        if (getParameterByName(query_key)) {
+          var newValues = [];
+          // Splitting values based on commas....
+          getParameterByName(query_key).split(',').forEach(value => {
+            if (vue_object.filter_categories[filter_category].includes(value)) {
+              newValues.push(value);
+            }
+          })
+          // return the new list
+          return newValues;
+        }
+        // We didn't find anything for this, return an empty list
+        return [];
+      }
+      this.filters.regions = update_given_filter(this, 'region', 'USAID Region');
+      this.filters.country = update_given_filter(this, 'country', 'Country(ies)');
+      this.filters.technical_sector = update_given_filter(this, 'technical_sector', 'Technical Sector');
+      this.filters.resource_type = update_given_filter(this, 'resource_type', 'Type of Document');
+      // Rows are a little different because two things need to be updated.
+      if (getParameterByName('row')) {
+        var newRowsDisplayed = [];
+        var newRowsSelected = [];
+        getParameterByName('row').split(',').forEach(rowName => {
+          // Make sure that the row is a key in our rows dict
+          if (this.config.rows[rowName]) {
+            newRowsDisplayed.push(this.config.rows[rowName]);
+            newRowsSelected.push(rowName);
+          }
+        }) 
+        this.rows_displayed = newRowsDisplayed.flat().sort((a, b) => (a.rowNumber > b.rowNumber ? 1 : -1));
+        this.rows_selected = newRowsSelected;
+      }
+      // Filter the records based on what was passed in.
+      this.filter_records();
+    },
+    copy_link_with_filters: function () {
+      var getUrl = window.location;
+      var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "#/egm?";
+      function create_query_strings(vue_object, query_key) {
+        if (vue_object.length > 0) {
+          listString = vue_object.join();
+          return `${query_key}=${listString}&`;
+        }
+        else {
+          return ''
+        }
+      }
+      rowString = create_query_strings(this.rows_selected, 'row');
+      regionString = create_query_strings(this.filters.regions, 'region');
+      countryString = create_query_strings(this.filters.country, 'country');
+      technicalSectorString = create_query_strings(this.filters.technical_sector, 'technical_sector');
+      resourceTypeString = create_query_strings(this.filters.resource_type, 'resource_type');
+
+      // There has to be a more elegant way to do this, no?
+      const elem = document.createElement('textarea');
+      elem.value = baseUrl.concat(rowString, regionString, countryString, technicalSectorString, resourceTypeString).slice(0, -1);
+      document.body.appendChild(elem);
+      elem.select();
+      document.execCommand('copy');
+      document.body.removeChild(elem);
     }
   }
 };
@@ -227,8 +301,8 @@ const map = {
   template: '#map-component',
   mounted: function () {
     this.filter_records(this.filtered_documents);
-    $('[data-toggle="popover"]').popover()
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="tooltip"]').tooltip();
   },
   watch: {
     // whenever question changes, this function will run
