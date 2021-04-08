@@ -223,7 +223,7 @@ const egm_layout = {
         }
       }
       rowString = create_query_strings(this.rows_selected, 'row');
-      regionString = create_query_strings(this.filters.regions, 'region');
+      regionString = create_query_strings(this.filters.region, 'region');
       countryString = create_query_strings(this.filters.country, 'country');
       technicalSectorString = create_query_strings(this.filters.technical_sector, 'technical_sector');
       resourceTypeString = create_query_strings(this.filters.resource_type, 'resource_type');
