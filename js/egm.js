@@ -230,7 +230,7 @@ const egm_layout = {
 
       // There has to be a more elegant way to do this, no?
       const elem = document.createElement('textarea');
-      elem.value = baseUrl.concat(rowString, regionString, countryString, technicalSectorString, resourceTypeString).slice(0, -1);
+      elem.value = baseUrl.concat(rowString, regionString, countryString, technicalSectorString, resourceTypeString).replace(/ /g,"+").slice(0, -1);
       document.body.appendChild(elem);
       elem.select();
       document.execCommand('copy');
