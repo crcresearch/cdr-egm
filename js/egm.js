@@ -189,7 +189,7 @@ const egm_layout = {
         // We didn't find anything for this, return an empty list
         return [];
       }
-      this.filters.regions = update_given_filter(this, 'region', 'USAID Region');
+      this.filters.region = update_given_filter(this, 'region', 'USAID Region');
       this.filters.country = update_given_filter(this, 'country', 'Country(ies)');
       this.filters.technical_sector = update_given_filter(this, 'technical_sector', 'Technical Sector');
       this.filters.resource_type = update_given_filter(this, 'resource_type', 'Type of Document');
