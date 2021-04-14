@@ -96,6 +96,16 @@ const ALLOWED_FIELDS = [
     name: 'Year',
     isArray: false,
     isFiltered: false
+  },
+  {
+    name: 'Direction of Evidence',
+    isArray: true,
+    isFiltered: false
+  },
+  {
+    name: 'Methodologies',
+    isArray: true,
+    isFiltered: false
   }
 ];
 

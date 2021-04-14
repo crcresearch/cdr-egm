@@ -230,9 +230,11 @@ const egm_layout = {
 
       // There has to be a more elegant way to do this, no?
       const elem = document.createElement('textarea');
+      // Concatenate the string, replace spaces with +'s and remove last &
       elem.value = baseUrl.concat(rowString, regionString, countryString, technicalSectorString, resourceTypeString).replace(/ /g,"+").slice(0, -1);
       document.body.appendChild(elem);
       elem.select();
+      // Copy and remove textarea
       document.execCommand('copy');
       document.body.removeChild(elem);
     }
