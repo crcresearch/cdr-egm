@@ -103,7 +103,7 @@ const ALLOWED_FIELDS = [
     isFiltered: false
   },
   {
-    name: 'Methodologies',
+    name: 'Methodologies Used',
     isArray: true,
     isFiltered: false
   }
