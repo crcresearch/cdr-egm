@@ -161,7 +161,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col-md-11">
                   <div class="row no-gutters filters" id="filter-row">
-                    <div class="col-md-2" v-for="(lookup, name) in config.searchOptions">
+                    <div class="col-md-3" v-for="(lookup, name) in config.searchOptions">
                       <vue-multiselect v-model="filters[name]" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories[lookup]" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
@@ -509,11 +509,6 @@
             </p>
           </div>
           <div class="container mb-5">
-            <h4>Help to Fill the Gaps</h4>
-            <p>
-              We invite you to contribute documents to add to the map, using this 
-              <a :href="`${config.aboutSection.linkToContribute}`">form</a>.
-            </p>
           </div>
           <!-- /.container -->
 
@@ -580,9 +575,6 @@
                     <li v-for="entry in document_recommendations">{{ entry }}</li>
                   </ul>
                 </div>
-
-        <h4>Contribute Improvements</h4>
-        <p>Anything amiss? We invite you to contribute additions or corrections to this document description using this <a href="https://forms.gle/c5XrdNq1iRm4vYWy9">form</a>.</p>
               </div>
               <div class="col-sm-5 col-lg-4">
                 <ul class="list-group mt-3">
@@ -606,6 +598,14 @@
                   </li>
                 </ul>
                 <ul class="list-group list-group-flush">
+                  <li v-if="document_details['Direction of Evidence']" class="list-group-item">
+                    <h5 class="mb-1">Direction of Evidence</h5>
+                    <p class="mb-0" v-for="(sector, index) in document_details['Direction of Evidence']" :key="sector" >{{ sector }}</p>
+                  </li>
+                  <li v-if="document_details['Methodologies Used']" class="list-group-item">
+                    <h5 class="mb-1">Methodologies Used</h5>
+                    <p class="mb-0" v-for="(sector, index) in document_details['Methodologies Used']" :key="sector" >{{ sector }}</p>
+                  </li>
                   <li v-if="document_details['Technical Sector']" class="list-group-item">
                     <h5 class="mb-1">Technical Sector</h5>
                     <p class="mb-0" v-for="(sector, index) in document_details['Technical Sector']" :key="sector" >{{ sector }}</p>
