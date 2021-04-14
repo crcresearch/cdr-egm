@@ -394,18 +394,14 @@
             "region": "USAID Region",
             "country": "Country(ies)",
             "technical_sector": "Technical Sector",
-            "industry": "Private Sector Industry",
-            "enterprise_type": "Type of Enterprise",
             "resource_type": "Type of Document"
     },
     "aboutSection": {
         "aboutHeader": "About the Evidence Gap Map",
         "paragraphs": [
-            "The Evidence Gap Map could just as easily be called the “Evidence Map”, meaning that it is a visual representation of existing evidence, using a matrix of USAID’s conceptualization of PSE means and value propositions that both the private sector and development actors offer. We hope that by compiling this evidence in one place with a number of filter and search features, we will help facilitate the use of evidence.",
-            "The “gap” in the title is referring to understanding where there is good evidence in the matrix and where there are holes in our knowledge base and understanding. As users interact with the evidence gap map and the filters, they will be able to visually see where there is knowledge and where additional investments in research and evaluation might be warranted to further build the evidence base. This is also an opportunity to collaborate with our team as well as alert us to any evidence we may have missed. ",
-            "The map was designed for a primary audience of USAID technical staff and program designers. Secondary intended audiences include USAID implementing partner staff and private sector employees seeking to engage in development work. "
-        ],
-        "linkToContribute": "https://forms.gle/dPC55Lcaq5PyGV6QA"
+            "The Evidence Gap Map could just as easily be called the “Evidence Map”, meaning that it is a visual representation of existing evidence, using a matrix of USAID’s conceptualization of research for development activities and desired outcomes. We hope that by compiling this evidence in one place with a number of filter and search features, we will help facilitate the use of evidence.",
+            "The “gap” in the title is referring to understanding where there is good evidence in the matrix and where there are holes in our knowledge base and understanding. As users interact with the evidence gap map and the filters, they will be able to visually see where there is knowledge and where additional investments in research and evaluation might be warranted to further build the evidence base. The map was designed for a primary audience of USAID technical staff and program designers."
+        ]
     },
     "colors": {
         "titleBackgroundColor": "#004C97",
