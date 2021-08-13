@@ -160,7 +160,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col-md-11">
                   <div class="row no-gutters filters" id="filter-row">
-                    <div class="col-md-3" v-for="(lookup, name) in config.searchOptions">
+                    <div class="col" v-for="(lookup, name) in config.searchOptions">
                       <vue-multiselect v-model="filters[name]" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories[lookup]" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
@@ -293,7 +293,7 @@
                   <th scope="row" class="engage" :title="rowHeader.title">
                     <div class="clip-content">
                         <span class="float-right">
-                        <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="right" :title="rowHeader.title" :data-content="rowHeader.description">
+                        <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="right" :title="rowHeader.title" :data-content="rowHeader.title">
                           <i class="fas fa-info-circle"></i>
                         </a>
                         </span>
@@ -318,7 +318,7 @@
                   <th scope="row" class="engage" :title="rowHeader.title">
                     <div class="clip-content">
                           <span class="float-right">
-                          <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="left" :title="rowHeader.title" :data-content="rowHeader.description">
+                          <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="left" :title="rowHeader.title" :data-content="rowHeader.title">
                             <i class="fas fa-info-circle"></i>
                           </a>
                           </span>
@@ -391,7 +391,7 @@
                                 data-trigger="focus"
                                 data-placement="right"
                                 :title="rowHeader.title" 
-                                :data-content="rowHeader.description"
+                                :data-content="rowHeader.title"
                         >
                           <i class="fas fa-info-circle"></i>
                         </a>
@@ -468,7 +468,7 @@
                                 data-trigger="focus"
                                 data-placement="right"
                                 :title="rowHeader.title" 
-                                :data-content="rowHeader.description"
+                                :data-content="rowHeader.title"
                         >
                           <i class="fas fa-info-circle"></i>
                         </a>
@@ -527,7 +527,7 @@
             </h5>
             <ul class="list-group list-group-flush mb-4">
               <li v-for="(doc, index) in docs_in_categories[doc_type]" :key="index" class="list-group-item">
-                <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
+                <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Publishing Institution(s)']">, <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em></span><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
               </li>
             </ul>
           </div>
@@ -680,7 +680,7 @@
                         </h6>
                         <ul class="list-group list-group-flush">
                           <li v-for="doc in docs_in_categories[doc_type]" :key="doc['Document ID']" class="list-group-item">
-                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Publishing Institution(s)']">, <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
+                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Publishing Institution(s)']">, <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em></span><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
                           </li>
                         </ul>
                       </template>

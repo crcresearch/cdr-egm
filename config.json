@@ -394,7 +394,8 @@
             "region": "USAID Region",
             "country": "Country(ies)",
             "technical_sector": "Technical Sector",
-            "resource_type": "Type of Document"
+            "resource_type": "Type of Document",
+            "special_considerations": "Special Considerations"
     },
     "aboutSection": {
         "aboutHeader": "About the Evidence Gap Map",

@@ -60,6 +60,7 @@ const egm_layout = {
         industry: [],
         enterprise_type: [],
         technical_sector: [],
+        special_considerations: [],
         resource_type: []
       },
       search: "",
@@ -94,7 +95,8 @@ const egm_layout = {
         return (
           (vue_object.filters.region.length == 0 || vue_object.multi_select_filter(doc, "USAID Region", 'region')) &&
           (vue_object.filters.country.length == 0 || vue_object.multi_select_filter(doc, "Country(ies)", 'country')) && 
-          (vue_object.filters.technical_sector.length == 0 || vue_object.multi_select_filter(doc, "Technical Sector", 'technical_sector')) && 
+          (vue_object.filters.technical_sector.length == 0 || vue_object.multi_select_filter(doc, "Technical Sector", 'technical_sector')) &&
+          (vue_object.filters.special_considerations.length == 0 || vue_object.multi_select_filter(doc, "Special Considerations", 'special_considerations')) && 
           (vue_object.filters.enterprise_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Enterprise", 'enterprise_type')) && 
           (vue_object.filters.industry.length == 0 || vue_object.multi_select_filter(doc, "Private Sector Industry", 'industry')) && 
           (vue_object.filters.resource_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Document", 'resource_type')) 
@@ -193,6 +195,7 @@ const egm_layout = {
       this.filters.region = update_given_filter(this, 'region', 'USAID Region');
       this.filters.country = update_given_filter(this, 'country', 'Country(ies)');
       this.filters.technical_sector = update_given_filter(this, 'technical_sector', 'Technical Sector');
+      this.filters.special_considerations = update_given_filter(this, 'special_considerations', 'Special Considerations');
       this.filters.resource_type = update_given_filter(this, 'resource_type', 'Type of Document');
       // Rows are a little different because two things need to be updated.
       if (getParameterByName('row')) {
@@ -227,12 +230,13 @@ const egm_layout = {
       regionString = create_query_strings(this.filters.region, 'region');
       countryString = create_query_strings(this.filters.country, 'country');
       technicalSectorString = create_query_strings(this.filters.technical_sector, 'technical_sector');
+      specialConsiderationsString = create_query_strings(this.filters.special_considerations, 'special_considerations');
       resourceTypeString = create_query_strings(this.filters.resource_type, 'resource_type');
 
       // There has to be a more elegant way to do this, no?
       const elem = document.createElement('textarea');
       // Concatenate the string, replace spaces with +'s and remove last &
-      const newUrl = baseUrl.concat(rowString, regionString, countryString, technicalSectorString, resourceTypeString).replace(/ /g,"+").slice(0, -1);
+      const newUrl = baseUrl.concat(rowString, regionString, countryString, technicalSectorString, specialConsiderationsString, resourceTypeString).replace(/ /g,"+").slice(0, -1);
       elem.value = newUrl
       document.body.appendChild(elem);
       elem.select();

@@ -65,7 +65,7 @@ const ALLOWED_FIELDS = [
   {
     name: 'Special Considerations',
     isArray: true,
-    isFiltered: false
+    isFiltered: true
   },
   {
     name: 'Technical Sector',
