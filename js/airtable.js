@@ -74,7 +74,7 @@ const ALLOWED_FIELDS = [
   },
   {
     name: 'Type of Document',
-    isArray: true,
+    isArray: false,
     isFiltered: true
   },
   {

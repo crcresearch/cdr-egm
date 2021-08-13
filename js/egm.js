@@ -117,6 +117,7 @@ const egm_layout = {
             vue_object.search_list_field(doc, "Author(s)", vue_object.search ) ||
             vue_object.search_list_field(doc, "Name of Private Sector Partner(s)", vue_object.search ) ||
             vue_object.search_list_field(doc, "Publishing Institution(s)", vue_object.search ) ||
+            vue_object.search_list_field(doc, "Methodologies Used", vue_object.search ) ||
             doc["Type of Document"] && doc["Type of Document"].toLowerCase().includes(vue_object.search.toLowerCase()) ||
             doc["Document Title"] && doc["Document Title"].toLowerCase().includes(vue_object.search.toLowerCase()) || 
             doc["Key Findings"] && doc["Key Findings"].toLowerCase().includes(vue_object.search.toLowerCase()) 
