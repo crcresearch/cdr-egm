@@ -99,7 +99,7 @@
             {
                 "rowNumber": 0,
                 "title": "BRC1 - Between development organizations and scientific, research, and academic institutions, both domestic and international",
-                "description": "",
+                "description": "Multi-stakeholder partnerships meant to bring together research producers, such as academic institutions, and research users such as development organizations.",
                 "titleLineOne": "Between",
                 "titleLineTwo": "Organizations and Scientific,",
                 "titleLineThree": "Research and Academic Institutions",
@@ -389,7 +389,7 @@
             }
         ]
     },
-    "sideHeader": "",
+    "sideHeader": "HELPFUL",
     "searchOptions": {
             "region": "USAID Region",
             "country": "Country(ies)",
