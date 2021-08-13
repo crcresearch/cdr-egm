@@ -597,14 +597,6 @@
                   </li>
                 </ul>
                 <ul class="list-group list-group-flush">
-                  <li v-if="document_details['Direction of Evidence']" class="list-group-item">
-                    <h5 class="mb-1">Direction of Evidence</h5>
-                    <p class="mb-0" v-for="(sector, index) in document_details['Direction of Evidence']" :key="sector" >{{ sector }}</p>
-                  </li>
-                  <li v-if="document_details['Methodologies Used']" class="list-group-item">
-                    <h5 class="mb-1">Methodologies Used</h5>
-                    <p class="mb-0" v-for="(sector, index) in document_details['Methodologies Used']" :key="sector" >{{ sector }}</p>
-                  </li>
                   <li v-if="document_details['Technical Sector']" class="list-group-item">
                     <h5 class="mb-1">Technical Sector</h5>
                     <p class="mb-0" v-for="(sector, index) in document_details['Technical Sector']" :key="sector" >{{ sector }}</p>
@@ -624,6 +616,14 @@
                   <li v-if="document_details['USAID Region']" class="list-group-item">
                     <h5 class="mb-1">USAID Region</h5>
                     <p class="mb-0"v-for="(region, index) in document_details['USAID Region']" :key="region" >{{region}}</p>
+                  </li>
+                  <li v-if="document_details['Methodologies Used']" class="list-group-item">
+                    <h5 class="mb-1">Methodologies Used</h5>
+                    <p class="mb-0" v-for="(sector, index) in document_details['Methodologies Used']" :key="sector" >{{ sector }}</p>
+                  </li>
+                  <li v-if="document_details['Direction of Evidence']" class="list-group-item">
+                    <h5 class="mb-1">Direction of Evidence</h5>
+                    <p class="mb-0" v-for="(sector, index) in document_details['Direction of Evidence']" :key="sector" >{{ sector }}</p>
                   </li>
                   <li v-if="document_details['Internet URL of Document']" class="list-group-item">
                     <h5 class="mb-1">Internet URL</h5>
