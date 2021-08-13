@@ -680,7 +680,7 @@
                         </h6>
                         <ul class="list-group list-group-flush">
                           <li v-for="doc in docs_in_categories[doc_type]" :key="doc['Document ID']" class="list-group-item">
-                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
+                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Publishing Institution(s)']">, <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
                           </li>
                         </ul>
                       </template>
