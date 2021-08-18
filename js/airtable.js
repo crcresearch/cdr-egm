@@ -105,7 +105,7 @@ const ALLOWED_FIELDS = [
   {
     name: 'Methodologies Used',
     isArray: true,
-    isFiltered: false
+    isFiltered: true
   }
 ];
 

@@ -61,6 +61,7 @@ const egm_layout = {
         enterprise_type: [],
         technical_sector: [],
         special_considerations: [],
+        methodologies_used: [],
         resource_type: []
       },
       search: "",
@@ -97,6 +98,7 @@ const egm_layout = {
           (vue_object.filters.country.length == 0 || vue_object.multi_select_filter(doc, "Country(ies)", 'country')) && 
           (vue_object.filters.technical_sector.length == 0 || vue_object.multi_select_filter(doc, "Technical Sector", 'technical_sector')) &&
           (vue_object.filters.special_considerations.length == 0 || vue_object.multi_select_filter(doc, "Special Considerations", 'special_considerations')) && 
+          (vue_object.filters.methodologies_used.length == 0 || vue_object.multi_select_filter(doc, "Methodologies Used", 'methodologies_used')) && 
           (vue_object.filters.enterprise_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Enterprise", 'enterprise_type')) && 
           (vue_object.filters.industry.length == 0 || vue_object.multi_select_filter(doc, "Private Sector Industry", 'industry')) && 
           (vue_object.filters.resource_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Document", 'resource_type')) 
@@ -196,6 +198,7 @@ const egm_layout = {
       this.filters.country = update_given_filter(this, 'country', 'Country(ies)');
       this.filters.technical_sector = update_given_filter(this, 'technical_sector', 'Technical Sector');
       this.filters.special_considerations = update_given_filter(this, 'special_considerations', 'Special Considerations');
+      this.filters.methodologies_used = update_given_filter(this, 'methodologies_used', 'Methodologies Used');
       this.filters.resource_type = update_given_filter(this, 'resource_type', 'Type of Document');
       // Rows are a little different because two things need to be updated.
       if (getParameterByName('row')) {

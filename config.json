@@ -395,7 +395,8 @@
             "country": "Country(ies)",
             "technical_sector": "Technical Sector",
             "resource_type": "Type of Document",
-            "special_considerations": "Special Considerations"
+            "special_considerations": "Special Considerations",
+            "methodologies_used": "Methodologies Used"
     },
     "aboutSection": {
         "aboutHeader": "About the Evidence Gap Map",
