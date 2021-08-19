@@ -237,6 +237,7 @@ p.p-inst {
   line-height: 1.2;
   background: #ced4da; /* #ced4da #adb5bd */
   letter-spacing: .5px;
+  color: #fff;
 }
 .egm-table th.group-title-vert .title-rotate {
   text-align: center;
@@ -500,17 +501,17 @@ ul.list-spaced li {
   margin-top: 56px;
 }
 
-#combined-table.egm-table th.group-title-pse {
+[id^="combined-table"].egm-table th.group-title-pse {
   background: #3d9bb4; /* #3d9bb4; */
 }
-#combined-table.egm-table th.group-title-usaid {
+[id^="combined-table"].egm-table th.group-title-usaid {
   background: #002f6c; /* #002f6c; #ba0c2f */
 }
 
-#combined-table.egm-table td .square {
+[id^="combined-table"].egm-table td .square {
   background: rgba(61, 155, 180, 0.25);
 }
-#combined-table.egm-table td .square .count {
+[id^="combined-table"].egm-table td .square .count {
   background: rgba(255, 255, 255, 0.75); /* #3d9bb4; */
   /*  border: 1px solid rgba(61, 155, 180, 0.25); */
   color: #247d95;

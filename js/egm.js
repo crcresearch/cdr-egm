@@ -67,7 +67,7 @@ const egm_layout = {
       search: "",
       filtered_documents: [],
       rows_displayed: [],
-      rows_selected: ["Building Research Collaborations"]
+      rows_selected: Object.keys(this.config.rows)
     };
   },
   template: '#egm-layout',
@@ -167,7 +167,7 @@ const egm_layout = {
     },
     reset_rows: function () {
       this.rows_displayed = [];
-      this.rows_selected = ["Building Research Collaborations"];
+      this.rows_selected = Object.keys(this.config.rows)
     },
     update_based_on_query_params: function () {
       function getParameterByName(name, url = window.location.href) {
@@ -261,7 +261,8 @@ const map = {
   props: {
     filtered_documents: Array,
     config: Object,
-    rows_displayed: Array
+    rows_displayed: Array,
+    rows_selected: Array
   },
   data: function () {
     return {
@@ -447,7 +448,8 @@ const list = {
   name: 'list_page',
   props: {
     filtered_documents: Array,
-    rows_displayed: Array
+    rows_displayed: Array,
+    rows_selected: Array
   },
   computed: {
     doc_types: function () {

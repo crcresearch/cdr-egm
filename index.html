@@ -219,7 +219,7 @@
           </div>
 
           <keep-alive>
-              <router-view :filtered_documents="filtered_documents" :config="config" :rows_displayed="rows_displayed"></router-view>
+              <router-view :filtered_documents="filtered_documents" :config="config" :rows_displayed="rows_displayed" :rows_selected="rows_selected"></router-view>
           </keep-alive>
         </main>
         <footer-component :config='config' />
@@ -229,9 +229,10 @@
     <script type="text/x-template" id="map-component">
       <div>
           <div v-if="true" class="container-fluid" id="table-container">
-            <div class="row no-gutters d-none d-lg-block">
-              <table class="table egm-table" id="combined-table">
-                <thead>
+            <div class="row no-gutters d-none d-lg-block" v-for="(row, index) in Object.keys(config.rows)" :key=index >
+              <!-- <p> {{config.rows}}</p> -->
+              <table v-show="rows_selected.includes(row)" class="table egm-table" :id="`combined-table-${index}`">
+                <thead v-if="index == 0">
                 <tr>
                   <th scope="col" class="set-group-title-vert-width"></th>
                   <th scope="col"></th>
@@ -281,12 +282,27 @@
                   <th scope="col" class=""></th>
                 </tr>
                 </thead>
+                <thead v-else>
+                  <tr>
+                    <th scope="col" class="set-group-title-vert-width"></th>
+                    <th scope="col"></th>
+                    <th scope="colgroup" colspan="4" >
+                    </th>
+                    <th scope="colgroup" colspan="4" >
+                    </th>
+                    <th scope="colgroup" colspan="2" >
+                    </th>
+                    <th scope="col" class=""></th>
+                    <th scope="col" class="set-group-title-vert-width"></th>
+                  </tr>
+                  <tr>
+                  </thead>
                 <tbody>
                 <!-- Row Headers -->
-                <tr v-for="(rowHeader, count) in rows_displayed">
-                  <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
+                <tr v-for="(rowHeader, count) in config.rows[row]">
+                  <th class="group-title-vert" :rowspan="config.rows[row].length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
-                      {{config.sideHeader}}
+                      {{row}}
                       </a>
                     </div>
                   </th>
@@ -329,7 +345,7 @@
                   </th>
                   <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
                     <div class="title-rotate">
-                      {{config.sideHeader}}
+                      {{row}}
                       </a>
                     </div>
                   </th>
