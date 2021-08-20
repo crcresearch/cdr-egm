@@ -231,10 +231,10 @@ p.p-inst {
 .egm-table th.group-title-vert {
   vertical-align: middle;
   text-align: right;
-  font-size: 1rem;
+  font-size: .7rem;
   text-transform: uppercase;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1;
   background: #ced4da; /* #ced4da #adb5bd */
   letter-spacing: .5px;
   color: #fff;
@@ -242,10 +242,9 @@ p.p-inst {
 .egm-table th.group-title-vert .title-rotate {
   text-align: center;
   white-space: nowrap;
-  transform: translate(0, 4rem) rotate(-90deg);
 }
 .egm-table th.set-group-title-vert-width {
-  width: 3rem;
+  width: 2rem;
 }
 
 .egm-table .clip-content {

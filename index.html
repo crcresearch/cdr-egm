@@ -301,7 +301,7 @@
                 <!-- Row Headers -->
                 <tr v-for="(rowHeader, count) in config.rows[row]">
                   <th class="group-title-vert" :rowspan="config.rows[row].length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
-                    <div class="title-rotate">
+                      <div class="title-rotate" v-bind:style="{ transform: 'translate(0, ' + row.length/5.5 + 'rem) rotate(-90deg)'}">
                       {{row}}
                       </a>
                     </div>
@@ -344,7 +344,7 @@
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
                   <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
-                    <div class="title-rotate">
+                    <div class="title-rotate" v-bind:style="{ transform: 'translate(0, ' + row.length/5.5 + 'rem) rotate(-90deg)'}">
                       {{row}}
                       </a>
                     </div>
