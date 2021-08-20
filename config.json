@@ -42,7 +42,9 @@
             "titleLineTwo": "Networks Expanded",
             "titleLineThree": "to Identify",
             "titleLineFour": "Development Challenges"
-        },
+        }
+    ],
+    "columnHeadersRight": [
         {
             "title": "[O-PDO1] Linkage between research networks and policy/ development community has improved",
             "description": "",
@@ -50,9 +52,7 @@
             "titleLineTwo": "Between Research",
             "titleLineThree": "Networks",
             "titleLineFour": "& Policy"
-        }
-    ],
-    "columnHeadersRight": [
+        },
         {
             "title": "[O-PDO2] Linkages between research networks and private sector community increased",
             "description": "",

@@ -363,7 +363,7 @@
             </div>
 
             <!-- Responsive View of Above Code -->
-            <div class="row no-gutters d-lg-none">
+            <div class="row no-gutters d-lg-none" v-for="(row, index) in Object.keys(config.rows)" :key=index >
               <div class="col-lg-6">
                 <table class="table egm-table" id="pse-table">
                   <thead>
@@ -373,7 +373,6 @@
                     <th scope="colgroup" colspan="4" class="group-title" :style='`background:${config.colors.columnHeaderLeftColor};`'>
                       {{config.columnTopHeaders.headerLeft}}
                     </th>
-                    <th scope="colgroup" colspan="1" class="group-title" :style='`background:${config.colors.columnHeaderLeftColor};`'></th>
                   </tr>
                   <tr>
                     <th scope="col"></th>
@@ -401,9 +400,9 @@
                   <tbody>
                   <tr v-for="(rowHeader, count) in rows_displayed">
                     <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
-                      <div class="title-rotate">
-                        {{config.sideHeader}}
-                        </a>
+                      <div class="title-rotate" v-bind:style="{ transform: 'translate(0, ' + row.length/5.5 + 'rem) rotate(-90deg)'}">
+                        {{row}}
+                      </a>
                       </div>
                     </th>
                   <th scope="row" class="engage" :title="rowHeader.title">
@@ -425,7 +424,7 @@
                     <div class="clip-content">{{rowHeader.titleLineThree}}</div>
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
-                    <td v-for="index in [0, 1, 2, 3, 4]">
+                    <td v-for="index in [0, 1, 2, 3]">
                       <matrix-cell
                               v-bind:count="filtered_summary[rowHeader.rowNumber][index]"
                               :color_base="config.colors.leftSideTableColorRGBValues"
@@ -441,7 +440,7 @@
                   <tr>
                     <th scope="col" class="d-lg-none set-group-title-vert-width"></th>
                     <th scope="col" class="d-lg-none"></th>
-                    <th scope="colgroup" colspan="3" class="group-title" :style='`background:${config.colors.columnHeaderRightColor};`'>
+                    <th scope="colgroup" colspan="4" class="group-title" :style='`background:${config.colors.columnHeaderRightColor};`'>
                       {{config.columnTopHeaders.headerCenter}}
                     </th>
                     <th scope="colgroup" colspan="2" class="group-title" :style='`background:${config.colors.columnHeaderRightColor};`'>
@@ -478,8 +477,8 @@
                   <tbody>
                   <tr v-for="(rowHeader, count) in rows_displayed">
                     <th class="d-lg-none d-lg-table-cell group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
-                      <div class="title-rotate">
-                        {{config.sideHeader}}
+                      <div class="title-rotate" v-bind:style="{ transform: 'translate(0, ' + row.length/5.5 + 'rem) rotate(-90deg)'}">
+                        {{row}}
                         </a>
                       </div>
                     </th>
@@ -503,15 +502,15 @@
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
 
-                    <td v-for="index in [5, 6, 7, 8, 9]">
+                    <td v-for="index in [4, 5, 6, 7, 8, 9]">
                       <matrix-cell
                               v-bind:count="filtered_summary[rowHeader.rowNumber][index]"
                               :color_base="config.colors.rightSideTableColorRGBValues"
                               @show-docs-modal="build_docs_modal({ value_index: index, way_index: rowHeader.rowNumber })" />
                     </td>
                     <th class="d-none d-lg-table-cell group-title-vert" :rowspan="rows_displayed.length" v-if="rowHeader.rowNumber === 0">
-                      <div class="title-rotate">
-                        {{config.sideHeader}}
+                      <div class="title-rotate" v-bind:style="{ transform: 'translate(0, ' + row.length/5.5 + 'rem) rotate(-90deg)'}">
+                        {{row}}
                         </a>
                       </div>
                     </th>
@@ -676,6 +675,7 @@
                     <h5 class="modal-title">
                       <span class="badge badge-secondary badge-pill mr-1">{{ state.num_relevant_docs }}</span>
                       Relevant Documents
+                      <span class="badge badge-success badge-pill mr-1">21 Positive</span>
                     </h5>
                     <button type="button" class="close" @click="$emit('close-docs-modal')">
                       <span>&times;</span>
