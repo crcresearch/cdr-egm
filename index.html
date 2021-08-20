@@ -161,7 +161,7 @@
                 <div class="col-md-11">
                   <div class="row no-gutters filters" id="filter-row">
                     <div class="col" v-for="(lookup, name) in config.searchOptions">
-                      <vue-multiselect v-model="filters[name]" :searchable="false" v-bind:multiple="name == 'year' : false ? true" :showLabels="false" :closeOnSelect="false" :options="filter_categories[lookup]" @input="filter_change" >
+                      <vue-multiselect v-model="filters[name]" :searchable="false" v-bind:multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories[lookup]" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
