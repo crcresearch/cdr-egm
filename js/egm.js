@@ -18,11 +18,18 @@ const relevantDocumentsModal = {
   },
   computed: {
     doc_types: function () {
-      return [...new Set(this.state.relevant_docs.map(doc => doc['Type of Document']))].sort();
+      let doctypesSet = new Set()
+      this.state.relevant_docs.map(doc => {
+        doc['Type of Document'].map(type => {
+          console.log(type)
+          doctypesSet.add(type)
+        })
+      })
+      return [...doctypesSet].sort();
     },
     docs_in_categories: function () {
       // categorize each document by its type
-      return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.state.relevant_docs.filter(doc => doc['Type of Document'] === doc_type) }), {});
+      return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.state.relevant_docs.filter(doc => doc['Type of Document'].includes(doc_type)) }), {});
     }
   },
   template: '#relevant-docs-modal-component'
@@ -454,6 +461,20 @@ const list = {
   computed: {
     doc_types: function () {
       return [...new Set(this.filtered_documents.map(doc => doc['Type of Document']))].sort();
+      if(this.filtered_documents.length > 0) {
+        let doctypesSet = new Set()
+        console.log("length" + this.filtered_documents.length);
+        // console.log(this.filtered_documents[0])
+        // this.filtered_documents.map(doc => {
+        //   doc['Type of Document'].map(type => {
+        //     doctypesSet.add(type)
+        //   })
+        // })
+        return [...doctypesSet].sort();
+      }
+      else {
+        return []
+      }
     },
     docs_in_categories: function () {
       // categorize each document by its type
