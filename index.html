@@ -542,6 +542,17 @@
 
     <script type="text/x-template" id="list-component">
       <div class="container mb-5">
+        <h5 class="d-flex justify-content-between align-items-center px-3 text-uppercase font-weight-bolder" >
+          {{ filtered_documents.length }} Total Filtered Documents
+        </h5>
+        <h5 class="mb-3 px-3">
+          <p class="mb-0 text-uppercase" >NUMBER OF DOCUMENTS BY DIRECTION OF EVIDENCE</p>
+          <span class="badge badge-success badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Positive Contribution") : false).length }} Positive</span> 
+          <span class="badge badge-warning badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Mixed or Neutral Contribution") : false).length }} Neutral</span>
+          <span class="badge badge-danger badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Negative Contribution") : false).length }} Negative</span>
+          <span class="badge badge-secondary badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Not Applicable") : false).length }} Not Applicable</span>
+        </h5>
+        <hr/>
         <template v-for="(doc_type, index) in doc_types" :key="index" >
           <div :class="doc_type ? 'doc-type-' + doc_type.toLowerCase().replace(/[ \/]/g,'-') : 'doc-type-unknown'" >
             <h5 class="d-flex justify-content-between align-items-center px-3 text-uppercase font-weight-bolder" >
@@ -571,15 +582,15 @@
         </div>
         <main v-if="document_details" role="main">
           <div class="bg-vb-lt-blue" :style="`background-color: ${config.colors.docTitleBackgroundColor} !important;`">
-            <div class="container position-relative text-dark" id="top-document-detail">
-              <h5 id="doc-type" class="mb-1 text-uppercase text-dark font-weight-bolder">
+            <div class="container position-relative text-white" id="top-document-detail">
+              <!-- <h5 id="doc-type" class="mb-1 text-uppercase text-dark font-weight-bolder">
                 {{ document_details['Type of Document'] }}
-              </h5>
+              </h5> -->
               <h1 id="doc-title" class="mb-1 text-white">
                 {{ document_details['Document Title'] }}
               </h1>
-              <p class="my-0" v-if="document_details['Author(s)']"><span class="text-uppercase font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
-              <p class="my-0" v-if="document_details['Publishing Institution(s)']"><span class="text-uppercase font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }}<span v-if="document_details['Year']">, {{ document_details['Year'] }}</span></p>
+              <p class="my-0" v-if="document_details['Author(s)']"><span class="text-uppercase text-white font-weight-lighter">author:</span> {{ document_details['Author(s)'].join(', ') }}</p>
+              <p class="my-0" v-if="document_details['Publishing Institution(s)']"><span class="text-uppercase text-white font-weight-lighter">published by:</span> {{ document_details['Publishing Institution(s)'].join(', ') }}<span v-if="document_details['Year']">, {{ document_details['Year'] }}</span></p>
               <a v-if="document_details['Internet URL of Document']" class="btn btn-dark btn-lg" id="view-document-link" :href="document_details['Internet URL of Document']" target="_blank" role="button">View Document <i class="fas fa-external-link-alt ml-2"></i></a>
             </div>
           </div>
@@ -620,6 +631,10 @@
                   </li>
                 </ul>
                 <ul class="list-group list-group-flush">
+                  <li v-if="document_details['Type of Document']" class="list-group-item">
+                    <h5 class="mb-1">Type of Document</h5>
+                    <p class="mb-0" v-for="(type, index) in document_details['Type of Document']" :key="type" >{{ type }}</p>
+                  </li>
                   <li v-if="document_details['Technical Sector']" class="list-group-item">
                     <h5 class="mb-1">Technical Sector</h5>
                     <p class="mb-0" v-for="(sector, index) in document_details['Technical Sector']" :key="sector" >{{ sector }}</p>
@@ -675,7 +690,6 @@
                     <h5 class="modal-title">
                       <span class="badge badge-secondary badge-pill mr-1">{{ state.num_relevant_docs }}</span>
                       Relevant Documents
-                      <span class="badge badge-success badge-pill mr-1">21 Positive</span>
                     </h5>
                     <button type="button" class="close" @click="$emit('close-docs-modal')">
                       <span>&times;</span>
@@ -694,6 +708,15 @@
                       </p>
                       <h5 class="mb-1">
                         {{ state.way_text.replace(';', '') }}
+                      </h5>
+                      <p class="mb-0 text-uppercase font-weight-lighter">
+                        NUMBER OF DOCUMENTS BY DIRECTION OF EVIDENCE
+                      </p>
+                      <h5 class="mb-1">
+                        <span class="badge badge-success badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Positive Contribution") : false).length }} Positive</span> 
+                        <span class="badge badge-warning badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Mixed or Neutral Contribution") : false).length }} Neutral</span>
+                        <span class="badge badge-danger badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Negative Contribution") : false).length }} Negative</span>
+                        <span class="badge badge-secondary badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Not Applicable") : false).length }} Not Applicable</span>
                       </h5>
                     </div>
                     <div class="card-body px-0 pt-0">
