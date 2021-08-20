@@ -108,7 +108,7 @@
             {
                 "rowNumber": 1,
                 "title": "BRC2 - Between individual researchers, both domestic and international",
-                "description": "",
+                "description": "A researcher partnership includes any collaboration between research scientists in search of a solution to a common challenge/ question",
                 "titleLineOne": "Between",
                 "titleLineTwo": "Individual Researchers",
                 "titleLineThree": "Domestic",
@@ -117,7 +117,7 @@
             {
                 "rowNumber": 2,
                 "title": "BRC3 - Between individual policymakers/practitioners and researchers",
-                "description": "",
+                "description": "This refers to formal and informal partnerships intended to inform on, and promote the use of, research findings",
                 "titleLineOne": "Between",
                 "titleLineTwo": "Individual Poliymakers/",
                 "titleLineThree": "Practitioners",
@@ -126,7 +126,7 @@
             {
                 "rowNumber": 3,
                 "title": "BRC4 - Between scientific, research, and academic institutions, both domestic and international",
-                "description": "",
+                "description": "This includes formalized collaborations and regular partnerships between institutions and might take the form of joint program funding, student exchange relationships, shared resources and science diplomacy initiatives  ",
                 "titleLineOne": "Between",
                 "titleLineTwo": "Scientific, Research",
                 "titleLineThree": "and Acedemic",
@@ -135,7 +135,7 @@
             {
                 "rowNumber": 4,
                 "title": "BRC5 - In Partnership with Community-Level Actors",
-                "description": "",
+                "description": "No",
                 "titleLineOne": "Partnership",
                 "titleLineTwo": "with",
                 "titleLineThree": "Community-Level",
@@ -146,7 +146,7 @@
             {
                 "rowNumber": 5,
                 "title": "CB-HEI1 - In project management and research administration",
-                "description": "",
+                "description": "Project management and research administration includes all aspects of budgeting, grants managment, staff management, reporting and similar ",
                 "titleLineOne": "Project",
                 "titleLineTwo": "Management &",
                 "titleLineThree": "Research",
@@ -166,7 +166,7 @@
             {
                 "rowNumber": 7,
                 "title": "CB-RE1 - In conceptualization and design of policy- and social impact-relevant research",
-                "description": "",
+                "description": "In addition to a traditional problem hypothesis, social impact-relevant research incorporates elements of operations research or implementation science, which is the scientific study of barriers to and methods of promoting the systematic application of research findings in practice, including in public policy. Conceptualization and design of this research is often done in collaboration with development practicioners and can include methods such as Co-creation.",
                 "titleLineOne": "Conceptualization",
                 "titleLineTwo": "& Design of",
                 "titleLineThree": "Policy- & Societal",
@@ -175,7 +175,7 @@
             {
                 "rowNumber": 8,
                 "title": "CB-RE2 - Through research translation training (also with HEIs)",
-                "description": "",
+                "description": "Training on research translation includes any activities that increase the ability of researchers to put the results of their work into use",
                 "titleLineOne": "",
                 "titleLineTwo": "Through",
                 "titleLineThree": "Research Translation",
@@ -184,7 +184,7 @@
             {
                 "rowNumber": 9,
                 "title": "CB-RE3 - Through specialized research implementation and translation technical assistance",
-                "description": "",
+                "description": "Research implementation and translation technical assistance refers to tools and services provided by outside experts to researchers in order to augment research findings in audience-targeted ways and to promote the systematic application of those research findings in practice, including in public policy.",
                 "titleLineOne": "Through",
                 "titleLineTwo": "Specialized Research",
                 "titleLineThree": "Implementation",
@@ -193,7 +193,7 @@
             {
                 "rowNumber": 10,
                 "title": "CB-RE4 - Through creation of centers of excellence",
-                "description": "",
+                "description": "A center of excellence is a team, a shared facility or an entity (here intended to refer to academic teams, facilities, or entities) that provides leadership, best practices, research, support, resources and/or training for a focus area.",
                 "titleLineOne": "",
                 "titleLineTwo": "Through Creation",
                 "titleLineThree": "of Centers of",
@@ -202,7 +202,7 @@
             {
                 "rowNumber": 11,
                 "title": "CB-RE5 - On use of advanced digital tools",
-                "description": "",
+                "description": "Advanced digital tools refer to 21st century hardware and software technologies. These include applications of artificial intelligence such as machine learning and natural language processing but also new uses for 20th century hardware that open up new methods of data collection and analysis, such as Internet of Things, Social Media Data Automation, Geographic Information Systems, and Big Data Analytics. Note: Building this capacity very often comes with pre-established infrastructure (power, broadband, cellular data) requirements.",
                 "titleLineOne": "",
                 "titleLineTwo": "On Use of",
                 "titleLineThree": "Advanced Digital",
@@ -231,7 +231,7 @@
             {
                 "rowNumber": 14,
                 "title": "CB-PP3 - Through specialized technical assistance on research translation and use",
-                "description": "",
+                "description": "Training, advisory services, and collaborative activities to support policy-makers and practicioners with a range of research-related activities. This includes identifying research questions, accessing research, contracting and managing research, and interpreting and translating research.  Illustrative activities include training policy makers and practicioners in designing and managing research projects; training and providing tools for practicioners to access research, embedding scientific research experts in government agencies or in government working groups and commitees in order facilitate evidence informed policy. (More holistic , integrated approaches than 15 & 16))",
                 "titleLineOne": "Through",
                 "titleLineTwo": "Specialized Technical",
                 "titleLineThree": "Assistance",
@@ -307,7 +307,7 @@
             {
                 "rowNumber": 22,
                 "title": "ES1 - For coordinating research across organizations through R&D councils, science academies, and similar entities",
-                "description": "",
+                "description": "R&D councils refer to working groups whose purpose focuses on the increased commitment for the use and application of research in decision making in public and private sector organizations. For example support for the establishment of national councils of science and technology. At the institutional level, establishing organization-level R&D councils.",
                 "titleLineOne": "For",
                 "titleLineTwo": "Coordinating",
                 "titleLineThree": "Research Across",
@@ -316,7 +316,7 @@
             {
                 "rowNumber": 23,
                 "title": "ES2 - For HEI-based innovation accelerators and incubators",
-                "description": "",
+                "description": "Innovation accelerators and incubators are hubs that house teams focused on introducing new practices and products that are socially relevant and have a market. These hubs provide essential support for taking research to pilot and if successful, implemention and scale. ",
                 "titleLineOne": "For HEI-",
                 "titleLineTwo": "Based Innovation",
                 "titleLineThree": "Accelerators &",
@@ -325,7 +325,7 @@
             {
                 "rowNumber": 24,
                 "title": "ES3 - To create and/or strengthen research networks",
-                "description": "",
+                "description": "A research network is a group of researchers who are united in purpose but who aren't necessarily engaged in an ongoing collaborative partnership",
                 "titleLineOne": "To Create",
                 "titleLineTwo": "And/Or Strengthen",
                 "titleLineThree": "Research",
@@ -334,7 +334,7 @@
             {
                 "rowNumber": 25,
                 "title": "ES4 - Through HEI -based tech transfer/commercialization programs",
-                "description": "",
+                "description": "Strengthening tech transfer includes efforts designed to put in place HEI policy, staff, and procedures towards fostering and supporting a culture of research for commercialization and can also include developing agreements between HEIs and host government bodies to ensure intellectual property protection and standard oversight procedures.",
                 "titleLineOne": "Through",
                 "titleLineTwo": "HEI-Based Tech",
                 "titleLineThree": "Transfer/Commercialization",
@@ -343,7 +343,7 @@
             {
                 "rowNumber": 26,
                 "title": "E5S - By facilitating the design, implementation, and management of scientific research-related policies",
-                "description": "",
+                "description": "Scientific research-related policies are laws, regulations, standards and guidelines that govern the role and implementation of science and research in domestic and international affairs.  These policies provide guidance to a variety of actors: the private sector, state and local governments, the science and higher education communities, and even other nations. Policies include patent and trademark regulations, technology transfer policies and programs, standards of scientific integrity, public access  and open data .",
                 "titleLineOne": "Facilitating",
                 "titleLineTwo": "the Design",
                 "titleLineThree": "of Scientific",
@@ -354,7 +354,7 @@
             {
                 "rowNumber": 27,
                 "title": "RD1 - Through face-to-face events",
-                "description": "",
+                "description": "Face-to-face events are research and information sharing gatherings that are not explicitly designed for the purpose of directing future actiivites. These include panels, summits, conferences and similar. These events can be in-person or virtual.",
                 "titleLineOne": "",
                 "titleLineTwo": "",
                 "titleLineThree": "Through Face-",
@@ -363,7 +363,7 @@
             {
                 "rowNumber": 28,
                 "title": "RD2 - Through workshops and problem-solving events",
-                "description": "",
+                "description": "Workshops and problem-solving events include any gathering of researchers and other develoment stakeholders to present research evidence and discuss how it might be used to inform process. Workshops and problem-solving events result in recommendations/ strategies for future work and attendee commitments to action. These can include Hack-a-thons and so-called agenda setting events",
                 "titleLineOne": "Through",
                 "titleLineTwo": "Workshops and",
                 "titleLineThree": "Problem-Solving",
@@ -372,7 +372,7 @@
             {
                 "rowNumber": 29,
                 "title": "RD3 - On collaborative platforms",
-                "description": "",
+                "description": "Collaborative platforms are those that encourage and facilitate constructive discourse on scientific research, application and similar topics. These include social media platforms, bi-directional engagement forums, communities of practices, and other venues for thought exchange.",
                 "titleLineOne": "",
                 "titleLineTwo": "On",
                 "titleLineThree": "Collaborative",
@@ -381,7 +381,7 @@
             {
                 "rowNumber": 30,
                 "title": "RD4 - On websites for disseminating evidence and research findings",
-                "description": "",
+                "description": "Dissemination through websites here refers to traditional news stories and blogs whose main purpose is to share information and not to generate a conversation.",
                 "titleLineOne": "On Websites",
                 "titleLineTwo": "for Disseminating",
                 "titleLineThree": "Evidence &",
