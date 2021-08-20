@@ -161,6 +161,12 @@ const ALLOWED_FIELDS = [
     for (const [name, values] of Object.entries(results.filteredFields)) {
       results.filteredFields[name] = Array.from(values).sort();
     }
+    results.filteredFields["Year"] = [
+      "Before 1990",
+      "Since 1990",
+      "Since 2006",
+      "Since 2016"
+    ]
     console.log(JSON.stringify(results, null, 2));
   } catch (err) {
     console.error(err);

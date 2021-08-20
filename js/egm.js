@@ -70,7 +70,8 @@ const egm_layout = {
         technical_sector: [],
         special_considerations: [],
         methodologies_used: [],
-        resource_type: []
+        resource_type: [],
+        year: []
       },
       search: "",
       filtered_documents: [],
@@ -109,7 +110,8 @@ const egm_layout = {
           (vue_object.filters.methodologies_used.length == 0 || vue_object.multi_select_filter(doc, "Methodologies Used", 'methodologies_used')) && 
           (vue_object.filters.enterprise_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Enterprise", 'enterprise_type')) && 
           (vue_object.filters.industry.length == 0 || vue_object.multi_select_filter(doc, "Private Sector Industry", 'industry')) && 
-          (vue_object.filters.resource_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Document", 'resource_type')) 
+          (vue_object.filters.resource_type.length == 0 || vue_object.multi_select_filter(doc, "Type of Document", 'resource_type')) &&
+          (vue_object.filters.year.length == 0 || vue_object.year_filter(doc, "Year", 'year')) 
          )
       });
 
@@ -147,6 +149,37 @@ const egm_layout = {
         this.filters[filter_key].forEach(function(filter_choice){
           if( document[field].includes(filter_choice) ) {
             match = true;
+          }
+        })
+      }
+      return match
+    },
+    year_filter: function(document, field, filter_key) {
+      var match = false;
+      if(document[field] ) {
+        this.filters[filter_key].forEach(function(filter_choice){
+          let keywords = filter_choice.split(' ')
+          switch(keywords[0]){
+            case 'Before':
+              if( parseInt(document[field]) <  keywords[1]) {
+                match = true;
+              }
+              break;
+            case 'Since':
+              if( parseInt(document[field]) >= keywords[1]) {
+                match = true;
+              }
+              break;
+            case 'After':
+              if( parseInt(document[field]) > keywords[1]) {
+                match = true;
+              }
+              break;
+            case 'Exactly':
+              if( parseInt(document[field]) == keywords[1]) {
+                match = true;
+              }
+              break;
           }
         })
       }

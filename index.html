@@ -161,7 +161,7 @@
                 <div class="col-md-11">
                   <div class="row no-gutters filters" id="filter-row">
                     <div class="col" v-for="(lookup, name) in config.searchOptions">
-                      <vue-multiselect v-model="filters[name]" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="filter_categories[lookup]" @input="filter_change" >
+                      <vue-multiselect v-model="filters[name]" :searchable="false" v-bind:multiple="name == 'year' : false ? true" :showLabels="false" :closeOnSelect="false" :options="filter_categories[lookup]" @input="filter_change" >
                         <template slot="selection" slot-scope="{ values }">
                           <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
@@ -548,7 +548,7 @@
         <h5 class="mb-3 px-3">
           <p class="mb-0 text-uppercase" >NUMBER OF DOCUMENTS BY DIRECTION OF EVIDENCE</p>
           <span class="badge badge-success badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Positive Contribution") : false).length }} Positive</span> 
-          <span class="badge badge-warning badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Mixed or Neutral Contribution") : false).length }} Neutral</span>
+          <span class="badge badge-warning badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Mixed or Neutral Contribution") : false).length }} Mixed/Neutral</span>
           <span class="badge badge-danger badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Negative Contribution") : false).length }} Negative</span>
           <span class="badge badge-secondary badge-pill mr-1">{{ filtered_documents.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Not Applicable") : false).length }} Not Applicable</span>
         </h5>
@@ -714,7 +714,7 @@
                       </p>
                       <h5 class="mb-1">
                         <span class="badge badge-success badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Positive Contribution") : false).length }} Positive</span> 
-                        <span class="badge badge-warning badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Mixed or Neutral Contribution") : false).length }} Neutral</span>
+                        <span class="badge badge-warning badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Mixed or Neutral Contribution") : false).length }} Mixed/Neutral</span>
                         <span class="badge badge-danger badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Negative Contribution") : false).length }} Negative</span>
                         <span class="badge badge-secondary badge-pill mr-1">{{ state.relevant_docs.filter(doc => doc["Direction of Evidence"] ? doc["Direction of Evidence"].includes("Not Applicable") : false).length }} Not Applicable</span>
                       </h5>
