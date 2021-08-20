@@ -190,12 +190,13 @@
               </div> 
               <!-- end search bar -->
                   <div class="row pt-3 justify-content-center">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+
                       <vue-multiselect v-model="rows_selected" :searchable="false" :multiple="true" :showLabels="false" :closeOnSelect="false" :options="Object.keys(config.rows)">
                         <template slot="selection" slot-scope="{ values }">
-                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} options selected</span>
+                          <span class="multiselect__single" v-if="values.length > 1">{{ values.length }} Intervention Categories selected</span>
                           <span class="multiselect__single" v-else-if="values.length === 1">{{ values[0] }}</span>
-                          <span class="multiselect__single" v-else>Select Rows</span>
+                          <span class="multiselect__single" v-else>Select Intervention Categories</span>
                         </template>
                       </vue-multiselect>
                     </div>
@@ -229,60 +230,67 @@
     <script type="text/x-template" id="map-component">
       <div>
           <div v-if="true" class="container-fluid" id="table-container">
+            <div class="row no-gutters d-none d-lg-block" >
+            <table v-show="rows_selected.length > 0" class="table egm-table" :id="`combined-table-header`">
+              <thead>
+              <tr>
+                <th scope="col" class="set-group-title-vert-width"></th>
+                <th scope="col"></th>
+                <th scope="colgroup" colspan="4" class="group-title group-title-pse" :style='`background:${config.colors.columnHeaderLeftColor};`'>
+                  {{config.columnTopHeaders.headerLeft}}
+                </th>
+                <th scope="colgroup" colspan="4" class="group-title group-title-usaid" :style='`background:${config.colors.columnHeaderRightColor};`'>
+                  {{config.columnTopHeaders.headerCenter}}
+                  </a>
+                </th>
+                <th scope="colgroup" colspan="2" class="group-title group-title-usaid" :style='`background:${config.colors.columnHeaderRightColor};`'>
+                  {{config.columnTopHeaders.headerRight}}
+                  </a>
+                </th>
+                <th scope="col" class=""></th>
+                <th scope="col" class="set-group-title-vert-width"></th>
+              </tr>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+
+                <!-- Column Headers Left Side -->
+                <th v-for="header in config.columnHeadersLeft" scope="col" class="value" :title="header.title" >
+                  <div class="clip-content">
+                    <span class="float-right">
+                      <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="bottom" :title="header.title"  :data-content="header.description">
+                <i class="fas fa-info-circle"></i>
+                </a>
+                </span>{{header.titleLineOne}}</div>
+                <div class="clip-content">{{header.titleLineTwo}}</div>
+                <div class="clip-content">{{header.titleLineThree}}</div>
+                <div class="clip-content">{{header.titleLineFour}}</div>
+                </th>
+                <!-- Column Headers Right Side -->
+                <th v-for="header in config.columnHeadersRight" scope="col" class="value" :title="header.title">
+                <div class="clip-content">
+                <span class="float-right">
+                <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="bottom" :title="header.title"  :data-content="header.description">
+                <i class="fas fa-info-circle"></i>
+                </a>
+                </span>{{header.titleLineOne}}</div>
+                <div class="clip-content">{{header.titleLineTwo}}</div>
+                <div class="clip-content">{{header.titleLineThree}}</div>
+                <div class="clip-content">{{header.titleLineFour}}</div>
+                </th>
+                <th scope="col" class=""></th>
+                <th scope="col" class=""></th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- Row Headers -->
+              </tbody>
+            </table>
+          </div>
             <div class="row no-gutters d-none d-lg-block" v-for="(row, index) in Object.keys(config.rows)" :key=index >
               <!-- <p> {{config.rows}}</p> -->
               <table v-show="rows_selected.includes(row)" class="table egm-table" :id="`combined-table-${index}`">
-                <thead v-if="index == 0">
-                <tr>
-                  <th scope="col" class="set-group-title-vert-width"></th>
-                  <th scope="col"></th>
-                  <th scope="colgroup" colspan="4" class="group-title group-title-pse" :style='`background:${config.colors.columnHeaderLeftColor};`'>
-                    {{config.columnTopHeaders.headerLeft}}
-                  </th>
-                  <th scope="colgroup" colspan="4" class="group-title group-title-usaid" :style='`background:${config.colors.columnHeaderRightColor};`'>
-                    {{config.columnTopHeaders.headerCenter}}
-                    </a>
-                  </th>
-                  <th scope="colgroup" colspan="2" class="group-title group-title-usaid" :style='`background:${config.colors.columnHeaderRightColor};`'>
-                    {{config.columnTopHeaders.headerRight}}
-                    </a>
-                  </th>
-                  <th scope="col" class=""></th>
-                  <th scope="col" class="set-group-title-vert-width"></th>
-                </tr>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-
-                  <!-- Column Headers Left Side -->
-                  <th v-for="header in config.columnHeadersLeft" scope="col" class="value" :title="header.title" >
-                    <div class="clip-content">
-                      <span class="float-right">
-                        <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="bottom" :title="header.title"  :data-content="header.description">
-                  <i class="fas fa-info-circle"></i>
-                  </a>
-                  </span>{{header.titleLineOne}}</div>
-                  <div class="clip-content">{{header.titleLineTwo}}</div>
-                  <div class="clip-content">{{header.titleLineThree}}</div>
-                  <div class="clip-content">{{header.titleLineFour}}</div>
-                  </th>
-                  <!-- Column Headers Right Side -->
-                  <th v-for="header in config.columnHeadersRight" scope="col" class="value" :title="header.title">
-                  <div class="clip-content">
-                  <span class="float-right">
-                  <a tabindex="0" data-toggle="popover" data-trigger="focus" data-placement="bottom" :title="header.title"  :data-content="header.description">
-                  <i class="fas fa-info-circle"></i>
-                  </a>
-                  </span>{{header.titleLineOne}}</div>
-                  <div class="clip-content">{{header.titleLineTwo}}</div>
-                  <div class="clip-content">{{header.titleLineThree}}</div>
-                  <div class="clip-content">{{header.titleLineFour}}</div>
-                  </th>
-                  <th scope="col" class=""></th>
-                  <th scope="col" class=""></th>
-                </tr>
-                </thead>
-                <thead v-else>
+                <thead>
                   <tr>
                     <th scope="col" class="set-group-title-vert-width"></th>
                     <th scope="col"></th>

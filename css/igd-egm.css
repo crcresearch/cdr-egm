@@ -516,6 +516,10 @@ ul.list-spaced li {
   color: #247d95;
 }
 
+#combined-table-0 > thead > tr:nth-child(1) > th {
+  padding: 0px;
+}
+
 .bg-selected-blue {
   background: #0c2440 !important;
 }
