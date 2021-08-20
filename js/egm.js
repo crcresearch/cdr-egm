@@ -122,7 +122,7 @@ const egm_layout = {
             vue_object.search_list_field(doc, "Name of Private Sector Partner(s)", vue_object.search ) ||
             vue_object.search_list_field(doc, "Publishing Institution(s)", vue_object.search ) ||
             vue_object.search_list_field(doc, "Methodologies Used", vue_object.search ) ||
-            doc["Type of Document"] && doc["Type of Document"].toLowerCase().includes(vue_object.search.toLowerCase()) ||
+            vue_object.search_list_field(doc, "Type of Document", vue_object.search ) ||
             doc["Document Title"] && doc["Document Title"].toLowerCase().includes(vue_object.search.toLowerCase()) || 
             doc["Key Findings"] && doc["Key Findings"].toLowerCase().includes(vue_object.search.toLowerCase()) 
           )
@@ -457,7 +457,7 @@ const list = {
     },
     docs_in_categories: function () {
       // categorize each document by its type
-      return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.filtered_documents.filter(doc => doc['Type of Document'] === doc_type) }), {});
+      return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.filtered_documents.filter(doc => doc['Type of Document'].includes(doc_type)) }), {});
     }
   },
   template: '#list-component',
