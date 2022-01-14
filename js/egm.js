@@ -33,6 +33,11 @@ const relevantDocumentsModal = {
       return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.state.relevant_docs.filter(doc => doc['Type of Document'] ? doc['Type of Document'].includes(doc_type) : false) }), {});
     }
   },
+  methods: {
+    get_class_name_from_direction: function(doc) {
+      return doc['Direction of Evidence'] ? doc['Direction of Evidence'][0].toLowerCase().replace(/ /g,'-') : '' 
+    },
+  },
   template: '#relevant-docs-modal-component'
 };
 
@@ -522,6 +527,11 @@ const list = {
       // categorize each document by its type
       return this.doc_types.reduce((acc, doc_type) => ({ ...acc, [doc_type]: this.filtered_documents.filter(doc => doc['Type of Document'] ? doc['Type of Document'].includes(doc_type) : false) }), {});
     }
+  },
+  methods: {
+    get_class_name_from_direction: function(doc) {
+      return doc['Direction of Evidence'] ? doc['Direction of Evidence'][0].toLowerCase().replace(/ /g,'-') : '' 
+    },
   },
   template: '#list-component',
 };

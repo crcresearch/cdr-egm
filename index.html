@@ -309,7 +309,8 @@
                 <!-- Row Headers -->
                 <tr v-for="(rowHeader, count) in config.rows[row]">
                   <th class="group-title-vert" :rowspan="config.rows[row].length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
-                      <div class="title-rotate" v-bind:style="{ transform: 'translate(0, ' + row.length/5.5 + 'rem) rotate(-90deg)'}">
+                      <div class="title-rotate" :class="row == 'Capacity Building for Policy Makers and Practitioners' ? 'small-text' : ''" 
+                      v-bind:style="row == 'Capacity Building for Policy Makers and Practitioners' ? { transform: 'translate(0, ' + row.length/5 + 'rem) rotate(-90deg)'} : { transform: 'translate(0, ' + row.length/4.5 + 'rem) rotate(-90deg)'}">
                       {{row}}
                       </a>
                     </div>
@@ -352,8 +353,9 @@
                     <div class="clip-content">{{rowHeader.titleLineFour}}</div>
                   </th>
                   <th class="group-title-vert" :rowspan="rows_displayed.length" v-if="count === 0" :style='`background:${config.colors.sideHeaderColor};`'>
-                    <div class="title-rotate" v-bind:style="{ transform: 'translate(0, ' + row.length/5.5 + 'rem) rotate(-90deg)'}">
-                      {{row}}
+                    <div class="title-rotate" :class="row == 'Capacity Building for Policy Makers and Practitioners' ? 'small-text' : ''" 
+                    v-bind:style="row == 'Capacity Building for Policy Makers and Practitioners' ? { transform: 'translate(0, ' + row.length/5 + 'rem) rotate(-90deg)'} : { transform: 'translate(0, ' + row.length/4.5 + 'rem) rotate(-90deg)'}">
+                    {{row}}
                       </a>
                     </div>
                   </th>
@@ -561,7 +563,12 @@
             </h5>
             <ul class="list-group list-group-flush mb-4">
               <li v-for="(doc, index) in docs_in_categories[doc_type]" :key="index" class="list-group-item">
-                <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Publishing Institution(s)']">, <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em></span><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
+                <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}
+                  <span v-if="doc['Publishing Institution(s)']">, 
+                  <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em></span><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em>
+                  </span>
+                  <span class="dot" :class="get_class_name_from_direction(doc)"></span>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -727,7 +734,9 @@
                         </h6>
                         <ul class="list-group list-group-flush">
                           <li v-for="doc in docs_in_categories[doc_type]" :key="doc['Document ID']" class="list-group-item">
-                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Publishing Institution(s)']">, <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em></span><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span></router-link>
+                            <router-link :to="{ name: 'details', params: { id: doc['Document ID'], document: doc } }" >{{ doc['Document Title'] }}<span v-if="doc['Publishing Institution(s)']">, <em>{{ doc['Publishing Institution(s)'].join(', ') }}</em></span><span v-if="doc['Year']">, <em>{{ doc['Year'] }}</em></span>
+                              <span class="dot" :class="get_class_name_from_direction(doc)"></span>
+                            </router-link>
                           </li>
                         </ul>
                       </template>

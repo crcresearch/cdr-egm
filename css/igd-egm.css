@@ -231,7 +231,7 @@ p.p-inst {
 .egm-table th.group-title-vert {
   vertical-align: middle;
   text-align: right;
-  font-size: .7rem;
+  /* font-size: .7rem; */
   text-transform: uppercase;
   text-align: center;
   line-height: 1;
@@ -239,6 +239,11 @@ p.p-inst {
   letter-spacing: .5px;
   color: #fff;
 }
+
+.title-rotate.small-text {
+  font-size: .7rem;
+}
+
 .egm-table th.group-title-vert .title-rotate {
   text-align: center;
   white-space: nowrap;
@@ -684,4 +689,31 @@ ul.list-spaced li {
 .fa-info-circle {
   cursor: pointer;
   color: #91989e;
+}
+
+.dot {
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.dot.positive-contribution {
+  background-color: #28a745;
+}
+
+
+.dot.not-applicable {
+  background-color: grey;
+}
+
+
+.dot.negative-contribution {
+  background-color: #dc3545;
+}
+
+
+.dot.mixed-or-neutral-contribution {
+  background-color: #ffc107;
 }
