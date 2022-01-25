@@ -6,7 +6,7 @@
         "mainDescription": "Use the map to identify gaps and locate relevant documents. Click a circle to see the documents matching a particular intervention-outcome. Use filters to narrow the documents displayed on the map, or search for documents in list view."
     },
     "columnTopHeaders": {
-        "headerLeft": "HEI generation/ dissemination of development relevant evidence",
+        "headerLeft": "HEI generation/dissemination of development relevant evidence",
         "headerCenter": "Ability and Commitment of policy and development organizations to apply evidence",
         "headerRight": "Use of research for more effective programs and policy"
     },
@@ -108,7 +108,7 @@
             {
                 "rowNumber": 1,
                 "title": "BRC2 - Between individual researchers, both domestic and international",
-                "description": "A researcher partnership includes any collaboration between research scientists in search of a solution to a common challenge/ question",
+                "description": "A researcher partnership includes any collaboration between research scientists in search of a solution to a common challenge/question",
                 "titleLineOne": "Between",
                 "titleLineTwo": "Individual Researchers",
                 "titleLineThree": "Domestic",
@@ -354,7 +354,7 @@
             {
                 "rowNumber": 27,
                 "title": "RD1 - Through face-to-face events",
-                "description": "Face-to-face events are research and information sharing gatherings that are not explicitly designed for the purpose of directing future actiivites. These include panels, summits, conferences and similar. These events can be in-person or virtual.",
+                "description": "Face-to-face events are research and information sharing gatherings that are not explicitly designed for the purpose of directing future activites. These include panels, summits, conferences and similar. These events can be in-person or virtual.",
                 "titleLineOne": "",
                 "titleLineTwo": "",
                 "titleLineThree": "Through Face-",
@@ -363,7 +363,7 @@
             {
                 "rowNumber": 28,
                 "title": "RD2 - Through workshops and problem-solving events",
-                "description": "Workshops and problem-solving events include any gathering of researchers and other develoment stakeholders to present research evidence and discuss how it might be used to inform process. Workshops and problem-solving events result in recommendations/ strategies for future work and attendee commitments to action. These can include Hack-a-thons and so-called agenda setting events",
+                "description": "Workshops and problem-solving events include any gathering of researchers and other development stakeholders to present research evidence and discuss how it might be used to inform processes. Workshops and problem-solving events result in recommendations/strategies for future work and attendee commitments to action. These can include Hack-a-thons and so-called agenda setting events",
                 "titleLineOne": "Through",
                 "titleLineTwo": "Workshops and",
                 "titleLineThree": "Problem-Solving",
@@ -372,7 +372,7 @@
             {
                 "rowNumber": 29,
                 "title": "RD3 - On collaborative platforms",
-                "description": "Collaborative platforms are those that encourage and facilitate constructive discourse on scientific research, application and similar topics. These include social media platforms, bi-directional engagement forums, communities of practices, and other venues for thought exchange.",
+                "description": "Collaborative platforms are those that encourage and facilitate constructive discourse on scientific research, application and similar topics. These include social media platforms, bi-directional engagement forums, communities of practice, and other venues for thought exchange.",
                 "titleLineOne": "",
                 "titleLineTwo": "On",
                 "titleLineThree": "Collaborative",

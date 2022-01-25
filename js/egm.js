@@ -476,7 +476,7 @@ const map = {
         }
       };
       // This value title may have to be changed manually, depending on how many column header headers they want.
-      this.docs_modal_state.value_title = options.value_index >= 8 ? 'Use of Research for More Effective Programs and Policy' : options.value_index >= 4 && options.value_index <= 7 ? 'Ability and Commitment of policy and development organizations to apply evidence' : "HEI generation/ dissemination of development relevant evidence";
+      this.docs_modal_state.value_title = options.value_index >= 8 ? 'Use of Research for More Effective Programs and Policy' : options.value_index >= 4 && options.value_index <= 7 ? 'Ability and Commitment of policy and development organizations to apply evidence' : "HEI generation/dissemination of development relevant evidence";
       
       if (options.value_index < values_length + offers_length) {
         this.docs_modal_state.value_text = column_values[options.value_index];
